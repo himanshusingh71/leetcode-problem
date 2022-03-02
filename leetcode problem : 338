@@ -1,0 +1,73 @@
+338. Counting Bits
+
+// approach 1
+class Solution {
+public:
+   int mymap[100000];
+     
+   int count(int n)
+    {
+        mymap[0] = 0;
+    mymap[1] = 1;
+           if(n&1)
+           {
+               mymap[n] =  mymap[n/2]+1;
+               return mymap[n];
+           }
+               else {
+               mymap[n] =  mymap[n/2];
+                   return mymap[n];
+               }
+    
+
+       
+    }
+    vector<int> countBits(int n) {
+        
+        vector<int> ans;
+        for(int i=0;i<=n;i++)
+        {
+            ans.push_back(count(i));
+        }
+        return ans;
+    }
+};
+
+/*
+Runtime: 4 ms, faster than 88.10% of C++ online submissions for Counting Bits.
+Memory Usage: 9 MB, less than 21.56% of C++ online submissions for Counting Bits.
+Next challenges: 
+
+*/
+
+// approach 2
+
+class Solution {
+public:
+   int count(int n)
+    {
+        int c = 0;
+        int a = 1;
+        while(n>00)
+        {
+            if(n&1)
+                c++;
+           n= n>>1;
+        }
+        return c;
+    }
+    vector<int> countBits(int n) {
+        vector<int> ans;
+        for(int i=0;i<=n;i++)
+        {
+            ans.push_back(count(i));
+        }
+        return ans;
+    }
+};
+
+/*
+Runtime: 18 ms, faster than 6.83% of C++ online submissions for Counting Bits.
+Memory Usage: 8.6 MB, less than 21.56% of C++ online submissions for Counting Bits.
+
+*/
