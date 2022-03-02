@@ -1,0 +1,22 @@
+<bold> 392. Is Subsequence </bold> 
+
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        if(s==t)
+            return true;
+     int x = 0;
+        for(int i=0;i<t.length();i++)
+        {
+            if(t[i]==s[x])
+            {
+                x++;
+            }
+            if(x==s.length())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+};
