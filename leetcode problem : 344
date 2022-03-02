@@ -1,0 +1,16 @@
+class Solution {
+public:
+   void reverseString(vector<char>& s) {
+              for(int i=0,j=s.size()-1;i<j;i++,j--)
+              {
+              	swap(s[i],s[j]);
+              }                 
+                   
+    }
+};
+
+/*
+Runtime: 27 ms, faster than 65.54% of C++ online submissions for Reverse String.
+Memory Usage: 23.2 MB, less than 42.59% of C++ online submissions for Reverse String.
+
+*/
