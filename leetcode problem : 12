@@ -1,0 +1,70 @@
+12. Integer to Roman
+
+// by using binary search method
+
+/*
+Runtime: 65 ms, faster than 5.14% of C++ online submissions for Integer to Roman.
+Memory Usage: 26.3 MB, less than 5.18% of C++ online submissions for Integer to Roman.
+
+
+*/
+class Solution {
+public:
+      int find(vector<int> mylist,int n,int l,int r)
+   {
+   
+    int mid = (l+r)/2;
+    if(r-l==1)
+        { 
+         //   cout << " l = " << l << " r = " << r << endl;
+           
+            return mylist[r-1];
+             
+        
+    }
+    if(n==mylist[mid])
+    {
+        return n;
+    }
+    else if(n>mylist[mid])
+    {
+       return find(mylist,n,mid,r);
+        
+    }
+    else{
+      return find(mylist,n,l,mid);
+        
+    }
+   }
+
+   string intToRoman(int n)
+   {
+     vector<int> mylist = {0,1,4,5,9,10,40,50,90,100,400,500,900,1000};
+    unordered_map<int,string> mymap;
+    string ans = "";
+    mymap[1] = "I";
+    mymap[5] = "V";
+    mymap[10] = "X";
+    mymap[50] = "L";
+    mymap[100] = "C";
+    mymap[500] = "D";
+    mymap[1000] = "M";
+    mymap[4] = "IV";
+    mymap[9] = "IX";
+    mymap[40]  = "XL";
+    mymap[90] = "XC";
+    mymap[400] = "CD";
+    mymap[900] = "CM";
+     while(n>0)
+     {
+       // cout << " n = " << n << " find = " << find(mylist,n,0,mylist.size()) << endl;;
+         int call = find(mylist,n,0,mylist.size());
+        ans = ans + mymap[call];
+        n = n- call;
+      
+ 
+     }
+     return ans;
+   }
+
+};
