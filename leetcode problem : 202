@@ -1,0 +1,55 @@
+202. Happy Number
+
+class Solution {
+public:
+    vector<int> myfun(int n)
+    {
+        vector<int> temp;
+        while(n>0)
+        {
+            temp.push_back(n%10);
+            n/=10;
+        }
+        for(int i=0;i<temp.size();i++)
+        {
+            temp[i] = pow(temp[i],2);
+        }
+        return temp;
+    }
+    
+    bool isHappy(int n) {
+          if(n==1)
+            return true;
+      // make a function to get the digits in a vector
+        // get squares of the numbers
+        // sum those numbers
+        // check if sum is equal to the first number , if yes then return false;
+        // else keep checking until sum is equal to 0
+        vector<int> elements;
+        int x = n;
+        int sum = n;
+        unordered_map<int,bool> mymap;
+        while(1)
+        {  
+           elements = myfun(sum);
+            sum = 0;
+            for(int c: elements)
+            {
+                sum +=c;
+            }
+
+           
+             if(sum==1)
+            {
+              //  cout << "YES\n";
+               return true;
+            }
+              if(mymap.find(sum)!=mymap.end())
+            {
+            	return false;
+            }
+            mymap[sum] = true;
+            cout << sum << endl;
+        }
+}
+};
