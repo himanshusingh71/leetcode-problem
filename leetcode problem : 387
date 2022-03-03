@@ -1,0 +1,29 @@
+387. First Unique Character in a String
+
+/*
+Runtime: 76 ms, faster than 24.99% of C++ online submissions for First Unique Character in a String.
+Memory Usage: 10.8 MB, less than 42.43% of C++ online submissions for First Unique Character in a String.
+
+*/
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        unordered_map<char,int> mymap;
+        for(char c:s)
+        {
+            if(mymap.find(c)!=mymap.end())
+            {
+                mymap[c]++;
+            }
+            else
+                mymap[c]=1;
+        }
+        for(int i=0;i<s.length();i++)
+        {
+            if(mymap[s[i]]==1)
+                return i;
+                
+        }
+        return -1;
+    }
+};
