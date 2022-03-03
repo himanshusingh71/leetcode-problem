@@ -1,5 +1,9 @@
 217. Contains Duplicate
+/*
+Runtime: 136 ms, faster than 48.36% of C++ online submissions for Contains Duplicate.
+Memory Usage: 46.4 MB, less than 99.84% of C++ online submissions for Contains Duplicate.
 
+*/
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
