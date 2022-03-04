@@ -1,0 +1,46 @@
+541. Reverse String II
+
+/*
+Runtime: 4 ms, faster than 80.57% of C++ online submissions for Reverse String II.
+Memory Usage: 7.4 MB, less than 33.39% of C++ online submissions for Reverse String II.
+
+
+*/
+
+class Solution {
+public:
+     string reverseStr(string s, int k) {
+    	int new_index=0;
+         if(k>s.length())
+               {
+             reverse(s.begin(),s.end());
+             return s;
+         }
+         if(s.length()<k)
+             return s;
+       for(int i=0;i<s.length();)
+       {
+          	  if(s.length()-k>=i){
+       	 reverse(s.begin()+i,s.begin()+i+k);
+       	 i+=2*k;
+
+       	 new_index = i;
+       	}
+       	else{
+       		break;
+       	}
+       }
+         
+       if((s.length()-new_index)<k)
+       {
+       	reverse(s.begin()+new_index,s.end());
+       }
+       else if((s.length()-new_index<2*k)&&(s.length()-new_index >= k ))
+       {
+       	reverse(s.begin()+new_index,s.begin()+new_index+k);
+       }
+     
+        return s;
+    }
+};
+
