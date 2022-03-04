@@ -1,0 +1,128 @@
+43. Multiply Strings
+
+/*
+Runtime: 27 ms, faster than 25.87% of C++ online submissions for Multiply Strings.
+Memory Usage: 16.6 MB, less than 14.89% of C++ online submissions for Multiply Strings.
+
+*/
+
+class Solution {
+public:
+   
+ char convert(int n)
+ {
+ 	switch(n)
+ 	{
+ 		case 1:
+ 		return '1';
+ 		break;
+ 		case 2:
+ 		return '2';
+ 		break;
+ 		case 3:
+ 		return '3';
+ 		break;
+ 		case 4:
+ 		return '4';
+ 		break;
+ 		case 5:
+ 		return '5';
+ 		break;
+ 		case 6:
+ 		return '6';
+ 		break;
+ 		case 7:
+ 		return '7';
+ 		break;
+ 		case 8:
+ 		return '8';
+ 		break;
+ 		case 9:
+ 		return '9';
+ 		break;
+ 		case 0: return '0';
+ 		break;
+ 	}
+     return '0';
+ }
+string multiply(string a,string b)
+{
+    if(a=="0"||b=="0")
+        return "0";
+	string ans = "";
+	int max_count = 0;
+	 vector<vector<int>> multiply;
+	 vector<int> temp,answer;
+	 
+	 int carry = 0,count=0;;
+	 for(int i=a.length()-1;i>=0;i--)
+	 {
+	 	carry = 0;
+	 	for(int z=0;z<count;z++)
+	 	{
+	 		temp.push_back(0);
+	 	}
+	 	for(int j=b.length()-1;j>=0;j--)
+	 	{
+	 		int mul = (a[i]-'0') * (b[j]-'0') + carry;
+	 		temp.push_back(mul%10);
+	 		carry = mul / 10;
+	 	}
+	 	count++;
+	 	if(carry>0)
+	 		temp.push_back(carry);
+	 	 
+	 	max_count =  max_count > temp.size() ?  max_count : temp.size();
+	 	multiply.push_back(temp);
+	 	temp.clear();
+	 }
+	  // making sizes equal
+	 for(int i=0;i<multiply.size();i++)
+	 {
+	 	for(int j=multiply[i].size();j<max_count;j++)
+	 	{
+	 		multiply[i].push_back(0);
+	 	}
+	 }
+
+	// for(int i=0;i<multiply.size();i++)
+	// {
+	/// 	for(int j=0;j<multiply[i].size();j++)
+	// 	{
+	 //		cout << multiply[i][j] ;
+	 //	}
+	 //	cout << endl;
+	// }
+
+	// cout << " max size = " << max_count << endl;
+ 
+
+	 // sum the result
+	 int sum  = 0;
+	  carry = 0;
+	 for(int i=0;i<max_count;i++)
+	 {
+	 	sum = 0;
+	 	for(int j=0;j<multiply.size();j++)
+	 	{
+	 			//	cout << multiply[j][i] ;
+	 		sum = sum + (multiply[j][i] );
+	 	}
+	 	sum+=carry;
+	 //	cout << " sum = " << sum << endl;
+	 //	cout << endl;
+	 	answer.push_back(sum%10);
+	 	carry = sum/10;
+
+	 }
+	 if(carry>0)
+	 	answer.push_back(carry);
+	  
+	 
+	 for(int c: answer)
+	 {
+	 	ans = convert(c) + ans;
+	 }
+	 return ans;
+}
+};
