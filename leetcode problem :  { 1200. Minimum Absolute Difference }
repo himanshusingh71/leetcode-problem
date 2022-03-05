@@ -1,0 +1,29 @@
+1200. Minimum Absolute Difference
+
+/*
+Runtime: 56 ms, faster than 99.42% of C++ online submissions for Minimum Absolute Difference.
+Memory Usage: 32 MB, less than 99.53% of C++ online submissions for Minimum Absolute Difference.
+
+*/
+
+class Solution {
+public:
+    vector<vector<int>> minimumAbsDifference(vector<int>& arr) {
+        sort(arr.begin(),arr.end());
+        
+        vector<vector<int>> answer;
+        int minimum = INT_MAX;
+        for(int i=0;i<arr.size()-1;i++)
+        {
+            minimum = min(minimum,abs(arr[i]-arr[i+1]));
+        }
+        for(int i=0;i<arr.size()-1;i++)
+        {
+            if(abs(arr[i]-arr[i+1])==minimum)
+            {
+                answer.push_back({arr[i],arr[i+1]});
+            }        
+        }
+        return answer;
+    }
+};
