@@ -1,0 +1,48 @@
+290. Word Pattern
+
+/*
+Runtime: 4 ms, faster than 23.60% of C++ online submissions for Word Pattern.
+Memory Usage: 6.5 MB, less than 53.17% of C++ online submissions for Word Pattern.
+
+*/
+
+class Solution {
+public:
+    bool wordPattern(string pattern, string s) {
+        unordered_map<char,string> map1;
+        unordered_map<string,char> map2;
+        vector<string> words;
+        string word;
+        istringstream input(s);
+        
+        for(word;input>>word;)
+        {
+            words.push_back(word);
+        }
+        if(words.size()!=pattern.length())
+            return false;
+        for(int i=0;i<pattern.length();i++)
+        {
+            if(map1.find(pattern[i])!=map1.end()&&map2.find(words[i])!=map2.end())
+            {
+              if(map1[pattern[i]]!=words[i])
+                    return false;
+                if(map2[words[i]]!=pattern[i])
+                    return false;
+            }
+        else    if(map1.find(pattern[i])!=map1.end() && map2.find(words[i])==map2.end())
+            {
+                return false;
+            }
+            else if(map1.find(pattern[i])==map1.end() && map2.find(words[i])!=map2.end())
+                return false;
+            else{
+                map1[pattern[i]] = words[i];
+                map2[words[i]] = pattern[i];
+            }
+        }
+        return true;
+     
+    }
+    
+};
