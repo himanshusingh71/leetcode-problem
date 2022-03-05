@@ -1,0 +1,41 @@
+151. Reverse Words in a String
+
+/*
+Runtime: 4 ms, faster than 83.81% of C++ online submissions for Reverse Words in a String.
+Memory Usage: 7.5 MB, less than 62.45% of C++ online submissions for Reverse Words in a String.
+
+
+*/
+
+class Solution {
+public:
+    string reverseWords(string s) {
+   stack<string> mystack;
+        string temp = "";
+        for(int i=0;i<s.length();i++)
+        {
+            if(s[i]!=' ')
+            {
+                temp.push_back(s[i]);
+            }
+            else if(temp!="")
+            {
+                mystack.push(temp);
+                temp = "";
+            }
+        }
+        if(temp!="")
+            mystack.push(temp);
+        string ans = "";
+        while(!mystack.empty())
+        {
+            ans+=mystack.top();
+            mystack.pop();
+            if(!mystack.empty())
+            {
+                ans+=" ";
+            }
+        }
+        return ans;
+    }
+};
