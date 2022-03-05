@@ -1,0 +1,43 @@
+ Squares of a Sorted Array
+ 
+ /*
+ Runtime: 48 ms, faster than 52.68% of C++ online submissions for Squares of a Sorted Array.
+Memory Usage: 27 MB, less than 16.43% of C++ online submissions for Squares of a Sorted Array.
+ 
+ */
+ 
+ class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+    vector<int> ans;
+    int i=0,j=nums.size()-1,count=0;
+    bool enter = false;
+        while(i<=j)
+        {
+            if(nums[i]==0)
+            {
+                i++; count++; enter = true;
+            }
+            else if(nums[j]==0)
+            {
+                count++; enter = true; j--;
+            }
+            else if(abs(nums[i])>abs(nums[j]))
+            {
+                ans.push_back(nums[i]*nums[i]); i++;
+            }
+            else if(abs(nums[i])<abs(nums[j]))
+            {
+                ans.push_back(nums[j]*nums[j]); j--;
+            }
+            else{
+                ans.push_back(nums[i]*nums[i]); i++;
+            }
+        }
+        
+    while(count--)
+        ans.push_back(0);
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
