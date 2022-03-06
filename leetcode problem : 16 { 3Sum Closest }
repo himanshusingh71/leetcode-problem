@@ -1,0 +1,41 @@
+3Sum Closest
+
+/*
+Runtime: 28 ms, faster than 31.00% of C++ online submissions for 3Sum Closest.
+Memory Usage: 10.1 MB, less than 22.99% of C++ online submissions for 3Sum Closest.
+*/
+
+class Solution {
+public:
+         int threeSumClosest(vector<int>& nums, int target) {
+      sort(nums.begin(),nums.end());
+        int distance = INT_MAX;
+        int sum;
+        int final_sum;
+            for(int i=0;i<nums.size();i++)
+            {
+                int j = i+1;
+                int z = nums.size()-1;
+                
+                while(j<z)
+                { 
+                    int earlier_distance = distance;
+                     int sum = (nums[i] + nums[z] + nums[j]);
+                     if(sum<0&&target<0)
+                        distance = min(distance,abs(abs(sum)-abs(target)));
+                     else if(sum>0&&target<0||(sum<0&&target>0))
+                        distance = min(distance,(abs(sum)+abs(target)));
+                     else
+                        distance = min(distance,abs(abs(sum)-abs(target)));
+                     if(distance<earlier_distance)
+                        final_sum = (nums[i] + nums[z] + nums[j]);
+                     if(target>=sum)
+                        j++;
+                     else
+                        z--;
+                }
+            }
+        return final_sum;
+        
+    }
+};
