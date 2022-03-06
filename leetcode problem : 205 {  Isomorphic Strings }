@@ -1,0 +1,28 @@
+ Isomorphic Strings
+
+/*
+Runtime: 7 ms, faster than 75.48% of C++ online submissions for Isomorphic Strings.
+Memory Usage: 7.1 MB, less than 48.47% of C++ online submissions for Isomorphic Strings.
+*/
+
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        unordered_map <char,int> first,second;
+        if(s.length()!=t.length())
+            return false;
+        for(int i=0;i<s.length();i++)
+        {
+if(first.find(s[i])!=first.end()&&second.find(t[i])==second.end()||(first.find(s[i])==first.end())&&(second.find(t[i])!=second.end()))
+                return false;
+            if(first.find(s[i])==first.end()&&second.find(t[i])==second.end())
+            {
+            first[s[i]] = t[i];
+            second[t[i]] = s[i];
+            }
+                else  if(first[s[i]]!=t[i]) 
+                    return false;
+        }
+        return true;
+    }
+};
