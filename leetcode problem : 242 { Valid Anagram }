@@ -1,0 +1,30 @@
+Valid Anagram
+
+/*
+Runtime: 25 ms, faster than 13.32% of C++ online submissions for Valid Anagram.
+Memory Usage: 7.4 MB, less than 47.27% of C++ online submissions for Valid Anagram.
+*/
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+      unordered_map<char,int> chars;
+        unordered_map<char,int> char2;
+        if(s.length()!=t.length())
+            return false;
+        for(char c:s)
+        {
+            chars[c]++;
+        }
+        for(char x:t)
+        {
+            char2[x]++;
+        }
+        for(char c:s)
+        {
+            if(chars[c]!=char2[c])
+                return false;
+        }
+        return true;
+    }
+};
