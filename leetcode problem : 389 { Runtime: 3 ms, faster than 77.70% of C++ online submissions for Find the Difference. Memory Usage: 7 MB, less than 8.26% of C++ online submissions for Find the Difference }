@@ -1,0 +1,24 @@
+Find the Difference
+
+/*
+Runtime: 3 ms, faster than 77.70% of C++ online submissions for Find the Difference.
+Memory Usage: 7 MB, less than 8.26% of C++ online submissions for Find the Difference.
+*/
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+     unordered_map<char,int> first,second;
+        for(char c:s)
+        first[c]++;
+        for(char x:t)
+            second[x]++;
+        for(char x:t)
+        {
+            if(first.find(x)==first.end())
+                return x;
+            if(first[x]!=second[x])
+                return x;
+        }
+        return t[0];
+    }
+};
