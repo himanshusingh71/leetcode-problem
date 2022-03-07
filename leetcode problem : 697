@@ -1,0 +1,53 @@
+Degree of an Array
+
+/*
+Runtime: 593 ms, faster than 5.04% of C++ online submissions for Degree of an Array.
+Memory Usage: 25 MB, less than 80.67% of C++ online submissions for Degree of an Array.
+*/
+
+class Solution {
+public:
+ int findShortestSubArray(vector<int>& nums) {
+        unordered_map<int,int> mymap;
+        int element,old_max,maximum = INT_MIN,minimum = INT_MAX,i=-1;
+          vector<int> elements;
+        for(int c:nums)
+        {
+            mymap[c]++;
+            old_max = maximum;
+            maximum = max(maximum,mymap[c]);
+            if(maximum>old_max)
+            {
+                elements.clear();
+                elements.push_back(c);
+            }
+            
+            if(maximum==old_max)
+            {
+                if(c!=elements[elements.size()-1])
+                    elements.push_back(c);
+            }
+        }
+      while(++i<elements.size())
+      {
+            if(mymap[elements[i]]==maximum)
+            {
+                int l = 0,r=nums.size()-1;
+                while(l<nums.size())
+                {
+                    if(nums[l]==elements[i])
+                        break;
+                    l++;         
+                }
+                while(r>=0)
+                {
+                    if(nums[r]==elements[i])
+                        break;
+                    --r;
+                }
+                minimum = min(minimum,r-l+1);
+            }
+        }
+        return minimum;
+    }
+};
