@@ -1,0 +1,28 @@
+1832. Check if the Sentence Is Pangram
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Check if the Sentence Is Pangram.
+Memory Usage: 6.6 MB, less than 25.32% of C++ online submissions for Check if the Sentence Is Pangram.
+*/
+
+class Solution {
+public:
+    bool checkIfPangram(string sentence) {
+        unordered_map<char,int> mymap;
+        vector<char> vec;
+     for(char &c: sentence)
+         mymap[c]++;
+        
+        char a = 'a';
+        while(a!='z')
+        {
+            vec.push_back(a);
+           a++;
+        }
+        vec.push_back('z');
+        for(char c:vec)
+            if(mymap.find(c)==mymap.end())
+                return false;
+        return true;
+    }
+};
