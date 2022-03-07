@@ -1,0 +1,23 @@
+Ransom Note
+
+/*
+Runtime: 25 ms, faster than 44.85% of C++ online submissions for Ransom Note.
+Memory Usage: 9.1 MB, less than 5.52% of C++ online submissions for Ransom Note.
+*/
+
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        unordered_map<char,int> first,second;
+        for(char c:ransomNote)
+            first[c]++;
+        for(char c:magazine)
+            second[c]++;
+        for(char c:ransomNote)
+        { 
+            if(first[c]>second[c])
+                return false;
+        }
+        return true;
+    }
+};
