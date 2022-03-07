@@ -1,0 +1,52 @@
+Keyboard Row
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Keyboard Row.
+Memory Usage: 7 MB, less than 15.07% of C++ online submissions for Keyboard Row.
+*/
+
+class Solution {
+public:
+  vector<string> findWords(vector<string>& words) {
+       unordered_map<char,int> mymap;
+        vector<string> answer;
+      bool enter;
+        vector<char> first,second,third;
+         first= {'q','w','e','r','t','y','u','i','o','p','Q','W','E','R','T','Y','U','I','O','P'};
+        second= {'a','s','d','f','g','h','j','k','l','A','S','D','F','G','H','J','K','L'};
+        third = {'z','x','c','v','b','n','m','Z','X','C','V','B','N','M'};
+        for(int i=0;i<3;i++)
+        {
+            if(i==0)
+            {
+            for(char c: first)
+                mymap[c] = i;
+        }
+        if(i==1)
+        {
+            for(char c: second)
+                 mymap[c] = i;
+        }
+        if(i==2)
+        {
+           for(char c: third)
+                 mymap[c] = i;
+        }
+        }
+        for(string s : words)
+        {
+              enter = false;
+            int check = mymap[s[0]];
+            for(int j=0;j<s.length();j++)
+            {
+                if(check!=mymap[s[j]])
+                {
+                    enter = true;
+                    break;
+                }
+            }
+            if(!enter)
+                answer.push_back(s);
+        }
+    return answer;      
+    }
+};
