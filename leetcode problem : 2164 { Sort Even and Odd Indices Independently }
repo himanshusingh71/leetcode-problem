@@ -1,0 +1,33 @@
+Sort Even and Odd Indices Independently
+
+/*
+Runtime: 12 ms, faster than 45.00% of C++ online submissions for Sort Even and Odd Indices Independently.
+Memory Usage: 12 MB, less than 93.23% of C++ online submissions for Sort Even and Odd Indices Independently.
+*/
+
+class Solution {
+public:
+    vector<int> sortEvenOdd(vector<int>& nums) {
+    vector<int> even,odd;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(i&1)
+                odd.push_back(nums[i]);
+            else
+                even.push_back(nums[i]);
+        }
+        sort(even.begin(),even.end());
+        sort(odd.begin(),odd.end(),greater<int>());
+        int size = nums.size();
+        nums.clear();
+        int x = 0,j = 0;
+        for(int i=0;i<size;i++)
+        {
+            if(i&1)
+                nums.push_back(odd[x++]);
+            else
+                nums.push_back(even[j++]);
+        }
+        return nums;
+    }
+};
