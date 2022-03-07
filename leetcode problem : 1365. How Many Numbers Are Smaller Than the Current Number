@@ -1,0 +1,28 @@
+1365. How Many Numbers Are Smaller Than the Current Number
+
+/*
+Runtime: 36 ms, faster than 55.73% of C++ online submissions for How Many Numbers Are Smaller Than the Current Number.
+Memory Usage: 10.2 MB, less than 69.48% of C++ online submissions for How Many Numbers Are Smaller Than the Current Number.
+*/
+
+class Solution {
+public:
+    vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
+        vector<int> copy = nums;
+        sort(copy.begin(),copy.end());
+        vector<int> answers;
+        int count ;
+        for(int i=0;i<nums.size();i++)
+        {
+            count = 0;
+            for(int j=0;j<copy.size();j++)
+            {
+                if(copy[j]==nums[i])
+                    break;
+                count++;
+            }
+            answers.push_back(count);
+        }
+        return answers;
+    }
+};
