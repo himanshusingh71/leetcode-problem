@@ -1,7 +1,8 @@
 2085. Count Common Words With One Occurrence
 
 /*
-
+Runtime: 49 ms, faster than 55.50% of C++ online submissions for Count Common Words With One Occurrence.
+Memory Usage: 17.8 MB, less than 82.89% of C++ online submissions for Count Common Words With One Occurrence.
 */
 
 class Solution {
