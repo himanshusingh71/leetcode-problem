@@ -1,0 +1,23 @@
+326. Power of Three
+
+/*
+Runtime: 15 ms, faster than 85.43% of C++ online submissions for Power of Three.
+Memory Usage: 5.7 MB, less than 99.18% of C++ online submissions for Power of Three.
+*/
+
+class Solution {
+public:
+    bool isPowerOfThree(int n) {
+        if(n<=0)
+            return false;
+        while(n>0)
+        {
+            if(n==1)
+                return true;
+            if(n%3!=0)
+                return false;
+            n=n/3;
+        }
+        return false;
+    }
+};
