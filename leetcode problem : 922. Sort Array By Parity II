@@ -1,0 +1,38 @@
+922. Sort Array By Parity II
+
+/*
+Runtime: 19 ms, faster than 89.17% of C++ online submissions for Sort Array By Parity II.
+Memory Usage: 22.9 MB, less than 23.08% of C++ online submissions for Sort Array By Parity II.
+*/
+
+class Solution {
+public:
+    vector<int> sortArrayByParityII(vector<int>& nums) {
+      vector<int> even;
+        vector<int> odd;
+        for(int &n:nums)
+        {
+            if(n&1)
+                odd.push_back(n);
+            else
+                even.push_back(n);
+        }
+        int size = nums.size();
+        int x=0,j=0;
+    
+        for(int i=0;i<size;i++)
+        {
+            if(i&1)
+            {
+                nums[i] = odd[j];
+                j++;
+            }
+            else
+            {
+                nums[i] = even[x];
+                x++;
+            }
+        }
+        return nums;
+    }
+};
