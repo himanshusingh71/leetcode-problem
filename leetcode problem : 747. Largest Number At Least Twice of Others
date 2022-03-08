@@ -1,0 +1,29 @@
+747. Largest Number At Least Twice of Others
+
+/*
+Runtime: 4 ms, faster than 62.12% of C++ online submissions for Largest Number At Least Twice of Others.
+Memory Usage: 10.9 MB, less than 25.86% of C++ online submissions for Largest Number At Least Twice of Others.
+*/
+
+class Solution {
+public:
+    int dominantIndex(vector<int>& nums) {
+      int index,largest = INT_MIN;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(largest<nums[i])
+            {
+                largest = nums[i];
+                index = i;
+            }
+        }
+        for(int &n:nums)
+        {
+            if(n==largest)
+                continue;
+            if(n*2>largest)
+                return -1;
+        }
+        return index;
+    }
+};
