@@ -1,0 +1,25 @@
+414. Third Maximum Number
+
+/*
+Runtime: 7 ms, faster than 73.62% of C++ online submissions for Third Maximum Number.
+Memory Usage: 9.1 MB, less than 47.57% of C++ online submissions for Third Maximum Number.
+*/
+
+class Solution {
+public:
+    int thirdMax(vector<int>& nums) {
+        sort(nums.begin(),nums.end(),greater<int>());
+        int count  = 0,minimum  = INT_MAX;
+        for(int &n:nums)
+        {
+            int old_max = minimum;
+            minimum = min(minimum,n);
+            if(minimum<old_max)
+                count++;
+                
+            if(count==3)
+                return minimum;
+        }
+        return nums[0];
+    }
+};
