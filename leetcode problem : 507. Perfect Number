@@ -1,0 +1,20 @@
+507. Perfect Number
+
+/*
+Runtime: 6 ms, faster than 53.19% of C++ online submissions for Perfect Number.
+Memory Usage: 5.7 MB, less than 90.48% of C++ online submissions for Perfect Number.
+*/
+
+class Solution {
+public:
+    bool checkPerfectNumber(int num) {
+        if(num==1)
+            return false;
+               long sum = 0;
+        for(long i=2;i*i<num;i++)
+            if(num%i==0)
+                sum += i + (num/i);
+       return (sum+1)==num;
+        
+    }
+};
