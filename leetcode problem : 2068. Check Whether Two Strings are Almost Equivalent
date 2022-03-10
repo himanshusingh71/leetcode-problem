@@ -1,0 +1,21 @@
+2068. Check Whether Two Strings are Almost Equivalent
+
+/*
+Runtime: 3 ms, faster than 67.58% of C++ online submissions for Check Whether Two Strings are Almost Equivalent.
+Memory Usage: 6.8 MB, less than 8.92% of C++ online submissions for Check Whether Two Strings are Almost Equivalent.
+*/
+
+class Solution {
+public:
+    bool checkAlmostEquivalent(string word1, string word2) {
+        unordered_map<int,int> first,second;
+        for(char &c:word1)
+            first[c-'a']++;
+        for(char&c:word2)
+            second[c-'a']++;
+        for(int i=0;i<26;i++)
+            if(abs(first[i]-second[i])>3)
+                return false;
+        return true;
+    }
+};
