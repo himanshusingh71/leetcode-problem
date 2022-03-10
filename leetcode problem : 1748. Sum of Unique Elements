@@ -1,0 +1,19 @@
+1748. Sum of Unique Elements
+
+/*
+Runtime: 4 ms, faster than 56.03% of C++ online submissions for Sum of Unique Elements.
+Memory Usage: 8.1 MB, less than 23.60% of C++ online submissions for Sum of Unique Elements.
+*/
+class Solution {
+public:
+    int sumOfUnique(vector<int>& nums) {
+        unordered_map<int,int> mp;
+        int sum = 0;
+        for(int&c:nums)
+            mp[c]++;
+        for(int &c:nums)
+            if(!(mp[c]>1))
+                sum+=c;
+        return sum;
+    }
+};
