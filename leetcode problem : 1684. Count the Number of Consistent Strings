@@ -1,0 +1,31 @@
+1684. Count the Number of Consistent Strings
+
+/*
+Runtime: 109 ms, faster than 25.31% of C++ online submissions for Count the Number of Consistent Strings.
+Memory Usage: 30.3 MB, less than 8.95% of C++ online submissions for Count the Number of Consistent Strings.
+*/
+
+class Solution {
+public:
+    int countConsistentStrings(string allowed, vector<string>& words) {
+     unordered_map<char,int> mp;
+        for(char &c:allowed)
+               mp[c]++;
+        int count=0;
+        for(int i=0;i<words.size();i++)
+        {
+            bool flag  = true;
+            for(int j=0;j<words[i].size();j++)
+            {
+                if(mp[words[i][j]]<1)
+                {
+                    flag=false;
+                    break;
+                }
+            }
+            if(flag)
+                count++;
+        }
+        return count;
+    }
+};
