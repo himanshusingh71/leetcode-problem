@@ -1,0 +1,21 @@
+1941. Check if All Characters Have Equal Number of Occurrences
+
+/*
+Runtime: 4 ms, faster than 74.90% of C++ online submissions for Check if All Characters Have Equal Number of Occurrences.
+Memory Usage: 6.8 MB, less than 33.82% of C++ online submissions for Check if All Characters Have Equal Number of Occurrences.
+*/
+
+class Solution {
+public:
+    bool areOccurrencesEqual(string s) {
+        unordered_map<char,int> mp;
+        for(char &c:s)
+            mp[c]++;
+        int x = mp[s[0]];
+        for(auto it=mp.begin();it!=mp.end();it++)
+            if(x!=(*it).second)
+                return false;
+        
+        return true;
+    }   
+};
