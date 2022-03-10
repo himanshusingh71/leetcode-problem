@@ -1,0 +1,26 @@
+2053. Kth Distinct String in an Array
+
+/*
+Runtime: 24 ms, faster than 68.36% of C++ online submissions for Kth Distinct String in an Array.
+Memory Usage: 14.7 MB, less than 56.38% of C++ online submissions for Kth Distinct String in an Array.
+*/
+
+class Solution {
+public:
+    string kthDistinct(vector<string>& arr, int k) {
+        unordered_map<string,int> mp;
+         int count = 0;
+        
+        for(string & str : arr)
+            mp[str]++;
+        for(string & str: arr)
+            if( ! (  mp[str] > 1  )  )
+            {
+                count++;
+                if(count==k)
+                    return str;
+            }
+        
+        return "";
+    }
+};
