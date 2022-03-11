@@ -1,0 +1,29 @@
+264. Ugly Number II
+
+/*
+Runtime: 440 ms, faster than 5.01% of C++ online submissions for Ugly Number II.
+Memory Usage: 113.4 MB, less than 5.04% of C++ online submissions for Ugly Number II.
+*/
+
+class Solution {
+public:
+    unordered_map<long,long> umap;
+    vector<int> answers;
+    void find_numbers(long num)
+    {
+        if(num>2147483647) return;
+        
+        if(umap[num]>0) return;
+        umap[num]++;
+        answers.push_back(num);
+        find_numbers(num*2);
+        find_numbers(num*3);
+        find_numbers(num*5);
+    }
+    int nthUglyNumber(int n) {
+       find_numbers(1);
+        sort(answers.begin(),answers.end());
+        return answers[n-1];
+        
+    }
+};
