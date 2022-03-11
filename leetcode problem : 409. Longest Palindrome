@@ -1,0 +1,24 @@
+409. Longest Palindrome
+
+/*
+Runtime: 7 ms, faster than 29.66% of C++ online submissions for Longest Palindrome.
+Memory Usage: 6.5 MB, less than 95.96% of C++ online submissions for Longest Palindrome.
+*/
+
+    int longestPalindrome(string s) {
+        unordered_map <char,int> umap;
+        int ones = 0,len=0;
+        for(char &c:s ) umap[c]++;
+        for(char &c:s)
+        {
+            if(umap[c]>=2)
+            {
+                len+=2;
+                umap[c]-=2;
+                continue;
+            }
+            if(umap[c]==1)
+                ones++;     
+        }
+        return (ones>0) ? 1+len : len;  
+    }
