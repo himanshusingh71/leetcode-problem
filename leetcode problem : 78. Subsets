@@ -1,0 +1,31 @@
+78. Subsets
+
+/*
+Runtime: 4 ms, faster than 54.08% of C++ online submissions for Subsets.
+Memory Usage: 17 MB, less than 6.48% of C++ online submissions for Subsets.
+*/
+
+class Solution {
+public:
+     vector<vector<int>> ans;
+    
+    void recur(int index,vector<int> current,vector<int> nums,int max)
+    {
+        if(index==max)
+        {
+            ans.push_back(current);
+            return;
+        }
+        current.push_back(nums[index]);
+        recur(index+1,current,nums,max);
+        current.pop_back();
+        recur(index+1,current,nums,max);
+        
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<int> temp;
+        recur(0,temp,nums,nums.size());
+        
+        return ans;
+    }
+};
