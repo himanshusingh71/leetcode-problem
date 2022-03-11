@@ -1,0 +1,51 @@
+539. Minimum Time Difference
+/*
+Runtime: 15 ms, faster than 79.34% of C++ online submissions for Minimum Time Difference.
+Memory Usage: 13.7 MB, less than 32.66% of C++ online submissions for Minimum Time Difference.
+*/
+
+class Solution {
+public:
+    int findMinDifference(vector<string>& timePoints) {
+       vector<int> minutes;
+        for(string &time:timePoints)
+        {
+            if(time[0]=='0' and time[1]=='0' and time[3]=='0' and time[4]=='0')
+            {
+                minutes.push_back(24*60);
+                continue;
+            }
+            int x = ((time[0]-'0')*10 +time[1]-'0')*60;
+           
+           minutes.push_back(x + (time[3]-'0')*10 + (time[4]-'0'));
+        }
+        sort(minutes.begin(),minutes.end());
+        int minimum = INT_MAX;
+         for(int i=0;i<minutes.size()-1;i++)
+        {
+                 minimum = min(minimum,abs(minutes[i]-minutes[i+1]));      
+         
+        }
+         int other_min;
+         int first = minutes[0];
+         int second = minutes[minutes.size()-1];
+         if((first<720 && second < 720) || (first>720 and second > 720))
+         {
+            minimum = min(minimum,abs(first-second));
+         }
+         else{
+               if(first>720)
+                    {
+                        minimum = min(minimum,abs(1440-first  + second));
+                        minimum = min(minimum,abs(first-second));
+                    }
+                    else{
+                        //cout << " inside , first = " << first << " second = " << second << endl;
+                       minimum = min(minimum,abs(1440-second+first));
+                        minimum = min(minimum,abs(second-first));
+                    }
+         }
+     
+       return minimum;
+    }
+};
