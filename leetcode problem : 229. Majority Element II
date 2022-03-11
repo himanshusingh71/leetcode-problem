@@ -1,0 +1,28 @@
+229. Majority Element II
+
+/*
+Runtime: 16 ms, faster than 66.30% of C++ online submissions for Majority Element II.
+Memory Usage: 16 MB, less than 13.08% of C++ online submissions for Majority Element II.
+*/
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        int size = nums.size()/3;
+        vector<int> answers;
+        unordered_map <int,int> umap;
+        unordered_map<int,int> totals;
+  
+        for(int& n : nums) 
+        {
+            umap[n]++;
+            if(umap[n]>size&&totals[n]==0)
+            {
+                totals[n]++;
+                answers.push_back(n);
+            }
+        }
+        return answers;
+  
+    }
+};
