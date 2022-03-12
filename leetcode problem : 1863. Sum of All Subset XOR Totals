@@ -1,0 +1,32 @@
+1863. Sum of All Subset XOR Totals
+
+/*
+Runtime: 275 ms, faster than 5.04% of C++ online submissions for Sum of All Subset XOR Totals.
+Memory Usage: 53.3 MB, less than 5.55% of C++ online submissions for Sum of All Subset XOR Totals.
+*/
+
+class Solution {
+public:
+    int sum=0;
+  void subsets(int index,vector<int> current,vector<int> nums,int max)
+  {
+
+    if(index>=max)
+    {
+      int xors=0;
+      for(int &x:current) xors = (xors xor x);
+        sum+=xors;
+      return;
+    }
+    current.push_back(nums[index]);
+    subsets(index+1,current,nums,max);
+    current.pop_back();
+    subsets(index+1,current,nums,max);
+  }
+    int subsetXORSum(vector<int>& nums) {
+         	vector<int> temp;
+ 
+        subsets(0,temp,nums,nums.size());
+        return sum;
+    }
+};
