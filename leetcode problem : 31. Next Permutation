@@ -1,0 +1,13 @@
+31. Next Permutation
+
+/*
+Runtime: 4 ms, faster than 75.51% of C++ online submissions for Next Permutation.
+Memory Usage: 12 MB, less than 75.89% of C++ online submissions for Next Permutation.
+*/
+
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        next_permutation(nums.begin(),nums.end());
+    }
+};
