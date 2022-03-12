@@ -1,0 +1,26 @@
+1925. Count Square Sum Triples
+
+/*
+Runtime: 215 ms, faster than 19.67% of C++ online submissions for Count Square Sum Triples.
+Memory Usage: 46.8 MB, less than 5.33% of C++ online submissions for Count Square Sum Triples.
+*/
+
+class Solution {
+public:
+    int countTriples(int n) {
+        int count=0;
+       unordered_map<int,int> umap;
+        for(int i=1;i<=n;i++)
+            umap[i*i]++;
+        
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=n;j++)
+            {
+                if(umap[abs((i-j)*(i+j))]>0)
+                    count++;
+            }
+        }
+        return count/2;
+    }
+};
