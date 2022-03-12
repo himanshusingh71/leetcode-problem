@@ -1,0 +1,17 @@
+1920. Build Array from Permutation
+
+/*
+Runtime: 16 ms, faster than 77.38% of C++ online submissions for Build Array from Permutation.
+Memory Usage: 16.8 MB, less than 19.42% of C++ online submissions for Build Array from Permutation.
+*/
+
+class Solution {
+public:
+    vector<int> buildArray(vector<int>& nums) {
+      vector<int> ans;
+        
+        for(int i=0;i<nums.size();i++) ans.push_back(0);
+        for(int i=0;i<nums.size();i++)ans[i] = nums[nums[i]];
+            return ans;
+    }
+};
