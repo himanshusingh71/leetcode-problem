@@ -1,0 +1,14 @@
+292. Nim Game
+
+/*
+Runtime: 3 ms, faster than 26.19% of C++ online submissions for Nim Game.
+Memory Usage: 6 MB, less than 16.43% of C++ online submissions for Nim Game.
+*/
+
+class Solution {
+public:
+     
+    bool canWinNim(int n) {
+        return !(n%4  == 0);
+    }
+};
