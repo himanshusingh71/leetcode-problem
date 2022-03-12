@@ -1,0 +1,19 @@
+47. Permutations II
+
+/*
+Runtime: 6 ms, faster than 84.94% of C++ online submissions for Permutations II.
+Memory Usage: 8.4 MB, less than 96.90% of C++ online submissions for Permutations II.
+*/
+
+class Solution {
+public:
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        vector<vector<int>> answers;
+        answers.push_back(nums);
+        while(next_permutation(nums.begin(),nums.end()))
+        answers.push_back(nums);
+        
+        return answers;
+    }
+};
