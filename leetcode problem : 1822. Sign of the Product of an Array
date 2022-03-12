@@ -1,0 +1,17 @@
+1822. Sign of the Product of an Array
+
+/*
+Runtime: 11 ms, faster than 31.19% of C++ online submissions for Sign of the Product of an Array.
+Memory Usage: 10.2 MB, less than 46.35% of C++ online submissions for Sign of the Product of an Array.
+*/
+
+class Solution {
+public:
+    int arraySign(vector<int>& nums) {
+        int mul=1;
+        for(auto &num:nums)
+            if(num==0) return 0;
+            else if(num<0) mul = -mul;
+        return (mul>0) ? 1 : -1;
+    }
+};
