@@ -1,0 +1,29 @@
+204. Count Primes
+
+/*
+Runtime: 332 ms, faster than 42.52% of C++ online submissions for Count Primes.
+Memory Usage: 11.3 MB, less than 26.94% of C++ online submissions for Count Primes.
+*/
+
+class Solution {
+public:
+    void sieve(bool all[],int n)
+    {
+        if(n==0)
+            return ;
+        for(int i=0;i<n;i++) all[i] = true;
+        all[0]=false;
+        all[1]=false;
+        for(int i=2;i*i<n;i++)
+            for(int j=i*i;j<n;j+=i)
+                all[j]=false;
+    }
+    int countPrimes(int n) {
+        bool all[n+1];
+        sieve(all,n);
+        int count=0;
+        for(int i=0;i<n;i++)
+            if(all[i]) count++;
+        return count;
+    }
+};
