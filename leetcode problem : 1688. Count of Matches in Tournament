@@ -1,0 +1,33 @@
+1688. Count of Matches in Tournament
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Count of Matches in Tournament.
+Memory Usage: 5.8 MB, less than 95.42% of C++ online submissions for Count of Matches in Tournament.
+*/
+
+class Solution {
+public:
+    int sum  = 0;
+    void calculate(int n)
+    {
+        if(n==2)
+        {
+            sum++;
+            return;
+        }
+        if(n%2==0)
+        {
+            sum+=n/2;
+            calculate(n/2);
+        }
+        else{
+            sum+=(n-1)/2 ; 
+            calculate((n+1)/2);
+        }
+    }
+    int numberOfMatches(int n) {
+        if(n==1) return 0;
+        calculate(n);
+        return sum;
+    }
+};
