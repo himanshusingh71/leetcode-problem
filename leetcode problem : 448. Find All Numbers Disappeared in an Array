@@ -1,0 +1,19 @@
+448. Find All Numbers Disappeared in an Array
+
+/*
+Runtime: 223 ms, faster than 8.81% of C++ online submissions for Find All Numbers Disappeared in an Array.
+Memory Usage: 52.8 MB, less than 5.63% of C++ online submissions for Find All Numbers Disappeared in an Array.
+*/
+
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+       map<int,int> mp;
+       vector<int> ans;
+       for(int &n: nums)mp[n]++;
+        for(int i=1;i<=nums.size();i++)
+            if(mp[i]==0) ans.push_back(i);
+        
+        return ans;
+    }
+};
