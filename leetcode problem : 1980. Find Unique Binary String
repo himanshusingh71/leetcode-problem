@@ -1,0 +1,55 @@
+1980. Find Unique Binary String
+
+/*
+Runtime: 3 ms, faster than 82.49% of C++ online submissions for Find Unique Binary String.
+Memory Usage: 10.3 MB, less than 51.43% of C++ online submissions for Find Unique Binary String.
+*/
+
+class Solution {
+public:
+   
+
+string DecimalToBinary(int num,int len)
+{
+
+    
+    string str="";
+    if(num==0)
+    {
+        for(int i=0;i<len;i++)
+            str+="0";
+
+        return str;
+    }
+      while(num){
+      if(num & 1) // 1
+        str+='1';
+      else // 0
+        str+='0';
+      num>>=1; // Right Shift by 1 
+    }   
+    if(str.length()<len)
+        for(int i=str.length();i<len;i++)
+            str = str + "0";
+    reverse(str.begin(),str.end());
+      return str;
+}
+ 
+ string findDifferentBinaryString(vector<string>& nums) {
+        unordered_map<int,int> umap;
+        for(string &n : nums)
+            umap[stoi(n,0,2)]++;
+    
+        int start = 0;
+        int end = nums[0].length();
+        string str = "";
+        for(int i=0;i<end;i++)
+            str += "1";
+        int maximum = stoi(str,0,2);
+        for(start;start<=maximum;start++)
+            if(umap[start]==0)              
+                return DecimalToBinary(start,nums[0].length());
+            
+      return "";
+    }
+};
