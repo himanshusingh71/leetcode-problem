@@ -1,0 +1,40 @@
+206. Reverse Linked List
+
+/*
+Runtime: 8 ms, faster than 68.06% of C++ online submissions for Reverse Linked List.
+Memory Usage: 8.8 MB, less than 10.62% of C++ online submissions for Reverse Linked List.
+*/
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode * myroot=NULL,*temp = NULL,*temp1= NULL;
+    void reverse(ListNode * head)
+    {
+        if(head==NULL) return;
+        reverse(head->next);
+        temp = new ListNode();
+        temp->val = head->val;
+        temp->next = NULL;
+        if(!myroot)
+            myroot = temp1 = temp;
+        else{
+           temp1->next = temp;
+            temp1 =  temp;
+        }
+        return;
+    }
+    ListNode* reverseList(ListNode* head) {
+        reverse(head);
+        return myroot;
+    }
+};
