@@ -1,0 +1,16 @@
+1486. XOR Operation in an Array
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for XOR Operation in an Array.
+Memory Usage: 5.9 MB, less than 42.41% of C++ online submissions for XOR Operation in an Array.
+*/
+
+class Solution {
+public:
+    int xorOperation(int n, int start) {
+     int my_xor = 0;
+        for(int i=0;i<n;i++)
+            my_xor = my_xor ^ start+2*i;
+        return my_xor;
+    }
+};
