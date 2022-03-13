@@ -1,0 +1,19 @@
+1518. Water Bottles
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Water Bottles.
+Memory Usage: 5.8 MB, less than 70.54% of C++ online submissions for Water Bottles.
+*/
+class Solution {
+public:
+   int numWaterBottles(int numBottles, int numExchange) {
+        int ans , rem;
+       rem = ans = numBottles;
+        while(rem>=numExchange)
+        {
+          ans = ans + rem/numExchange;
+            rem = rem/numExchange + rem%numExchange;
+        }
+        return ans;
+    }
+};
