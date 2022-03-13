@@ -1,0 +1,14 @@
+1523. Count Odd Numbers in an Interval Range
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Count Odd Numbers in an Interval Range.
+Memory Usage: 5.7 MB, less than 95.77% of C++ online submissions for Count Odd Numbers in an Interval Range.
+*/
+
+class Solution {
+public:
+    int countOdds(int low, int high) {
+      if(low%2==0 and high%2==0) return (high-low)/2;
+        return (high-low)/2+1;
+    }
+};
