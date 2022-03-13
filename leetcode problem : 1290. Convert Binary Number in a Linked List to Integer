@@ -1,0 +1,20 @@
+1290. Convert Binary Number in a Linked List to Integer
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Convert Binary Number in a Linked List to Integer.
+Memory Usage: 8.2 MB, less than 64.28% of C++ online submissions for Convert Binary Number in a Linked List to Integer.
+*/
+
+class Solution {
+public:
+    int getDecimalValue(ListNode* head) {
+        string str = "";
+        while(head!=NULL)
+        {
+            str+= to_string(head->val);
+            head = head->next;
+        }
+        
+        return stoi(str,0,2);
+    }
+};
