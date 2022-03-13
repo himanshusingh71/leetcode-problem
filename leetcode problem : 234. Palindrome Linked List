@@ -1,0 +1,23 @@
+234. Palindrome Linked List
+
+/*
+Runtime: 446 ms, faster than 16.56% of C++ online submissions for Palindrome Linked List.
+Memory Usage: 120.5 MB, less than 44.29% of C++ online submissions for Palindrome Linked List.
+*/
+
+
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        string str = "";
+        while(head!=NULL)
+        {
+            str += to_string(head->val);
+            head = head->next;
+        }
+        for(int i=0,j=str.length()-1; j>i;j--,i++)
+            if(str[i]!=str[j])
+                return false;
+        return true;
+    }
+};
