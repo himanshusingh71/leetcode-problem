@@ -1,0 +1,36 @@
+1323. Maximum 69 Number
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Maximum 69 Number.
+Memory Usage: 6.3 MB, less than 9.58% of C++ online submissions for Maximum 69 Number.
+*/
+
+class Solution {
+public:
+     int maximum69Number (int num) {
+       vector<int> nums;
+        while(num>0)
+        {
+            nums.push_back(num%10);
+            num/=10;
+        }
+        reverse(nums.begin(),nums.end());
+        bool enter = true;
+        int final_num=0,size=nums.size()-1;
+        for(int &x: nums)
+        {
+            if(enter)
+            {
+                 if(x==6)
+                {
+                  x=9;
+                   enter = false;  
+                }
+            }
+            final_num = final_num + x * pow(10,size);
+            size--;
+            
+        }
+        return final_num;
+    }
+};
