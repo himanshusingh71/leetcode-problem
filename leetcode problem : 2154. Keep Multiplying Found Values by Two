@@ -1,0 +1,15 @@
+2154. Keep Multiplying Found Values by Two
+
+/*
+Runtime: 14 ms, faster than 55.57% of C++ online submissions for Keep Multiplying Found Values by Two.
+Memory Usage: 10.5 MB, less than 69.62% of C++ online submissions for Keep Multiplying Found Values by Two.
+*/
+
+class Solution {
+public:
+    int findFinalValue(vector<int>& nums, int original) {
+        sort(nums.begin(),nums.end());
+     for(int&x:nums) if(original==x) original *=2;
+        return original;
+    }
+};
