@@ -1,0 +1,40 @@
+39. Combination Sum
+
+/*
+Runtime: 1739 ms, faster than 5.01% of C++ online submissions for Combination Sum.
+Memory Usage: 441.2 MB, less than 5.03% of C++ online submissions for Combination Sum.
+*/
+
+  vector<vector<int>> answers;
+       
+       set<vector<int>> myset;
+  void recur(vector<int> current,int target , vector<int> candidates)
+  {
+    if(target==0)
+    {
+        sort(current.begin(),current.end());
+        if(myset.find(current)==myset.end())
+        {
+          myset.insert(current);
+          answers.push_back(current);
+        }
+        return ;
+    }
+
+    if(target<0) return ;;
+
+
+      for(int i=0;i<candidates.size();i++)
+      {
+        current.push_back(candidates[i]); 
+    recur(current,target-candidates[i],candidates);
+          
+        current.pop_back();
+      }
+  }
+         vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        sort(candidates.begin(),candidates.end());
+         vector<int> curr;
+        recur(curr,target,candidates);
+        return answers;
+    }
