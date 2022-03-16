@@ -1,0 +1,40 @@
+203. Remove Linked List Elements
+
+/*
+Runtime: 16 ms, faster than 98.86% of C++ online submissions for Remove Linked List Elements.
+Memory Usage: 15 MB, less than 48.10% of C++ online submissions for Remove Linked List Elements.
+*/
+
+ ListNode* removeElements(ListNode* head, int val) {
+     if(!head) return head;
+       
+        while(head->val==val)
+        {
+            head=head->next;
+            if(head==NULL)break;
+        }
+        if(!head)return head;
+       
+       ListNode*temp1,*temp2;
+        temp1 = head;
+        if(head!=NULL)
+        temp2 = head->next;
+     while(temp2!=NULL)
+     {
+         while(temp2->val==val)
+         {
+             
+             temp2=temp2->next;
+             temp1->next=temp2;
+             if(temp2==NULL)
+                 break;
+         }
+        if(temp2!=NULL)
+        {
+             temp2=temp2->next;
+             temp1=temp1->next;
+        }
+         
+     }
+        return head; 
+    }
