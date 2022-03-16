@@ -1,0 +1,24 @@
+104. Maximum Depth of Binary Tree
+
+/*
+Runtime: 14 ms, faster than 42.11% of C++ online submissions for Maximum Depth of Binary Tree.
+Memory Usage: 18.8 MB, less than 89.57% of C++ online submissions for Maximum Depth of Binary Tree.
+*/
+
+class Solution {
+public:
+     int  recur(TreeNode  * root,int count,int& maximum)
+  {
+      if(!root) return INT_MIN;
+      if(!root->left and !root->right)
+     return count;
+     maximum=max(maximum,recur(root->left,count+1,maximum));
+     maximum=max(maximum, recur(root->right,count+1,maximum));
+      return maximum;
+  }
+    int maxDepth(TreeNode* root) {
+           int maximum=INT_MIN;
+       if(!root) return 0;
+     return   recur(root,1,maximum); 
+    }
+};
