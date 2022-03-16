@@ -4,24 +4,25 @@
 Runtime: 3 ms, faster than 65.45% of C++ online submissions for Sum Root to Leaf Numbers.
 Memory Usage: 9.2 MB, less than 83.70% of C++ online submissions for Sum Root to Leaf Numbers.
 */
-
 class Solution {
 public:
-    int sum = 0;
-    void recur(TreeNode * root,int current)
+    
+    int recur(TreeNode * root,int current)
     {
-        if(!root) return ;
+        if(!root) return 0;
         if(!root->left and !root->right)
-        {
-            sum = sum + current + root->val;
-            return;
-        }
-        recur(root->left,(root->val+ current)*10);
-        recur(root->right,(root->val + current)*10);
+           return current + root->val;
+            
+      return recur(root->left,(root->val+ current)*10)+
+      
+          recur(root->right,(root->val + current)*10);
+         
     }
     int sumNumbers(TreeNode* root) {
+        
         if(!root) return 0;
-        recur(root,0);
-        return sum;
+        
+      return  recur(root,0);
+       
     }
 };
