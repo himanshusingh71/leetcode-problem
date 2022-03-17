@@ -1,0 +1,26 @@
+530. Minimum Absolute Difference in BST
+
+/*
+Runtime: 16 ms, faster than 89.11% of C++ online submissions for Minimum Absolute Difference in BST.
+Memory Usage: 25.6 MB, less than 21.75% of C++ online submissions for Minimum Absolute Difference in BST.
+*/
+
+class Solution {
+public:
+   
+    void dfs(TreeNode * root ,vector<int> &nums)
+    {
+        if(!root) return;
+        dfs(root->left,nums);
+        nums.push_back(root->val);
+        dfs(root->right,nums);
+    }
+    int getMinimumDifference(TreeNode* root) {
+        vector<int> nums;
+        dfs(root,nums);
+        int minimum=INT_MAX;
+        for(int i=0;i<nums.size()-1;i++)
+            minimum = min(minimum,abs(nums[i]-nums[i+1]));
+        return minimum;
+    }
+};
