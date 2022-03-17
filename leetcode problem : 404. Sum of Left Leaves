@@ -1,0 +1,27 @@
+404. Sum of Left Leaves
+
+/*
+Runtime: 8 ms, faster than 37.14% of C++ online submissions for Sum of Left Leaves.
+Memory Usage: 13.2 MB, less than 97.85% of C++ online submissions for Sum of Left Leaves.
+*/
+
+class Solution {
+public:
+    int sum = 0;
+    bool run = false;
+    void calc(TreeNode*root)
+    {
+        if(!root)return;
+        if(!root->left and !root->right and run )
+            sum+=root->val;
+        run=true;
+        calc(root->left);
+        run = false;
+        calc(root->right);
+        
+    }
+    int sumOfLeftLeaves(TreeNode* root) {
+        calc(root);
+        return sum;
+    }
+};
