@@ -1,0 +1,60 @@
+71. Simplify Path
+
+/*
+Runtime: 12 ms, faster than 30.76% of C++ online submissions for Simplify Path.
+Memory Usage: 12.6 MB, less than 5.80% of C++ online submissions for Simplify Path.
+*/
+
+class Solution {
+public:
+   string simplifyPath(string path) {
+        string directory = "" ;
+        vector<string> all_paths ;
+        stack<string> mystack;
+        int index = 0;
+        for(int i=0;i<path.length();i++)
+        {
+        	if(path[i]=='/')
+        	{
+        		all_paths.push_back(directory); 
+        		directory = "";
+        	 
+        	}
+        	else{
+        		directory =  directory + path[i];
+        		 
+        	}
+        }
+        all_paths.push_back(directory);
+        for(int i=0;i<all_paths.size();i++)
+        {
+        	if(mystack.size()==0)
+        	{
+        	mystack.push(all_paths[i]);
+        	continue;
+        }
+         if(all_paths[i]=="..")
+        
+        	mystack.pop();
+         else if(all_paths[i]=="." or all_paths[i]=="") {}    
+        else
+        	mystack.push(all_paths[i]);
+        
+		}
+			string final_path = "";
+			while(!mystack.empty())
+			{
+			   if(!(mystack.top()==""))
+			   {
+                   if(mystack.top()!=".." and mystack.top()!=".")
+			   	final_path = "/" + mystack.top() + final_path;
+
+			   }
+			   mystack.pop();
+			}
+			if(final_path=="")
+				final_path="/";
+			 
+        return final_path;
+        }
+};
