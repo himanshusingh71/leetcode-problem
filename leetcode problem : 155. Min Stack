@@ -1,0 +1,38 @@
+155. Min Stack
+
+/*
+Runtime: 151 ms, faster than 8.74% of C++ online submissions for Min Stack.
+Memory Usage: 16.4 MB, less than 68.16% of C++ online submissions for Min Stack.
+*/
+
+class MinStack {
+public:
+    stack<int> mystack;
+     vector<int> vec;
+    MinStack() {
+        
+    }
+    
+    void push(int val) {
+        mystack.push(val);
+        vec.push_back(val);
+    }
+    
+    void pop() {
+        mystack.pop();
+        vec.pop_back();
+    }
+    
+    int top() {
+        return mystack.top();
+    }
+    
+    int getMin() {
+       int minimum = INT_MAX;
+        for(int & x: vec)
+            minimum = min(minimum,x);
+        return minimum;
+    }
+};
+
+ 
