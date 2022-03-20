@@ -1,0 +1,25 @@
+653. Two Sum IV - Input is a BST
+
+/*
+Runtime: 44 ms, faster than 78.55% of C++ online submissions for Two Sum IV - Input is a BST.
+Memory Usage: 38.9 MB, less than 24.64% of C++ online submissions for Two Sum IV - Input is a BST.
+*/
+    unordered_map<int,int> umap;
+ 
+    bool findTarget(TreeNode* root, int k) {
+    
+        if(!root) return false;
+       
+        if(root)
+       {
+           if(umap.find(k - (root->val))!=umap.end())
+           
+             return true;
+           
+           else
+               umap[root->val] = root->val;
+             
+       }
+        
+        return findTarget(root->left,k) or findTarget(root->right,k);
+    }
