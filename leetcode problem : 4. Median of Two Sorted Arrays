@@ -1,0 +1,29 @@
+4. Median of Two Sorted Arrays
+
+/*
+Runtime: 59 ms, faster than 45.25% of C++ online submissions for Median of Two Sorted Arrays.
+Memory Usage: 90.1 MB, less than 17.78% of C++ online submissions for Median of Two Sorted Arrays.
+*/
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> all;
+        int first_size = nums1.size();
+        int second_size  = nums2.size();
+        
+        for(int i=0,j=0; i<first_size or j<second_size; i++,j++ )
+        {
+            if(i<first_size)
+                all.push_back(nums1[i]);
+            if(j<second_size)
+                all.push_back(nums2[j]);
+        }
+        
+        sort(all.begin(),all.end());
+        int sz = all.size();
+        if(sz&1)
+            return all[(sz+1)/2-1];
+        else 
+            return (double)( all[sz/2-1] + all[sz/2])/2;
+    }
+};
