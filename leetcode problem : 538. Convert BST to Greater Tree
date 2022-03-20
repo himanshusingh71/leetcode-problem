@@ -1,0 +1,38 @@
+538. Convert BST to Greater Tree
+
+/*
+
+Runtime: 48 ms, faster than 64.00% of C++ online submissions for Convert BST to Greater Tree.
+Memory Usage: 38.3 MB, less than 5.34% of C++ online submissions for Convert BST to Greater Tree.
+
+*/
+
+
+  int total = 0;
+    
+    void dfs( TreeNode * root , unordered_map < int , int > & umap )
+    {
+        if ( !root ) return;
+        dfs( root -> right , umap );
+        total = total + root -> val;
+        umap[ root -> val ] = total;
+        dfs( root -> left , umap );
+       
+    }
+    TreeNode * create ( TreeNode * root1 , TreeNode* root2 ,unordered_map < int, int > &umap )
+    {
+        if( !root1 ) return NULL;
+        root2 = new TreeNode ( umap [ root1 -> val ] );
+        root2->left = create( root1 -> left , root2 -> left , umap );
+        root2->right = create( root1 -> right , root2 -> right , umap );
+        return root2;
+    }
+    TreeNode* convertBST( TreeNode* root) {
+        
+         unordered_map < int , int > umap;
+        
+        dfs( root , umap );
+     
+        TreeNode * root2;
+        return create( root , root2 , umap );
+    }
