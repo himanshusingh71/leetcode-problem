@@ -1,0 +1,31 @@
+108. Convert Sorted Array to Binary Search Tree
+
+/*
+Runtime: 25 ms, faster than 36.10% of C++ online submissions for Convert Sorted Array to Binary Search Tree.
+Memory Usage: 21.4 MB, less than 78.00% of C++ online submissions for Convert Sorted Array to Binary Search Tree.
+*/
+
+
+class Solution {
+public:
+     TreeNode * root = NULL;
+    
+     TreeNode* create(TreeNode*root,int left,int right,vector<int>&nums)
+    {
+            if(right>left)
+            {
+              int mid = (left + right)/2;
+              root = new TreeNode(nums[mid]);
+         	  root->left =    create(root->left,left,mid,nums);
+              root->right = create(root->right,mid+1,right,nums);
+            }
+    return root;
+         
+    }
+     
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        
+        return  create(root,0,nums.size(),nums);
+        
+    }                                   
+};
