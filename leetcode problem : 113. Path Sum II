@@ -1,0 +1,42 @@
+113. Path Sum II
+
+/*
+
+Runtime: 38 ms, faster than 12.80% of C++ online submissions for Path Sum II.
+Memory Usage: 39.1 MB, less than 6.78% of C++ online submissions for Path Sum II.
+
+*/
+
+class Solution {
+public:
+    
+    void dfs( TreeNode * root , vector < int > current , int target , int sum , vector < vector < int > > &ans )
+    {
+        if( !root ) return ;
+       
+        current.push_back( root->val );
+        
+        sum += root -> val ;
+        
+      dfs( root -> left , current , target , sum , ans );
+       
+         dfs( root->right , current , target , sum , ans );
+         
+         if ( root->left == NULL and root->right == NULL)
+             
+                 if( sum == target )
+                     
+                ans.push_back( current );
+              
+         
+    }
+    vector < vector < int > > pathSum( TreeNode * root , int targetSum ) {
+        
+        vector < vector < int > > ans;
+        
+        dfs( root , vector < int > () , targetSum , 0 , ans );
+        
+        return ans;
+      
+    }
+};
