@@ -1,0 +1,34 @@
+109. Convert Sorted List to Binary Search Tree
+
+/*
+Runtime: 39 ms, faster than 48.53% of C++ online submissions for Convert Sorted List to Binary Search Tree.
+Memory Usage: 28.7 MB, less than 19.14% of C++ online submissions for Convert Sorted List to Binary Search Tree.
+*/
+
+class Solution {
+public:
+    
+    TreeNode * create(int l,int r,vector<int> & nums,TreeNode * root)
+    {
+        if(r>l)
+        {
+            int mid = (l+r)/2;
+            root = new TreeNode(nums[mid]);
+            root->left = create(l,mid,nums,root->left);
+            root->right = create(mid+1,r,nums,root->right);
+        }
+        return root;
+    }
+    TreeNode* sortedListToBST(ListNode* head) {
+        if(!head) return NULL;
+        vector<int> elements;
+        while(head!=NULL)
+        {
+           elements.push_back(head->val);
+            head = head->next;
+        }
+     TreeNode * root ;
+        return create(0,elements.size(),elements,root);
+        
+    }
+};
