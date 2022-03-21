@@ -1,0 +1,39 @@
+257. Binary Tree Paths
+
+/*
+Runtime: 8 ms, faster than 39.77% of C++ online submissions for Binary Tree Paths.
+Memory Usage: 15.2 MB, less than 5.54% of C++ online submissions for Binary Tree Paths.
+*/
+
+class Solution {
+public:
+    vector<vector<int>> ans;
+    void dfs(TreeNode * root,vector<int> current)
+    {
+        if(!root) return;
+        current.push_back(root->val);
+        dfs(root->left,current);
+        dfs(root->right,current);
+        if(root->left==NULL and root->right == NULL)
+        ans.push_back(current);
+    }
+    vector<string> binaryTreePaths(TreeNode* root) {
+      dfs(root,vector<int>());
+    vector<string> vec;
+        string s = "";
+        for(int i=0;i<ans.size();i++)
+        {
+            s="";
+            for(int j=0;j<ans[i].size();j++)
+            {
+                if(j==0)
+                    s+=to_string(ans[i][j]);
+                else
+                    s = s + "->" + to_string(ans[i][j]);
+            }
+            if(s.length()!=0)
+                vec.push_back(s);
+        }
+        return vec;
+    }
+};
