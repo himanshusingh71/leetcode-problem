@@ -8,22 +8,23 @@ Memory Usage: 24.2 MB, less than 61.44% of C++ online submissions for Kth Smalle
 class Solution {
 public:
  
-    void dfs(TreeNode * root,int &k,int &ans)
+    void dfs( TreeNode * root,int &k , int &ans )
     {
-        
-        if(!root or k<0 ) return ;
+        if( !root or k < 0 ) return ;
        
-        dfs(root->left,k,ans);
+        dfs( root->left , k , ans );
+         
+        if( ( --k ) == 0 )  ans = root -> val;
         
-         k--;
-        if(k==0)
-           ans = root->val;
-  
-        dfs(root->right,k,ans);
+        dfs( root -> right , k , ans );
     }
-    int kthSmallest(TreeNode* root, int k) {
+    
+    int kthSmallest( TreeNode * root , int k ) {
+        
         int ans;
-        dfs(root,k,ans);
+        
+        dfs( root , k , ans );
+        
         return ans;
     }
 };
