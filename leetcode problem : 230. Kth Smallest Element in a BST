@@ -1,0 +1,29 @@
+230. Kth Smallest Element in a BST
+
+/*
+Runtime: 15 ms, faster than 93.51% of C++ online submissions for Kth Smallest Element in a BST.
+Memory Usage: 24.2 MB, less than 61.44% of C++ online submissions for Kth Smallest Element in a BST.
+*/
+
+class Solution {
+public:
+ 
+    void dfs(TreeNode * root,int &k,int &ans)
+    {
+        
+        if(!root or k<0 ) return ;
+       
+        dfs(root->left,k,ans);
+        
+         k--;
+        if(k==0)
+           ans = root->val;
+  
+        dfs(root->right,k,ans);
+    }
+    int kthSmallest(TreeNode* root, int k) {
+        int ans;
+        dfs(root,k,ans);
+        return ans;
+    }
+};
