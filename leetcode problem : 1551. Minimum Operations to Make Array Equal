@@ -1,0 +1,18 @@
+1551. Minimum Operations to Make Array Equal
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Minimum Operations to Make Array Equal.
+Memory Usage: 6 MB, less than 38.39% of C++ online submissions for Minimum Operations to Make Array Equal.
+*/
+
+class Solution {
+public:
+    int minOperations(int n) {
+    
+            if(n&1)
+                return n/2 * (n/2+1);
+        else
+            return pow(n/2,2);
+            
+    }
+};
