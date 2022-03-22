@@ -1,0 +1,25 @@
+110. Balanced Binary Tree
+
+/*
+Runtime: 12 ms, faster than 81.20% of C++ online submissions for Balanced Binary Tree.
+Memory Usage: 21 MB, less than 24.32% of C++ online submissions for Balanced Binary Tree.
+*/
+
+class Solution {
+public:
+  
+    int height( TreeNode * r, bool & ans )
+    {
+        if(!r)return 0;
+        int left_height = 1 + height(r->left,ans);
+        int right_height = 1 + height(r->right,ans);
+        if(abs(right_height-left_height)>1) ans = false;
+        return max(right_height,left_height);
+        
+    }
+    bool isBalanced(TreeNode* root) {
+        bool ans = true;
+        int x = height(root,ans);
+        return ans;
+    }
+};
