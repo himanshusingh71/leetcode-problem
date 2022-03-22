@@ -1,0 +1,51 @@
+102. Binary Tree Level Order Traversal
+
+/*
+Runtime: 6 ms, faster than 53.16% of C++ online submissions for Binary Tree Level Order Traversal.
+Memory Usage: 12.3 MB, less than 99.35% of C++ online submissions for Binary Tree Level Order Traversal.
+*/
+
+class Solution {
+public:
+
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> ans;
+        vector<int> current;
+        vector<TreeNode* > temp;
+        vector<TreeNode *> nodes;
+        
+        if(!root) return {};
+        
+        temp.push_back(root);
+        ans.push_back({root->val});
+        while(temp.size()!=0)
+        {
+            nodes.clear();
+            nodes = temp;
+            if(temp.size()==0) break;
+            temp.clear();
+        for(int i=0;i<nodes.size();i++)
+        {
+            if(nodes[i]->left!=NULL) 
+            {
+                temp.push_back(nodes[i]->left);
+               current.push_back(nodes[i]->left->val);
+            }
+            if(nodes[i]->right!=NULL)
+                
+            {
+                temp.push_back(nodes[i]->right);
+                current.push_back(nodes[i]->right->val);
+            }
+        
+            
+        }
+            
+            if(current.size()>0)
+            ans.push_back(current);
+            current.clear();
+        }
+        return ans;
+        
+    }
+};
