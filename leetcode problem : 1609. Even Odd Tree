@@ -1,0 +1,63 @@
+1609. Even Odd Tree
+
+/*
+Runtime: 232 ms, faster than 97.22% of C++ online submissions for Even Odd Tree.
+Memory Usage: 149.8 MB, less than 98.93% of C++ online submissions for Even Odd Tree.
+*/
+
+class Solution {
+public:
+    bool isEvenOddTree(TreeNode* root) {
+        vector<int> even,odd;
+        int count = 0;
+        bool ans = true;
+        if(!root) return false;
+        
+        vector<TreeNode*> temp,nodes;
+        temp.push_back(root);
+        while(temp.size()>0)
+        {
+            nodes = temp;
+            temp.clear();
+            for(int i=0;i<nodes.size();i++)
+            {
+                if(nodes[i]->left!=NULL)
+                    temp.push_back(nodes[i]->left);
+                
+                if(nodes[i]->right!=NULL)
+                    temp.push_back(nodes[i]->right);
+                
+                if(count&1)    
+                    even.push_back(nodes[i]->val);
+                
+                else
+                    odd.push_back(nodes[i]->val);
+                
+            }
+            
+            if(even.size()>0)
+            {
+                if(even.size()==1)
+                    if(even[0]&1) return false;
+                    
+            for(int m=0;m<even.size()-1;m++)
+                if(even[m]<=even[m+1] or (even[m]&1) or (even[m+1]&1)) return false;
+            }
+            
+            if(odd.size()>0)
+            {
+                if(odd.size()==1)
+                    if(!(odd[0]&1)) return false;
+                 for(int m=0;m<odd.size()-1;m++)
+                if(odd[m]>=odd[m+1] or (!(odd[m]&1)) or (!(odd[m+1]&1))) return false;
+            }
+            
+            odd.clear();
+            even.clear();
+            
+            ++count;
+            
+        }
+        return true;  
+    }
+};
