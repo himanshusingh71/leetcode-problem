@@ -1,0 +1,37 @@
+728. Self Dividing Numbers
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Self Dividing Numbers.
+Memory Usage: 6.4 MB, less than 89.25% of C++ online submissions for Self Dividing Numbers.
+*/
+
+class Solution {
+public:
+    vector<int> selfDividingNumbers(int left, int right) {
+        vector<int> ans;
+        for(int i=left;i<=right;i++)
+        {
+            int n = i;
+            int num = i;
+            bool enter = true;
+            while(n>0)
+            {
+                int d = n%10;
+                if(d==0)
+                {
+                    enter = false;
+                    break;
+                }
+                if(!(num%d==0))
+                {
+                    enter = false;
+                    break;
+                }
+                n=n/10;
+            }
+            if(enter)
+            ans.push_back(i);
+        }
+        return ans;
+    }
+};
