@@ -1,0 +1,33 @@
+357. Count Numbers with Unique Digits
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Count Numbers with Unique Digits.
+Memory Usage: 5.9 MB, less than 79.78% of C++ online submissions for Count Numbers with Unique Digits.
+*/
+
+
+class Solution {
+public:
+    int dp[11] ;
+    int calc(int n)
+    {
+        if(n==1) return 10;
+        if(n==2) return dp[2];
+        dp[n] = dp[n-1] * (11-n);
+        return dp[n];
+         
+    }
+    int countNumbersWithUniqueDigits(int n) {
+        
+        if(n==0) return 1;
+        
+         dp[2] = 81;
+        
+        int ans = 0;
+        
+        for(int i=1;i<=n;i++)
+            ans += calc(i);
+        
+        return ans;
+    }
+};
