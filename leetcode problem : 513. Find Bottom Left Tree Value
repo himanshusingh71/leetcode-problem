@@ -1,0 +1,33 @@
+513. Find Bottom Left Tree Value
+
+/*
+Runtime: 12 ms, faster than 80.90% of C++ online submissions for Find Bottom Left Tree Value.
+Memory Usage: 21.7 MB, less than 60.72% of C++ online submissions for Find Bottom Left Tree Value.
+*/
+
+class Solution {
+public:
+
+    void recur(TreeNode * r, int level,bool left,int & value,int & maximum){
+        if( ! r) return ;
+        
+        left = true;
+        recur(r->left,level+1,left,value, maximum);
+        
+        if( left ){
+            if ( maximum < level)
+            {
+                maximum = level;
+                value = r->val;
+            }
+        }
+        left = false;
+        recur(r->right,level+1,left,value,maximum);
+    }
+    int findBottomLeftValue(TreeNode* root) {
+       
+        int value,maximum  = INT_MIN;
+     recur(root,1,bool(),value, maximum);
+        return value;
+    }
+};
