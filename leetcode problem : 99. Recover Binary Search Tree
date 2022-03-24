@@ -1,0 +1,35 @@
+99. Recover Binary Search Tree
+
+/*
+Runtime: 63 ms, faster than 25.19% of C++ online submissions for Recover Binary Search Tree.
+Memory Usage: 58.1 MB, less than 34.98% of C++ online submissions for Recover Binary Search Tree.
+*/
+
+class Solution {
+public:
+    vector<int> elements;
+    TreeNode * first =NULL , * second=NULL;
+    int i=0;
+  
+    void dfs(TreeNode * r)
+    {
+        if(!r) return;
+        dfs(r->left);
+        elements.push_back(r->val);
+        dfs(r->right);
+    }
+    void recover(TreeNode * root)
+    {
+        if(!root) return;
+         recover(root->left);
+        if(elements[i]!=root->val)
+            root->val = elements[i];
+        i++;
+        recover(root->right);
+    }
+    void recoverTree(TreeNode* root) {
+      dfs(root);
+        sort(elements.begin(),elements.end());
+        recover(root);
+    }
+};
