@@ -1,0 +1,19 @@
+633. Sum of Square Numbers
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Sum of Square Numbers.
+Memory Usage: 5.9 MB, less than 27.28% of C++ online submissions for Sum of Square Numbers.
+*/
+
+class Solution {
+public:
+    bool judgeSquareSum(int c) {
+        if ( !c ) return true;
+        for( long i = 0 ; i * i < c ; i++ )
+        {
+            long b = sqrt(c - i*i);
+            if( b * b + i * i == c ) return true;
+        }
+        return false;
+    }
+};
