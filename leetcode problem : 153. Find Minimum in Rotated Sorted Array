@@ -1,0 +1,16 @@
+153. Find Minimum in Rotated Sorted Array
+
+/*
+Runtime: 3 ms, faster than 80.70% of C++ online submissions for Find Minimum in Rotated Sorted Array.
+Memory Usage: 10.2 MB, less than 22.55% of C++ online submissions for Find Minimum in Rotated Sorted Array.
+*/
+
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+      int minimum = INT_MAX;
+        for(int &x: nums)
+            minimum = min(x,minimum);
+        return minimum;
+    }
+};
