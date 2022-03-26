@@ -1,0 +1,65 @@
+92. Reverse Linked List II
+
+/*
+Runtime: 8 ms, faster than 12.20% of C++ online submissions for Reverse Linked List II.
+Memory Usage: 7.6 MB, less than 17.14% of C++ online submissions for Reverse Linked List II.
+*/
+
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        if(!head) return head;
+        vector<int> elements;
+        
+        ListNode * temp = head;
+        bool enter1= true,enter2= true;
+        int first_index=0,second_index=0,i=0;
+        while(temp!=NULL)
+        {
+            if(enter1)
+            {
+                if(left==i+1)
+                {
+                    first_index = i;
+                    enter1=false;
+                }
+            }
+            if(enter2)
+            {
+                if(right==i+1)
+                {
+                    second_index = i;
+                    enter2=false;
+                }
+            }
+            elements.push_back(temp->val);
+            i++;
+            temp = temp->next;
+            
+        }
+        cout << first_index << " , " << second_index << endl;
+        
+        reverse(elements.begin()+first_index,elements.begin()+second_index+1);
+        
+        ListNode *head2,*temp2;
+        temp = NULL;
+        head2=NULL;
+        temp2=NULL;
+        
+        for(int &x:elements)
+        {
+            temp = new ListNode(x);
+            if(!head2)
+            {
+               head2 = temp;
+                temp2 = temp;
+            }
+            else{
+                temp2->next = temp;
+                temp2 = temp;
+            }
+        }
+        return head2;
+        
+    }
+};
