@@ -1,0 +1,71 @@
+989. Add to Array-Form of Integer
+
+/*
+Runtime: 32 ms, faster than 72.79% of C++ online submissions for Add to Array-Form of Integer.
+Memory Usage: 30 MB, less than 5.06% of C++ online submissions for Add to Array-Form of Integer.
+*/
+
+class Solution {
+public:
+    vector<int> addToArrayForm(vector<int>& num, int k) {
+    vector<int> ans;
+        stack<int> first;
+        vector<int> s;
+        for(int&x: num)
+            first.push(x);
+        stack<int> second;
+        while(k>0)
+        {
+            s.push_back(k%10);
+            k/=10;
+        }
+        for(int i=s.size()-1;i>=0;i--)
+            second.push(s[i]);
+        int carry = 0;
+        while(first.size()>0 and second.size()>0)
+        {
+            int sum = first.top() + second.top() + carry;
+            first.pop();
+            second.pop();
+            if(sum>=10)
+            {
+                carry = 1;
+                sum = sum - 10;
+            }
+            else
+                carry = 0;
+            ans.push_back(sum);
+        }
+        while(first.size()>0)
+        {
+           int sum = first.top() + carry;
+        first.pop();
+            if(sum>=10)
+            {
+                carry = 1;
+                sum = sum - 10;
+            }
+            else
+                carry = 0;
+            ans.push_back(sum);
+        }
+        
+          while(second.size()>0)
+        {
+           int sum = second.top() + carry;
+        second.pop();
+            if(sum>=10)
+            {
+                carry = 1;
+                sum = sum - 10;
+            }
+            else
+                carry = 0;
+            ans.push_back(sum);
+        }
+        if(carry>0)
+            ans.push_back(1);
+        reverse(ans.begin(),ans.end());
+       return ans;
+    }
+};
