@@ -1,0 +1,38 @@
+2129. Capitalize the Title
+
+/*
+Runtime: 3 ms, faster than 62.52% of C++ online submissions for Capitalize the Title.
+Memory Usage: 6.3 MB, less than 45.08% of C++ online submissions for Capitalize the Title.
+*/
+
+class Solution {
+public:
+    string capitalizeTitle(string title) {
+        bool found = true;
+        int len = title.length();
+        for(int i=0;i<title.length();i++)
+        {
+            if(title[i]==' ')
+            {
+                found = true;
+                continue;
+            }
+                
+    else if(found and (i+1 < len) and (i+2 < len))
+            {
+                if(title[i+1]==' ' or title[i+2]==' ')
+                {
+                    if(title[i]>='A' and title[i]<='Z')
+                        title[i]+=32;
+                }
+                else if(title[i]>='a')
+                    title[i] = title[i] - 32;
+                found = false;
+            }
+          else  if(title[i]>='A' and title[i]<='Z')
+                title[i] = title[i] + ' '; 
+        }
+        return title;
+        
+    }
+};
