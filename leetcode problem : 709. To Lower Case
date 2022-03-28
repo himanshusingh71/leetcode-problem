@@ -1,0 +1,16 @@
+709. To Lower Case
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for To Lower Case.
+Memory Usage: 5.9 MB, less than 96.86% of C++ online submissions for To Lower Case.
+*/
+
+class Solution {
+public:
+    string toLowerCase(string s) {
+        for(char &x: s)
+            if(char(x)>=65 and char(x)<=90)
+                x+=32;
+        return s;
+    }
+};
