@@ -1,0 +1,47 @@
+40. Combination Sum II
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Combination Sum II.
+Memory Usage: 12 MB, less than 25.56% of C++ online submissions for Combination Sum II.
+*/
+
+class Solution {
+public:
+    vector<vector<int>> ans;
+    set<vector<int>> myset;
+void recur(vector<int> current,vector<int> &candidates,int target,int start)
+    {
+        
+        if(target==0 )
+        {
+            if(myset.find(current)!=myset.end())return;
+            myset.insert(current);
+             
+            ans.push_back(current);
+            return;
+        }
+        for(int i=start;i<candidates.size();i++)
+        {
+            
+            if(candidates[i]>target) continue;
+            current.push_back(candidates[i]);
+            recur(current,candidates,target-candidates[i],i+1);
+            current.pop_back();
+           
+                
+            while( i < candidates.size()-1)
+            {
+                if(candidates[i]==candidates[i+1])
+                i++;
+                else
+                    break;
+            }
+        }
+    }
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        sort(candidates.begin(),candidates.end());
+        recur(vector<int>(),candidates,target,0);
+     
+        return ans;
+    }
+};
