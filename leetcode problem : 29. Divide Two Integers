@@ -1,0 +1,19 @@
+29. Divide Two Integers
+
+/*
+Runtime: 9 ms, faster than 14.20% of C++ online submissions for Divide Two Integers.
+Memory Usage: 6 MB, less than 30.47% of C++ online submissions for Divide Two Integers.
+
+*/
+
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
+        long ans = ((long)dividend/(long)divisor);
+        if(ans>INT_MAX)
+            return INT_MAX;
+        if(ans<INT_MIN)
+            return INT_MIN;
+        return int(dividend/divisor);
+    }
+};
