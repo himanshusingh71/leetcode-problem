@@ -1,0 +1,33 @@
+77. Combinations
+
+/*
+Runtime: 989 ms, faster than 5.01% of C++ online submissions for Combinations.
+Memory Usage: 165.1 MB, less than 9.24% of C++ online submissions for Combinations.
+*/
+
+class Solution {
+public:
+    vector<vector<int>> ans;
+ 
+   
+    void recur(vector<int> current,int k,int n,int start)
+    {
+        if(current.size()==k)
+        {
+            ans.push_back(current);
+            return;
+        }
+        for(int i=start;i<=n;i++)
+        {
+            current.push_back(i);
+            recur(current,k,n,i+1);
+            current.pop_back();
+        }
+        
+    }
+    vector<vector<int>> combine(int n, int k) {
+       
+        recur(vector<int>(),k,n,1);
+        return ans;
+    }
+};
