@@ -1,0 +1,33 @@
+377. Combination Sum IV
+
+/*
+Runtime: 4 ms, faster than 38.88% of C++ online submissions for Combination Sum IV.
+Memory Usage: 7.1 MB, less than 7.73% of C++ online submissions for Combination Sum IV.
+*/
+
+class Solution {
+public:
+     int ans;
+    unordered_map<int,int> umap;
+    int recur(vector<int>&nums,int target)
+    {
+        if(target<0) return 0;
+        if(target==0)
+           return 1;
+        if(umap.find(target)!=umap.end()) return umap[target];
+        int ans = 0;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(target<nums[i]) continue;
+             ans += recur(nums,target-nums[i]);
+            umap[target] = ans;
+        }
+     
+        return umap[target] = ans ;
+    }
+    int combinationSum4(vector<int>& nums, int target) {
+    
+       return recur(nums,target);
+         
+    }
+};
