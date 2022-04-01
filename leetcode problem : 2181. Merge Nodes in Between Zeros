@@ -1,0 +1,48 @@
+2181. Merge Nodes in Between Zeros
+
+/*
+Runtime: 1205 ms, faster than 23.47% of C++ online submissions for Merge Nodes in Between Zeros.
+Memory Usage: 300.4 MB, less than 5.15% of C++ online submissions for Merge Nodes in Between Zeros.
+*/
+
+class Solution {
+public:
+    ListNode* mergeNodes(ListNode* head) {
+        if(!head) return NULL;
+        vector<int> elements;
+        vector<int> sums;
+        while(head!=NULL)
+        {
+            elements.push_back(head->val);
+            head=head->next;
+        }
+        int sum = 0;
+        for(int i=1;i<elements.size();i++)
+        {
+            if(elements[i]!=0)
+            {
+                sum+=elements[i];
+            }
+            else{
+                 sums.push_back(sum);
+                sum = 0;
+             
+            }
+        }
+        ListNode *new_head,*temp1,*temp2;
+         new_head = temp1 = temp2 = NULL;
+        for(int &x: sums)
+        {
+            temp2 = new ListNode(x);
+            if(!new_head)
+            {
+                new_head = temp1 = temp2;
+            }
+            else{
+                temp1->next = temp2;
+                temp1 = temp2;
+            }
+        }
+        return new_head;
+    }
+};
