@@ -1,0 +1,45 @@
+279. Perfect Squares
+
+/*
+Runtime: 924 ms, faster than 5.52% of C++ online submissions for Perfect Squares.
+Memory Usage: 45 MB, less than 8.39% of C++ online submissions for Perfect Squares.
+*/
+
+class Solution {
+public:
+
+    unordered_map<int,int> memo;
+    
+    int  recur(vector<int> &numbers,int target)
+    {
+        if(target==0){
+            return 0;
+        }
+        
+       if(memo.find(target)!=memo.end()) return memo[target];
+         
+         int current_minimum = INT_MAX;
+           
+        for(int &x: numbers)
+        {
+           
+            if(target<x) continue;
+
+          current_minimum = min(current_minimum , 1 +  recur(numbers,target-x));
+    	}
+
+        return memo[target] =  current_minimum;
+        
+         
+    }
+    
+    int numSquares(int n) {
+ 
+        vector<int> numbers;
+        for(int i=1;i*i<=n;i++)
+            numbers.push_back(i*i);
+    
+        return  recur(numbers,n);
+      
+    }
+};
