@@ -1,0 +1,26 @@
+2095. Delete the Middle Node of a Linked List
+
+/*
+Runtime: 1191 ms, faster than 72.72% of C++ online submissions for Delete the Middle Node of a Linked List.
+Memory Usage: 294.7 MB, less than 67.45% of C++ online submissions for Delete the Middle Node of a Linked List.
+*/
+
+class Solution {
+public:
+    ListNode* deleteMiddle(ListNode* head) {
+        if(!head->next) return NULL;
+         if(!head) return head;
+        ListNode *first,*second,*prev;
+        first = second = prev = head;
+        while(second->next!=NULL)
+        {
+            prev = first;
+            second = second->next->next;
+            first=first->next;
+            if( !second ) break;
+        }
+        prev->next = first->next;
+        return head;
+        
+    }
+};
