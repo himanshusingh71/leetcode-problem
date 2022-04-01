@@ -8,41 +8,35 @@ Memory Usage: 300.4 MB, less than 5.15% of C++ online submissions for Merge Node
 class Solution {
 public:
     ListNode* mergeNodes(ListNode* head) {
+        
         if(!head) return NULL;
-        vector<int> elements;
-        vector<int> sums;
+        
+         ListNode *new_head,*temp1,*temp2;
+         new_head = temp1 = temp2 = NULL;
+         
+       head=head->next;
+        
+        int sum = 0;
         while(head!=NULL)
         {
-            elements.push_back(head->val);
-            head=head->next;
-        }
-        int sum = 0;
-        for(int i=1;i<elements.size();i++)
-        {
-            if(elements[i]!=0)
+            if(head->val!=0)
             {
-                sum+=elements[i];
+                sum+=head->val;
             }
             else{
-                 sums.push_back(sum);
-                sum = 0;
-             
-            }
-        }
-        ListNode *new_head,*temp1,*temp2;
-         new_head = temp1 = temp2 = NULL;
-        for(int &x: sums)
-        {
-            temp2 = new ListNode(x);
+                    temp2 = new ListNode(sum);
             if(!new_head)
-            {
                 new_head = temp1 = temp2;
-            }
             else{
                 temp1->next = temp2;
                 temp1 = temp2;
             }
+                sum = 0;
+             
+            }
+        head = head->next;
         }
+     
         return new_head;
     }
 };
