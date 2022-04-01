@@ -1,0 +1,26 @@
+796. Rotate String
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Rotate String.
+Memory Usage: 6.1 MB, less than 87.22% of C++ online submissions for Rotate String.
+*/
+
+class Solution {
+public:
+    bool rotateString(string s, string goal) {
+        if(s.length()!=goal.length()) return false;
+        string copy_s = s;
+        int k = s.length()-1;
+        int size = s.length();
+        for(int j = 0;j<s.length();j++){
+            copy_s = s;
+        for(int i=0;i<s.length();i++)
+        {
+            s[(i+k)%size] = copy_s[i];
+        }
+            if(s==goal) return true;
+            
+        }
+        return false;
+    }
+};
