@@ -1,0 +1,35 @@
+2130. Maximum Twin Sum of a Linked List
+
+/*
+Runtime: 224 ms, faster than 95.17% of C++ online submissions for Maximum Twin Sum of a Linked List.
+Memory Usage: 121.7 MB, less than 46.23% of C++ online submissions for Maximum Twin Sum of a Linked List.
+*/
+
+class Solution {
+public:
+    int pairSum(ListNode* head) {
+        int maximum  = INT_MIN;
+        vector<int> elements;
+        ListNode *fast,*slow;
+        fast = slow = head;
+   
+        bool enter = true;
+        while(fast!=NULL)
+        {
+            elements.push_back(slow->val);
+            slow = slow->next;
+            fast  = fast->next->next;
+            if(fast==NULL or fast->next==NULL)
+                break;
+                    
+        }
+        int i = elements.size()-1;
+        while(slow!=NULL)
+        {
+            maximum = max(maximum,elements[i]+slow->val);
+            i--;
+            slow = slow->next;
+        }
+        return maximum;
+    }
+};
