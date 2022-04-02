@@ -1,0 +1,38 @@
+680. Valid Palindrome II
+
+/*
+Runtime: 56 ms, faster than 90.74% of C++ online submissions for Valid Palindrome II.
+Memory Usage: 24.1 MB, less than 31.50% of C++ online submissions for Valid Palindrome II.
+*/
+
+class Solution {
+public:
+    bool checking(string s,int skip_index)
+    {
+        for(int i=0,j=s.length()-1;j>i;)
+        {
+            if( i == skip_index)
+            {
+                i++;
+                continue;
+            }
+            if(j == skip_index)
+            {
+                j--;
+                continue;
+            }
+            if(s[i]!=s[j]) return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+    bool validPalindrome(string s) {      
+             for(int i=0,j=s.length()-1;i<j;i++,j--)
+                    if(s[i]!=s[j])                       
+               return     checking(s,i) or checking(s,j);
+                           
+                 return true;
+
+    }
+};
