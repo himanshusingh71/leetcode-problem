@@ -1,0 +1,35 @@
+322. Coin Change
+
+/*
+Runtime: 457 ms, faster than 6.24% of C++ online submissions for Coin Change.
+Memory Usage: 16.3 MB, less than 26.24% of C++ online submissions for Coin Change.
+*/
+
+
+class Solution {
+public:
+  int dp[100000][13];
+    long recur(int amount,int start,vector<int> & coins)
+    {
+        if(start>=coins.size()) return INT_MAX;
+        if(amount < 0) return INT_MAX;
+        if(amount==0)
+            return 0;
+      if(dp[amount][start]!=-1) return dp[amount][start];
+        long minimum = INT_MAX;
+        for(int i=start;i<coins.size();i++)
+        {
+            minimum = min( 1 + recur(amount - coins[i],i,coins) , minimum);
+            minimum = min( 1 + recur(amount-coins[i],i+1,coins),minimum);
+            minimum = min(recur(amount,i+1,coins),minimum);
+         }
+         
+        return dp[amount][start] =  minimum;
+    }
+    int coinChange(vector<int>& coins, int amount) {
+        memset(dp,-1,sizeof(dp));
+        long ans = recur(amount,0,coins);
+        if(ans==INT_MAX) return -1;
+        return ans;
+    }
+};
