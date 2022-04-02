@@ -1,0 +1,36 @@
+64. Minimum Path Sum
+
+/*
+
+Runtime: 16 ms, faster than 33.37% of C++ online submissions for Minimum Path Sum.
+Memory Usage: 9.8 MB, less than 64.20% of C++ online submissions for Minimum Path Sum.
+
+*/
+
+class Solution {
+public:
+    
+    int dp[201][201];
+    int recur(int r,int c,vector<vector<int>> & grid)
+    {
+        if( r == 0 and c == 0)
+            return grid[0][0];
+        if(dp[r][c]!=-1) return dp[r][c];
+        if( r<0 or c < 0) return 0;
+        int left  = INT_MAX , right = INT_MAX;
+        if(r>0)
+            left = grid[r][c] + recur(r-1,c,grid);
+        if(c>0)
+            right = grid[r][c] + recur(r,c-1,grid);
+        
+               
+        return dp[r][c] = min(left,right);
+               
+    }
+    int minPathSum(vector<vector<int>>& grid) {
+        memset(dp,-1,sizeof(dp));
+        int row = grid.size() -1;
+        int col = grid[0].size()-1;
+        return recur(row,col,grid);
+    }
+};
