@@ -1,0 +1,40 @@
+869. Reordered Power of 2
+
+/*
+Runtime: 84 ms, faster than 12.88% of C++ online submissions for Reordered Power of 2.
+Memory Usage: 5.9 MB, less than 78.22% of C++ online submissions for Reordered Power of 2.
+*/
+
+class Solution {
+public:
+    unsigned int getNumberOfDigits (int i)
+{
+    return i > 0 ? log10((double) i) + 1 : 1;
+}
+
+    bool check_power(long n)
+    {
+        int count = 0;
+        while(n>0)
+        {
+            if(n&1)
+                count++;
+            n = n >>  1;
+            if(count>1) return false;
+        }
+        return true;
+    }
+    bool reorderedPowerOf2(int n) {
+     
+        string number_str = to_string(n);
+           sort(number_str.begin(),number_str.end());
+        if(check_power(stoi(number_str)) and stoi(number_str)%10!=0 and getNumberOfDigits(stoi(number_str))==number_str.length()) return true;
+        while(next_permutation(number_str.begin(),number_str.end()))
+        {
+            long nn = stoi(number_str);
+            if( nn%10!=0 and check_power(nn) and getNumberOfDigits(nn)==number_str.length() ) return true;
+        }
+        return false;
+        
+    }
+};
