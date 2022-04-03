@@ -4,31 +4,45 @@
 Runtime: 668 ms, faster than 81.65% of C++ online submissions for Swapping Nodes in a Linked List.
 Memory Usage: 219.6 MB, less than 5.06% of C++ online submissions for Swapping Nodes in a Linked List.
 */
-
 class Solution {
 public:
     ListNode* swapNodes(ListNode* head, int k) {
-        vector<int> numbers;
-        ListNode*temp = head;
-        while(temp!=NULL){
-            numbers.push_back(temp->val);
-            temp = temp->next;
-            }
-        swap(numbers[k-1],numbers[numbers.size()-k]);
-        ListNode *new_head,*temp1;
-        new_head = temp1 = temp = nullptr;
-        for(int &x: numbers)
+      if(!head) return NULL;
+        if(!(head->next)) return head;
+      ListNode *fast ;
+        
+        int n = 0;
+        fast = head;
+        while(fast!=NULL)
         {
-            temp = new ListNode(x);
-            if(!new_head)
+            
+            n+=2;
+            
+            fast=fast->next->next;
+            if(fast==NULL)break;
+            if(fast->next==NULL)
             {
-                new_head = temp1 = temp;
-            }
-            else{
-                temp1->next = temp;
-                temp1  = temp;
+                n+=1;
+                break;
             }
         }
-        return new_head;
+      ListNode *  temp = head;
+        ListNode * first,*second;
+        first = second = NULL;
+        int c=0;
+        while(temp!=NULL)
+        {
+            c++;
+            if(c==k) first = temp;
+            if(c==n-k+1) {
+                second = temp;
+            }
+            temp = temp->next;
+        }
+        if(first!=nullptr and second!=nullptr)
+        swap(first->val,second->val);
+        return head;
+        
+   
     }
 };
