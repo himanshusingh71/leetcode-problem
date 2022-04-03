@@ -1,0 +1,57 @@
+1305. All Elements in Two Binary Search Trees
+
+/*
+Runtime: 214 ms, faster than 41.27% of C++ online submissions for All Elements in Two Binary Search Trees.
+Memory Usage: 87.5 MB, less than 6.78% of C++ online submissions for All Elements in Two Binary Search Trees.
+*/
+
+class Solution {
+public:
+    
+    vector<int> first,second,ans;
+    
+    void dfs_first(TreeNode * root)
+    {
+        if(!root) return;
+        dfs_first(root->left);
+        first.push_back(root->val);
+        dfs_first(root->right);
+    }
+      void dfs_second(TreeNode * root)
+    {
+        if(!root) return;
+        dfs_second(root->left);
+        second.push_back(root->val);
+        dfs_second(root->right);
+    }
+    
+   
+    vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
+      
+         dfs_first(root1);
+        dfs_second(root2);
+        int i=0,j=0;
+        while(i<first.size() and j<second.size())
+        {
+            if(first[i]>=second[j])
+            {
+                ans.push_back(second[j++]);
+               
+            }
+            else{
+                ans.push_back(first[i++]);
+            }
+        }
+        while(i<first.size())
+        {
+            ans.push_back(first[i++]);
+                
+        }
+        while(j<second.size())
+        {
+            ans.push_back(second[j++]);
+          
+        }
+        return ans;
+    }
+};
