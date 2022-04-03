@@ -1,0 +1,32 @@
+1347. Minimum Number of Steps to Make Two Strings Anagram
+
+/*
+Runtime: 275 ms, faster than 5.02% of C++ online submissions for Minimum Number of Steps to Make Two Strings Anagram.
+Memory Usage: 16.8 MB, less than 6.13% of C++ online submissions for Minimum Number of Steps to Make Two Strings Anagram.
+
+*/
+
+class Solution {
+public:
+    int minSteps(string s, string t) {
+        unordered_map<char,int> first,second;
+        set<char> myset;
+        for(char &x:s)
+        {
+            first[x]++;
+            myset.insert(x);
+        }
+        for(char &x:t)
+            second[x]++;
+        
+        int count = 0 ;
+      
+    for(auto it = myset.begin() ; it != myset.end() ; it++ )
+        {
+            if(first[*it]>second[(*it)])
+            count+= abs(second[*it]-first[*it]);
+        }
+        
+        return count;
+    }
+};
