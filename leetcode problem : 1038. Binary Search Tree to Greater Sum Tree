@@ -1,0 +1,35 @@
+1038. Binary Search Tree to Greater Sum Tree
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Binary Search Tree to Greater Sum Tree.
+Memory Usage: 8.2 MB, less than 54.33% of C++ online submissions for Binary Search Tree to Greater Sum Tree.
+*/
+
+class Solution {
+public:
+     int sum = 0;
+    unordered_map<int,int> umap;
+    void dfs(TreeNode * r)
+    {
+        if(!r)
+            return;
+         
+        dfs(r->right);
+        sum += r->val;
+        umap[r->val] = sum;
+        dfs(r->left);
+        
+    }
+    void change(TreeNode *r)
+    {
+        if(!r) return;
+        r->val = umap[r->val];
+        change(r->left);
+        change(r->right);
+    }
+    TreeNode* bstToGst(TreeNode* root) {
+        dfs(root);
+        change(root);
+        return root;
+    }
+};
