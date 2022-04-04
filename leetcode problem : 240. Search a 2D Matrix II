@@ -1,0 +1,18 @@
+240. Search a 2D Matrix II
+
+/*
+Runtime: 375 ms, faster than 12.94% of C++ online submissions for Search a 2D Matrix II.
+Memory Usage: 14.8 MB, less than 68.59% of C++ online submissions for Search a 2D Matrix II.
+*/
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        for(int i=0;i<matrix.size();i++)
+        {
+                if( binary_search(matrix[i].begin(),matrix[i].end(),target))
+                    return true;
+        }
+        return false;
+    }
+};
