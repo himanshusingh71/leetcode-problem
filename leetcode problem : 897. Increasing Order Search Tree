@@ -1,0 +1,32 @@
+897. Increasing Order Search Tree
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Increasing Order Search Tree.
+Memory Usage: 8.5 MB, less than 6.87% of C++ online submissions for Increasing Order Search Tree.
+*/
+
+class Solution {
+public:
+    
+     TreeNode * new_root = NULL;
+   void dfs(TreeNode * r)
+    {
+        if(!r) return;
+        dfs(r->left);
+         new_root = create(new_root,r->val);
+       dfs(r->right);
+    }
+    TreeNode *create(TreeNode *r,int val)
+    {
+        if(!r)
+            r = new TreeNode(val);
+       else if(val>r->val)
+            r->right = create(r->right,val);
+        return r;
+    }
+    TreeNode* increasingBST(TreeNode* root) {
+        dfs(root);
+        
+        return new_root;
+    }
+};
