@@ -1,0 +1,27 @@
+671. Second Minimum Node In a Binary Tree
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Second Minimum Node In a Binary Tree.
+Memory Usage: 7.1 MB, less than 22.95% of C++ online submissions for Second Minimum Node In a Binary Tree.
+*/
+
+class Solution {
+public:
+    vector<int> vec;
+    void dfs(TreeNode *r)
+    {
+        if(!r) return;
+       vec.push_back(r->val);
+        dfs(r->left);
+        dfs(r->right);
+    }
+    int findSecondMinimumValue(TreeNode* root) {
+        dfs(root);
+         sort(vec.begin(),vec.end());
+        int first = vec[0];
+        for(int i=0;i<vec.size();i++)
+            if(first!=vec[i]) return vec[i];
+        
+        return -1;
+    }
+};
