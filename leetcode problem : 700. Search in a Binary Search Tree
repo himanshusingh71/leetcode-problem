@@ -1,0 +1,28 @@
+700. Search in a Binary Search Tree
+
+/*
+Runtime: 50 ms, faster than 64.82% of C++ online submissions for Search in a Binary Search Tree.
+Memory Usage: 34.7 MB, less than 67.18% of C++ online submissions for Search in a Binary Search Tree.
+*/
+
+class Solution {
+public:
+    TreeNode * ans = NULL;
+    bool found = false;
+    void dfs(TreeNode * r,int &val)
+    {
+        if(found) return;
+        if(!r) return;
+        if(r->val == val) {
+            found = true;
+            ans = r;
+            return;
+        }
+        dfs(r->left,val);
+        dfs(r->right,val);
+    }
+    TreeNode* searchBST(TreeNode* root, int val) {
+        dfs(root,val);
+        return ans;
+    }
+};
