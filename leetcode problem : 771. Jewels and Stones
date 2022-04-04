@@ -1,0 +1,20 @@
+771. Jewels and Stones
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Jewels and Stones.
+Memory Usage: 6.3 MB, less than 45.15% of C++ online submissions for Jewels and Stones.
+*/
+
+class Solution {
+public:
+    int numJewelsInStones(string jewels, string stones) {
+        unordered_map<char,bool> umap;
+        int count=0;
+        for(char &x: jewels)
+            umap[x]=true;
+        for(char&x:stones)
+            if(umap[x])count++;
+        
+        return count;
+    }
+};
