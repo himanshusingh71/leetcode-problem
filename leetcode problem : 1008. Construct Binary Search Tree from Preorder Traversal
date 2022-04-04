@@ -1,0 +1,29 @@
+1008. Construct Binary Search Tree from Preorder Traversal
+
+/*
+Runtime: 8 ms, faster than 52.79% of C++ online submissions for Construct Binary Search Tree from Preorder Traversal.
+Memory Usage: 13.6 MB, less than 86.71% of C++ online submissions for Construct Binary Search Tree from Preorder Traversal.
+*/
+
+ass Solution {
+public:
+    TreeNode * create(TreeNode *r,int val)
+    {
+        if(!r)
+        {
+            r = new TreeNode(val);
+        }
+     else   if(r->val > val)
+            r->left = create(r->left,val);
+        else
+            r->right = create(r->right,val);
+        return r;
+        
+    }
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        TreeNode * root = NULL;
+        for(int &x: preorder)
+            root = create(root,x);
+        return root;
+    }
+};
