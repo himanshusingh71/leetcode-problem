@@ -1,0 +1,25 @@
+2114. Maximum Number of Words Found in Sentences
+
+/*
+Runtime: 20 ms, faster than 31.36% of C++ online submissions for Maximum Number of Words Found in Sentences.
+Memory Usage: 10.4 MB, less than 9.33% of C++ online submissions for Maximum Number of Words Found in Sentences.
+*/
+
+class Solution {
+public:
+    int mostWordsFound(vector<string>& sentences) {
+         
+        string word;
+        int size = INT_MIN;
+        for(string &x: sentences)
+        {
+            stringstream input(x);
+            int count = 0;
+            while( input >> word )
+                 count++;
+            size = max(size,count);
+        }
+        return size;
+
+    }
+};
