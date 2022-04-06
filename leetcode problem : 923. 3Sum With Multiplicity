@@ -1,0 +1,80 @@
+923. 3Sum With Multiplicity
+
+/*
+Runtime: 257 ms, faster than 58.16% of C++ online submissions for 3Sum With Multiplicity.
+Memory Usage: 22.7 MB, less than 5.44% of C++ online submissions for 3Sum With Multiplicity.
+*/
+
+class Solution {
+public:
+ 
+ int threeSumMulti(vector<int>& arr, int target) {
+        sort(arr.begin(),arr.end());
+        long result = 0,mod = 1e9 + 7;
+        
+         unordered_map <int,int> umap;
+         map<vector<int>,bool> mymap;
+        
+        long ans = 0;
+        long modulo = 1e9+7;
+        for(int &x: arr)
+            umap[x]++;
+        
+        for(int i=0;i<arr.size();i++)
+        {
+            if(i>=1 and arr[i]==arr[i-1])
+            {
+                continue;
+            }
+            int new_target = target - arr[i];
+            int l = i+1,r = arr.size()-1;
+            
+            while(r>l)
+            {
+                if( arr[l] + arr[r] == new_target )
+                {
+                	   
+                   if(mymap.find({arr[i],arr[l],arr[r]})==mymap.end())
+                   {
+					//	cout << arr[i] << " , " << arr[l] << " , " << arr[r] << endl;
+						int first = arr[i];
+						int second = arr[l];
+						int third = arr[r];
+						if(first == second and second == third)
+						{
+ans +=  (((umap[first] % modulo) * (( umap[first]-1)%modulo) * (( umap[first]  - 2)%modulo))/6);
+						}
+						else if(first == second and second!=third )
+						{		
+							ans +=   (umap[first] * (umap[first]-1))/2 * umap[third];
+						}
+						else if(first == third and first !=second)
+						{
+								ans += (umap[first] * (umap[first]-1))/2* umap[second];
+						}
+						else if(second== third and first != second)
+						{
+							ans += (umap[second] * (umap[second]-1))/2* umap[first];
+						}
+						else{
+							ans += umap[first]* umap[second] * umap[third];
+						}
+						mymap[{arr[i],arr[l],arr[r]}] = true;
+                   }
+                    l++;
+                    r--;
+                }
+                else if(arr[l] + arr[r] > new_target)
+                    r--;
+                else
+                    l++;
+            }
+
+            
+        }
+         ans %= modulo;
+         return  ans;
+     
+    }
+
+};
