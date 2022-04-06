@@ -1,0 +1,28 @@
+1089. Duplicate Zeros
+
+/*
+Runtime: 7 ms, faster than 78.77% of C++ online submissions for Duplicate Zeros.
+Memory Usage: 10.1 MB, less than 10.55% of C++ online submissions for Duplicate Zeros.
+*/
+
+class Solution {
+public:
+    void duplicateZeros(vector<int>& arr) {
+        vector<int> copy;
+        for(int &x: arr)
+        {
+            if(x!=0)
+                copy.push_back(x);
+            else
+            {
+                if(arr.size()==copy.size()) break;
+                copy.push_back(0);
+                if(arr.size()==copy.size()) break;
+                copy.push_back(0);
+            }
+            if(arr.size() == copy.size())
+                break;
+        }
+        arr = copy;
+    }
+};
