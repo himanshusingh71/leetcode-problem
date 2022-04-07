@@ -1,0 +1,76 @@
+36. Valid Sudoku
+
+/*
+Runtime: 26 ms, faster than 70.57% of C++ online submissions for Valid Sudoku.
+Memory Usage: 19.8 MB, less than 42.28% of C++ online submissions for Valid Sudoku.
+*/
+
+class Solution {
+public:
+    bool check(vector<vector<char>> vec)
+    {
+        unordered_map<char,int> umap;
+        for(int i=0;i<3;i++)
+        {
+            for(int j=0;j<3;j++)
+            {
+                  if(vec[i][j]=='.')continue;
+                if(umap[vec[i][j]]>0) return false;
+                else
+                    umap[vec[i][j]]++;
+            }
+        }
+        return true;
+    }
+    bool isValidSudoku(vector<vector<char>>& board) {
+        
+        unordered_map<char,int> temp;
+        for(int i=0;i<9;i++)
+        {
+            temp.clear();
+            for(int j=0;j<9;j++)
+            {
+                if(board[i][j]=='.')continue;
+                if(temp[board[i][j]] > 0) return false;
+                else
+                    temp[board[i][j]]++;
+            }
+        }
+       
+          for(int i=0;i<9;i++)
+        {
+              temp.clear();
+            for(int j=0;j<9;j++)
+            {
+                  if(board[j][i]=='.')continue;
+                if( temp[board[j][i] ] >0) return false;
+                else
+                    temp[board[j][i]]++;
+            }
+        }
+        
+        vector<vector<char>> vec;
+        vector<char> tt;
+        for(int i=0;i<9;i+=3)
+        {
+            
+            for(int j=0;j<9;j+=3)
+            {
+                vec.clear();
+                
+               for(int z=i;z<i+3;z++)
+               {
+                   tt.clear();
+                   for(int m=j;m<j+3;m++)
+                   {
+                      tt.push_back(board[z][m]); 
+                   }
+                   vec.push_back(tt);
+               }
+                if(!check(vec))
+                    return false;
+            }
+        }
+        return true;
+    }
+};
