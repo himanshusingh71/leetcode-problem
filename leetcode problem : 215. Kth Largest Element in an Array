@@ -1,0 +1,20 @@
+215. Kth Largest Element in an Array
+
+/*
+Runtime: 14 ms, faster than 41.68% of C++ online submissions for Kth Largest Element in an Array.
+Memory Usage: 10.2 MB, less than 35.54% of C++ online submissions for Kth Largest Element in an Array.
+*/
+
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        priority_queue <int,vector<int>,greater<int>> q;
+        for(int &x:nums)
+        {
+            q.push(x);
+            if(q.size()>k)
+                q.pop();
+        }
+        return q.top();
+    }
+};
