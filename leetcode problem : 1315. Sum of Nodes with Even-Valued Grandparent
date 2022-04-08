@@ -1,0 +1,41 @@
+1315. Sum of Nodes with Even-Valued Grandparent
+
+/*
+Runtime: 49 ms, faster than 81.45% of C++ online submissions for Sum of Nodes with Even-Valued Grandparent.
+Memory Usage: 41.2 MB, less than 97.56% of C++ online submissions for Sum of Nodes with Even-Valued Grandparent.
+*/
+
+class Solution {
+public:
+    int sum = 0;
+    void dfs(TreeNode * r)
+    {
+        if(!r)  return;
+        if( r->val%2==0 )
+        {
+            if(r->left!=NULL)
+                {
+                    if(r->left->left!=NULL)
+                        sum+=r->left->left->val;
+                if(r->left->right!=NULL)
+                    sum+=r->left->right->val;
+                }
+            
+            if(r->right!=NULL)
+         {
+           
+                if(r->right->right!=NULL)
+                    sum+=r->right->right->val;
+                if(r->right->left!=NULL)
+                    sum+=r->right->left->val;
+            
+            }
+        }
+        dfs(r->left);
+        dfs(r->right);
+    }
+    int sumEvenGrandparent(TreeNode* root) {
+        dfs(root);
+        return sum;
+    }
+};
