@@ -1,0 +1,32 @@
+2149. Rearrange Array Elements by Sign
+
+/*
+Runtime: 260 ms, faster than 70.31% of C++ online submissions for Rearrange Array Elements by Sign.
+Memory Usage: 140.8 MB, less than 18.63% of C++ online submissions for Rearrange Array Elements by Sign.
+*/
+
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& nums) {
+        vector<int> positive,negative;
+        for(int &x: nums)
+        {
+            if(x>0)
+                positive.push_back(x);
+            else
+                negative.push_back(x);
+        }
+        vector<int> ans;
+        int i=0,j=0;
+        while(i<positive.size() and j<negative.size())
+        {
+            ans.push_back(positive[i++]);
+            ans.push_back(negative[j++]);
+        }
+        while( i < positive.size())
+            ans.push_back(positive[i++]);
+        while(j<negative.size())
+            ans.push_back(negative[j++]);
+            return ans;
+    }
+};
