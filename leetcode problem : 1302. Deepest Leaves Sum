@@ -1,0 +1,41 @@
+1302. Deepest Leaves Sum
+
+/*
+Runtime: 88 ms, faster than 96.03% of C++ online submissions for Deepest Leaves Sum.
+Memory Usage: 59.7 MB, less than 76.74% of C++ online submissions for Deepest Leaves Sum.
+*/
+
+class Solution {
+public:
+    int sum = 0;
+    int maximum = INT_MIN;
+    void level( TreeNode * r , int l )
+    {
+        if(!r) return ;
+        
+        level(r->left,l+1);
+        
+        level(r->right, l+1);
+
+         if(r->left==NULL and r->right==NULL)
+         {
+             if(l>maximum)
+             {
+                sum = 0;
+                 sum += r->val;
+                 maximum = l;
+             }
+             else{
+                 if(maximum==l)
+                 sum+=r->val;
+             }
+          
+         }
+    }
+
+    int deepestLeavesSum(TreeNode* root) {
+        level(root,0);
+ 
+        return sum;
+    }
+};
