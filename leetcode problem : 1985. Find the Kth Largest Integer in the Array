@@ -1,0 +1,21 @@
+1985. Find the Kth Largest Integer in the Array
+
+/*
+Runtime: 316 ms, faster than 60.94% of C++ online submissions for Find the Kth Largest Integer in the Array.
+Memory Usage: 55.3 MB, less than 78.81% of C++ online submissions for Find the Kth Largest Integer in the Array.
+*/
+
+class Solution {
+public:
+  static  bool comparision(string& a,string& b)
+    {
+        if(a.size() == b.size())
+            return a>b;
+        return a.size() > b.size();
+    }
+    string kthLargestNumber(vector<string>& nums, int k) {
+        sort(nums.begin(),nums.end(),comparision);
+        return nums[k-1];
+        
+    }
+};
