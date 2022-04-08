@@ -1,0 +1,31 @@
+703. Kth Largest Element in a Stream
+
+/*
+Runtime: 35 ms, faster than 82.41% of C++ online submissions for Kth Largest Element in a Stream.
+Memory Usage: 19.8 MB, less than 63.09% of C++ online submissions for Kth Largest Element in a Stream.
+*/
+
+
+
+class KthLargest {
+public:
+   
+    int x;
+    priority_queue <int, vector<int>, greater<int>> q;
+    KthLargest(int k, vector<int>& nums) {
+        x = k;
+     for(int &m:nums)
+     {
+         q.push(m);
+             if(q.size()>k)
+                 q.pop();
+         }
+    }
+    
+    int add(int val) {
+      q.push(val);
+        if(q.size()>x)
+            q.pop();
+        return q.top();
+    }
+};
