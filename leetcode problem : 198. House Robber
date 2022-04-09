@@ -1,0 +1,24 @@
+198. House Robber
+
+/*
+Runtime: 3 ms, faster than 52.19% of C++ online submissions for House Robber.
+Memory Usage: 8.3 MB, less than 5.28% of C++ online submissions for House Robber.
+*/
+
+class Solution {
+public:
+    unordered_map<int,int> umap;
+    int recur(vector<int> &nums,int start)
+    {
+        if(start >=nums.size())
+            return 0;
+        if(umap.find(start)!=umap.end()) return umap[start];
+        int pick = nums[start] + recur(nums,start+2);
+        int not_pick = recur(nums,start+1);
+        return umap[start] = max(pick,not_pick);
+      
+    }
+    int rob(vector<int>& nums) {
+        return recur(nums,0);
+    }
+};
