@@ -1,0 +1,26 @@
+120. Triangle
+
+/*
+Runtime: 93 ms, faster than 5.46% of C++ online submissions for Triangle.
+Memory Usage: 30.6 MB, less than 5.83% of C++ online submissions for Triangle.
+*/
+
+class Solution {
+public:
+    int dp[201][25000];
+    int recur(vector<vector<int>> & triangle,int row,int index)
+    {
+        if( row >= triangle.size() or index >= triangle[row].size())
+            return  0;
+        
+        if(dp[row][index]!=-1) return dp[row][index];
+       int sum    = triangle[row][index] + min(recur(triangle,row+1,index),recur(triangle,row+1,index+1));
+        return dp[row][index] = sum;
+        
+    }
+    int minimumTotal(vector<vector<int>>& triangle) {
+        memset(dp,-1,sizeof(dp));
+        int ans = recur(triangle,0,0);
+        return  ans;
+    }
+};
