@@ -1,0 +1,14 @@
+912. Sort an Array
+
+/*
+Runtime: 48 ms, faster than 95.31% of C++ online submissions for Sort an Array.
+Memory Usage: 28.5 MB, less than 81.21% of C++ online submissions for Sort an Array.
+*/
+
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        return nums;
+    }
+};
