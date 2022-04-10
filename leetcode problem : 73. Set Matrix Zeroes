@@ -1,0 +1,47 @@
+73. Set Matrix Zeroes
+
+/*
+Runtime: 23 ms, faster than 36.52% of C++ online submissions for Set Matrix Zeroes.
+Memory Usage: 13.3 MB, less than 19.48% of C++ online submissions for Set Matrix Zeroes.
+*/
+
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+         
+        vector<int> rows,cols;
+        // getting all rows and columns
+        for(int i=0;i<matrix.size();i++)
+        {
+            for(int j=0;j<matrix[i].size();j++)
+            {
+                if(matrix[i][j] == 0)
+                {
+                   rows.push_back(i);
+                    cols.push_back(j);
+                }
+            }
+        }
+        for(int i = 0;i<rows.size();i++)
+        {
+            // get row
+            int row = rows[i];
+            for(int j = 0 ; j <matrix[row].size(); j++)
+            {
+                matrix[row][j] = 0;
+            }
+        }
+        // setting rows to zero
+        
+        // setting columns to zero
+           for(int i = 0;i<cols.size();i++)
+        {
+            // get row
+            int col = cols[i];
+            for(int j = 0 ; j <matrix.size(); j++)
+            {
+                matrix[j][col] = 0;
+            }
+        }
+    }
+};
