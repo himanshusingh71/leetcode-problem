@@ -1,0 +1,62 @@
+682. Baseball Game
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Baseball Game.
+Memory Usage: 8.5 MB, less than 28.60% of C++ online submissions for Baseball Game.
+*/
+
+class Solution {
+public:
+    bool iss_digit(string s)
+   {
+    if(s[0]=='-') return true;
+    if ( s[0]>='0' and s[0]<='9') return true;
+    return false;
+   }
+
+   int calPoints(vector<string>& ops) {
+        stack<int> score;
+        for(string & x : ops)
+        {
+         
+
+           if(iss_digit(x ) )
+               { 
+              
+              score.push(stoi(x));
+            }
+            else{
+                if(x == "D")
+                {
+                    int popping = score.top();
+                   
+                    popping = popping  * 2;
+                    score.push(popping);
+                }
+                else if(x=="C")
+                    score.pop();
+                else if(x=="+")
+                {
+                    int first = score.top();
+                    score.pop();
+                    int second= score.top();
+                    score.pop();
+                    int ans = (first+second);
+                    score.push(second);
+                    score.push(first);
+                    score.push(ans);
+
+                }
+            }
+            
+        }
+         
+        int sum = 0;
+        while(!score.empty())
+        {
+            sum+=score.top();
+            score.pop();
+        }
+        return sum;
+    }
+};
