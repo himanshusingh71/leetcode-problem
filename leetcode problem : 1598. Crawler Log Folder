@@ -1,0 +1,32 @@
+1598. Crawler Log Folder
+
+/*
+Runtime: 13 ms, faster than 18.41% of C++ online submissions for Crawler Log Folder.
+Memory Usage: 10.5 MB, less than 68.47% of C++ online submissions for Crawler Log Folder.
+*/
+
+class Solution {
+public:
+    int minOperations(vector<string>& logs) {
+        
+        int start = 0;
+    
+        for(string  & x: logs)
+        {
+            if(x=="../"){
+                if(start!=0)
+                start--;
+            }
+            else if(x=="./")
+            {
+                
+            }
+            else
+                start++;
+            
+        }
+        if(start<=0) return 0;
+        return start;
+        
+    }
+};
