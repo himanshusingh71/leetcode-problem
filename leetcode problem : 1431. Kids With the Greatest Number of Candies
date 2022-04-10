@@ -1,0 +1,35 @@
+1431. Kids With the Greatest Number of Candies
+
+/*
+Runtime: 4 ms, faster than 56.77% of C++ online submissions for Kids With the Greatest Number of Candies.
+Memory Usage: 10.9 MB, less than 12.38% of C++ online submissions for Kids With the Greatest Number of Candies.
+*/
+
+class Solution {
+public:
+    bool check(vector<int> nums,int maximum)
+    {
+        
+        for(int&x:nums)
+        {
+            if(x>maximum)
+                return false;
+        }
+        return true;
+    }
+    vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {
+        
+        vector<bool> answer;
+        for(int i = 0;i<candies.size();i++)
+        {
+            bool ans = check(candies,extraCandies+candies[i]);
+            if(ans)
+                answer.push_back(1);
+            else{
+                candies[i] = candies[i] + extraCandies;
+                answer.push_back(0);
+            }
+        }
+        return answer;
+    }
+};
