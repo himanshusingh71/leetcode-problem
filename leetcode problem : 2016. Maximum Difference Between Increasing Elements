@@ -1,0 +1,23 @@
+2016. Maximum Difference Between Increasing Elements
+
+/*
+Runtime: 3 ms, faster than 87.90% of C++ online submissions for Maximum Difference Between Increasing Elements.
+Memory Usage: 8.4 MB, less than 41.55% of C++ online submissions for Maximum Difference Between Increasing Elements
+*/
+
+class Solution {
+public:
+    int maximumDifference(vector<int>& nums) {
+           int minimum = INT_MAX;
+        int maximum = INT_MIN;
+        
+        for( int  &x: nums)
+        {
+            minimum = min(minimum,x);
+            if(x>minimum)
+            maximum = max(maximum,x - minimum );
+        }
+        if(maximum == INT_MIN) return -1;
+        return maximum;
+    }
+};
