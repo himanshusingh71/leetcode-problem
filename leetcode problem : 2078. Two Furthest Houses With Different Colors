@@ -1,0 +1,41 @@
+2078. Two Furthest Houses With Different Colors
+
+/*
+Runtime: 3 ms, faster than 76.46% of C++ online submissions for Two Furthest Houses With Different Colors.
+Memory Usage: 9 MB, less than 21.18% of C++ online submissions for Two Furthest Houses With Different Colors.
+*/
+
+class Solution {
+public:
+    int maxDistance(vector<int>& colors) {
+     int i=0,j = colors.size()-1;
+        int ans1  = 0;
+        int ans2 = 0;
+        while( j > i )
+        {
+            if( colors[i] == colors[j] )
+            {
+                i++;   
+            }
+            else{
+               ans1 = abs(i-j);
+                break;
+            }
+        }
+        i = 0;
+        j = colors.size()-1;
+         while( j > i )
+        {
+            if( colors[i] == colors[j] )
+            {
+               j-- ;
+            }
+            else{
+               ans2 = abs(i-j);
+                break;
+            }
+        }
+        return max(ans1,ans2);
+       
+    }
+};
