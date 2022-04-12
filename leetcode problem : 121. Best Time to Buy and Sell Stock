@@ -1,0 +1,24 @@
+121. Best Time to Buy and Sell Stock
+
+/*
+Runtime: 154 ms, faster than 68.89% of C++ online submissions for Best Time to Buy and Sell Stock.
+Memory Usage: 93.4 MB, less than 53.44% of C++ online submissions for Best Time to Buy and Sell Stock.
+*/
+
+class Solution {
+public:
+                           
+    int maxProfit(vector<int>& prices) {
+        int minimum = INT_MAX;
+        int maximum = INT_MIN;
+        
+        for( int  &x: prices)
+        {
+            minimum = min(minimum,x);
+            if(x>minimum)
+            maximum = max(maximum,x - minimum );
+        }
+        if(maximum == INT_MIN) return 0;
+        return maximum;
+    }
+};
