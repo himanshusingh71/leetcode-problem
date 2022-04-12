@@ -1,0 +1,45 @@
+147. Insertion Sort List
+
+/*
+Runtime: 19 ms, faster than 85.16% of C++ online submissions for Insertion Sort List.
+Memory Usage: 10.4 MB, less than 5.36% of C++ online submissions for Insertion Sort List.
+*/
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        vector<int> elements;
+        while(head != NULL)
+        {
+            elements.push_back(head->val);
+            head = head->next;
+        }
+        sort(elements.begin(),elements.end());
+        ListNode * head1,*temp1,*temp2;
+        head1 = temp1 = temp2 = NULL;
+        
+        for(int &x: elements)
+        {
+            temp1 = new ListNode (x);
+            if(!head1)
+            {
+                head1 = temp2 = temp1;
+            }
+            else{
+                temp2->next = temp1;
+                temp2 = temp1;
+            }
+        }
+        return head1;
+    }
+};
