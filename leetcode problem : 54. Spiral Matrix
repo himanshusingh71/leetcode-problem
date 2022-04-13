@@ -1,0 +1,74 @@
+54. Spiral Matrix
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Spiral Matrix.
+Memory Usage: 7 MB, less than 30.92% of C++ online submissions for Spiral Matrix.
+*/
+
+class Solution {
+public:
+       vector<int> generateMatrix(vector<vector<int>> answer) {
+       
+           vector<int> a;
+         
+        
+        int count = 1, r = 0 , c = 0;
+           
+        int total_rows = answer.size(),starting_rows = 0;
+        int total_cols = answer[0].size(),starting_cols = 0;
+           int m = total_rows;
+           int n = total_cols;
+        while( count <= m * n )
+        {
+            while( c < total_cols) {
+                a.push_back(answer[r][c++]) ;
+                          count++;          
+                }
+          
+            c--;
+             
+            r++;
+            
+            while(r < total_rows) 
+            { 
+                a.push_back(answer[r++][c]) ;
+             count++;
+             }
+            r--;
+            
+            c--;
+            
+            while(c >= starting_cols)
+            { 
+                a.push_back(answer[r][c--]) ;
+             count++;
+             
+            }
+            c++;
+            r--;
+            while( r > starting_rows ) 
+            {
+                a.push_back(answer[r--][c]);
+                count++;
+            }
+           
+            r++;
+            
+            starting_rows += 1;
+            starting_cols += 1;
+            total_cols -= 1;
+            total_rows -= 1;
+            
+            r = starting_rows;
+            c = starting_cols;
+           
+        }
+        return a;
+    
+    }
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> ans= generateMatrix(matrix);
+        ans.resize(matrix.size() *matrix[0].size());
+        return ans;
+    }
+};
