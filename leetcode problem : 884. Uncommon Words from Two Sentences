@@ -1,0 +1,38 @@
+884. Uncommon Words from Two Sentences
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Uncommon Words from Two Sentences.
+Memory Usage: 7.4 MB, less than 8.25% of C++ online submissions for Uncommon Words from Two Sentences.
+*/
+
+class Solution {
+public:
+    vector<string> uncommonFromSentences(string s1, string s2) {
+        vector<string> ans,first,second;
+        unordered_map<string,int> umap,xmap;
+        stringstream input1(s1),input2(s2);
+        
+        string word;
+        
+        while( input1 >> word ){
+            first.push_back(word);
+            umap[word]++;
+        }
+        while( input2 >> word ){
+            second.push_back(word);
+            xmap[word]++;
+        }
+        for( string &w : first ){
+            if(umap[w]>1) continue;
+            if(xmap[w] == 0 ) ans.push_back(w);
+        }
+        for( string &w : second ){
+            if(xmap[w]>1)continue;
+            if(umap[w] == 0) ans.push_back(w);
+        }
+        
+        return ans;
+        
+        return ans;
+    }
+};
