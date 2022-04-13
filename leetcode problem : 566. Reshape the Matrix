@@ -1,0 +1,41 @@
+566. Reshape the Matrix
+
+/*
+Runtime: 9 ms, faster than 80.27% of C++ online submissions for Reshape the Matrix.
+Memory Usage: 11.1 MB, less than 30.88% of C++ online submissions for Reshape the Matrix.
+*/
+
+class Solution {
+public:
+    vector<int> convert(vector<vector<int>> & mat)
+    {
+        vector<int> ans;
+        for(int i=0;i<mat.size();i++)
+        {
+            for(int j=0;j<mat[0].size();j++)
+                ans.push_back(mat[i][j]);
+        }
+        return ans;
+    }
+    vector<vector<int>> matrixReshape(vector<vector<int>>& mat, int r, int c) {
+      vector<vector<int>> ans;
+        vector<int> temp;
+        if ( r *  c == mat.size() * mat[0].size())
+       {
+          vector<int> input = convert(mat);
+            
+            int index=0;
+           for(int i=0;i<r;i++)
+           {
+               temp.clear();
+               for(int j=0;j<c;j++)
+               {
+                   temp.push_back(input[index++]);
+               }
+               ans.push_back(temp);
+           }
+            return ans;
+       }
+        return mat;
+    }
+};
