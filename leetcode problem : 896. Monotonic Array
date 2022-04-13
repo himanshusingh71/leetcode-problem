@@ -1,0 +1,22 @@
+896. Monotonic Array
+
+/*
+Runtime: 144 ms, faster than 97.34% of C++ online submissions for Monotonic Array.
+Memory Usage: 96.4 MB, less than 66.40% of C++ online submissions for Monotonic Array.
+*/
+
+class Solution {
+public:
+    bool isMonotonic(vector<int>& nums) {
+        bool asc = true, dsc = true;
+        for(int i=1;i<nums.size();i++)
+        {
+            if(nums[i]>nums[i-1])
+                dsc = false;
+            if(nums[i]<nums[i-1])
+                asc = false;
+            
+        }
+        return asc or dsc;
+    }
+};
