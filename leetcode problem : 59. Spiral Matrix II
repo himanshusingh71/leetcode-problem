@@ -1,0 +1,52 @@
+59. Spiral Matrix II
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Spiral Matrix II.
+Memory Usage: 6.4 MB, less than 85.87% of C++ online submissions for Spiral Matrix II.
+*/
+
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        vector<vector<int>> answer;
+        vector<int> temp(n,0);
+        for(int i=0;i<n;i++)
+            answer.push_back(temp);
+        
+        
+        int count = 1, r = 0 , c = 0;
+        int total_rows = n,starting_rows = 0;
+        int total_cols = n,starting_cols = 0;
+        while( count <= n*n)
+        {
+            while( c < total_cols) answer[r][c++] = count++;
+          
+            c--;
+             
+            r++;
+            
+            while(r < total_rows) answer[r++][c] = count++;
+            r--;
+            
+            c--;
+            
+            while(c >= starting_cols)  answer[r][c--] = count++;
+            c++;
+            r--;
+            while( r > starting_rows )  answer[r--][c] = count++;
+           
+            r++;
+            
+            starting_rows += 1;
+            starting_cols += 1;
+            total_cols -= 1;
+            total_rows -= 1;
+            
+            r = starting_rows;
+            c = starting_cols;
+           
+        }
+        return answer;
+    
+    }
+};
