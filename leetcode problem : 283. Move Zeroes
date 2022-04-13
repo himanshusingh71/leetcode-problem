@@ -1,0 +1,24 @@
+283. Move Zeroes
+
+/*
+Runtime: 20 ms, faster than 92.04% of C++ online submissions for Move Zeroes.
+Memory Usage: 20.5 MB, less than 5.27% of C++ online submissions for Move Zeroes.
+*/
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        vector<int> ans;
+        int count = 0;
+        for(int &x: nums)
+        {
+            if(!(x==0))
+                ans.push_back(x);
+            else
+                count++;
+        }
+        while(count--)
+            ans.push_back(0);
+       nums =  ans;
+    }
+};
