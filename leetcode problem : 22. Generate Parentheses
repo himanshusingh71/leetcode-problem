@@ -1,0 +1,56 @@
+22. Generate Parentheses
+
+/*
+Runtime: 243 ms, faster than 5.01% of C++ online submissions for Generate Parentheses.
+Memory Usage: 225.4 MB, less than 5.01% of C++ online submissions for Generate Parentheses.
+*/
+
+class Solution {
+public:
+    vector<string> answer;
+    bool check(string s)
+{
+	stack<char> st;
+	for(char x : s)
+	{
+		if( x == ')')
+		{
+			if(st.empty()) return false;
+			if(st.top() == '(')
+			{
+				if(st.empty()) return false;
+				else
+				st.pop();
+			}
+			else
+				return false;
+		}
+		else{
+			st.push(x);
+		}
+	}
+	if(!st.empty()) return false;
+	return true;
+}
+void recur(string x,int n)
+{
+	if(x.length()== n)
+	{
+		 if(check(x))
+		answer.push_back(x);
+		return;
+	}
+ 
+	x.push_back('(');
+	recur(x,n);
+	x.pop_back();
+	x.push_back(')');
+	recur(x,n);
+}
+  
+    vector<string> generateParenthesis(int n) {
+    string x ;
+        recur(x,n*2);
+        return answer;
+    }
+};
