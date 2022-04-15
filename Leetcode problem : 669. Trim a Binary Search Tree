@@ -1,0 +1,38 @@
+669. Trim a Binary Search Tree
+
+/*
+Runtime: 21 ms, faster than 55.53% of C++ online submissions for Trim a Binary Search Tree.
+Memory Usage: 24.2 MB, less than 7.08% of C++ online submissions for Trim a Binary Search Tree
+*/
+
+
+class Solution {
+public:
+    vector<int> elements;
+    void dfs(TreeNode * r,int l,int h){
+        if(!r) return;
+        if(r->val < l or r->val > h){}
+        else
+elements.push_back(r->val);
+        dfs(r->left,l,h);
+        dfs(r->right,l,h);
+        
+    }
+    TreeNode * create(TreeNode * r,int v){
+        if(!r)
+            r= new TreeNode(v);
+       else if(r-> val < v)
+            r->right = create(r->right,v);
+        else
+r->left = create(r->left,v);
+        return r;
+        
+    }
+    TreeNode* trimBST(TreeNode* root, int low, int high) {
+        dfs(root,low,high);
+        root = NULL;
+        for(int &x: elements)
+            root = create(root,x);
+        return root;
+    }
+};
