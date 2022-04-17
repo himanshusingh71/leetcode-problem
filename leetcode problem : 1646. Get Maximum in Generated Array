@@ -1,0 +1,30 @@
+1646. Get Maximum in Generated Array
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Get Maximum in Generated Array.
+Memory Usage: 6.3 MB, less than 29.10% of C++ online submissions for Get Maximum in Generated Array.
+*/
+
+class Solution {
+public:
+    int getMaximumGenerated(int n) {
+        int maximum = INT_MIN;
+      
+        vector<int> nums(n+1,0);
+        for(int i=0;i<=n;i++)
+        {
+             if(i==0 or i==1)
+                nums[i] = i;
+             if( (2 * i >= 2) and  (2*i <= n))
+                nums[ 2 * i] = nums[ i ];
+             if( (2 * i + 1 >= 2 ) and  (2*i+1 <= n))
+                 nums[ 2 * i + 1 ] = nums[i] + nums[i+1];
+            
+               maximum = max(maximum,nums[i]);
+            
+        }
+        
+         
+        return maximum;
+    }
+};
