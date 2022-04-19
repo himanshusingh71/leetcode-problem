@@ -1,0 +1,44 @@
+6. Zigzag Conversion
+
+/*
+Runtime: 28 ms, faster than 29.25% of C++ online submissions for Zigzag Conversion.
+Memory Usage: 12.2 MB, less than 23.15% of C++ online submissions for Zigzag Conversion.
+*/
+
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        if(numRows == 1) return s;
+        vector<char> vec[numRows];
+        int i = 0;
+        bool inc = true,dec = false;
+        for(char &x: s)
+        {
+            vec[i].push_back(x);
+            if(inc)
+               i++;
+            
+            if(dec)
+                i--;
+            
+            if(i==numRows-1)
+            {
+                inc = false;
+                dec = true;
+            }
+            if(i == 0)
+            {
+                inc = true;
+                dec = false;
+            }
+        }
+        string ans ;
+        
+        for(int i=0;i<numRows;i++)
+            for(int j=0;j<vec[i].size();j++)
+                ans += vec[i][j];
+            
+        
+        return ans;
+    }
+};
