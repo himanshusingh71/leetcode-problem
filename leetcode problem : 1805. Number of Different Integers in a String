@@ -1,0 +1,38 @@
+1805. Number of Different Integers in a String
+
+/*
+Runtime: 8 ms, faster than 6.89% of C++ online submissions for Number of Different Integers in a String.
+Memory Usage: 6.6 MB, less than 24.84% of C++ online submissions for Number of Different Integers in a String.
+*/
+
+class Solution {
+public:
+    int numDifferentIntegers(string word) {
+        for(char &x : word)
+        {
+            if( x >= 'a' and x <= 'z')
+                x = ' ';
+        }
+       
+       stringstream input(word);
+        string w;
+        set<string> myset;
+        string temp;
+        while( input >> w )
+        {
+            temp="";
+            for(int i=0;i<w.length();i++)
+            {
+                if(w[i]=='0')
+                    w[i]=' ';
+                else 
+                    break;
+            }
+            for(char&x: w)
+                if(x!=' ')
+                    temp+=x;
+            myset.insert(temp);
+        }
+        return myset.size();
+    }
+};
