@@ -1,0 +1,33 @@
+1396. Design Underground System
+
+/*
+Runtime: 228 ms, faster than 42.55% of C++ online submissions for Design Underground System.
+Memory Usage: 57.5 MB, less than 88.94% of C++ online submissions for Design Underground System.
+*/
+
+class UndergroundSystem {
+public:
+map<pair<string,string>,pair<int,int>> mp;
+unordered_map<int,pair<string,int>> person;
+
+UndergroundSystem() {
+}
+
+void checkIn(int id, string stationName, int t) {
+    person[id] = {stationName,t};
+}
+
+void checkOut(int id, string stationName, int t) {
+    if(mp.find({person[id].first,stationName}) == mp.end()){
+        mp[{person[id].first,stationName}] = {t-person[id].second,1};
+    }
+    else{
+        mp[{person[id].first,stationName}].first += t-person[id].second;
+        mp[{person[id].first,stationName}].second++;
+    }
+}
+
+double getAverageTime(string startStation, string endStation) {
+    return (double)mp[{startStation, endStation}].first/mp[{startStation, endStation}].second;
+}
+};
