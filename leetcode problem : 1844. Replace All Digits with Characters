@@ -1,0 +1,22 @@
+1844. Replace All Digits with Characters
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Replace All Digits with Characters.
+Memory Usage: 6.2 MB, less than 6.50% of C++ online submissions for Replace All Digits with Characters.
+*/
+
+class Solution {
+public:
+    char shift(char x,int i)
+    {
+        return x+i;
+    }
+    string replaceDigits(string s) {
+        for(int i=0;i<s.length();i++)
+        {
+            if(isdigit(s[i]))
+                s[i] = shift(s[i-1],s[i]-'0');
+        }
+        return s;
+    }
+};
