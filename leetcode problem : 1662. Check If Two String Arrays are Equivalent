@@ -1,0 +1,18 @@
+1662. Check If Two String Arrays are Equivalent
+
+/*
+Runtime: 15 ms, faster than 5.44% of C++ online submissions for Check If Two String Arrays are Equivalent.
+Memory Usage: 12.3 MB, less than 17.68% of C++ online submissions for Check If Two String Arrays are Equivalent.
+*/
+
+class Solution {
+public:
+    bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
+        string s1,s2;
+        for(string &x: word1)
+            s1 = s1 + x;
+        for(string &x: word2)
+            s2 = s2 + x;
+        return s1 == s2;
+    }
+};
