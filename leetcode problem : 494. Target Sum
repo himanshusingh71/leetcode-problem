@@ -1,0 +1,32 @@
+494. Target Sum
+
+/*
+Runtime: 411 ms, faster than 31.99% of C++ online submissions for Target Sum.
+Memory Usage: 61.4 MB, less than 13.60% of C++ online submissions for Target Sum.
+*/
+
+class Solution {
+public:
+ 
+   map< pair < int , int > , int > mp;
+    
+    int recur( vector < int > & nums , int target , int index )
+    {
+        if ( target == 0 and index < 0 ) return 1;
+                
+        if (index < 0) return 0;
+        
+        if( mp.find( { target , index } ) != mp.end()) return mp[ { target , index }];
+        
+       return   mp[{ target , index }] = recur( nums, target + nums[ index ]   , index - 1)
+        
+       +  recur( nums , target - nums[ index ] , index -1 );
+        
+    }
+    
+    int findTargetSumWays( vector < int > & nums , int target ) {
+        
+       return recur( nums , target , nums.size() - 1 );
+                
+    }
+};
