@@ -1,0 +1,47 @@
+213. House Robber II
+
+/*
+Runtime: 3 ms, faster than 52.94% of C++ online submissions for House Robber II.
+Memory Usage: 7.8 MB, less than 60.64% of C++ online submissions for House Robber II.
+*/
+
+class Solution {
+public:
+    
+    
+  int dp[110];
+    int recur(vector<int> &nums,int index)
+    {
+        if(index == 0 ) return nums[index];
+        if(index < 0 ) return 0;
+        
+        if(dp[index]!=-1) return dp[index];
+        int pick,not_pick;
+        
+         pick = nums[index] + recur(nums,index-2);
+        
+        not_pick = INT_MIN;
+        
+        if(index>0)
+         not_pick = recur(nums,index - 1);
+        
+        return dp[index] =  max(pick,not_pick);
+    }
+    
+    int rob(vector<int>& nums) {
+        if(nums.size()==1) return nums[0];
+         memset(dp,-1,sizeof(dp));
+        vector<int> t1,t2;
+        for(int i=0;i<nums.size();i++){
+            if(i<nums.size()-1)
+            t1.push_back(nums[i]);
+            if(i>0)
+                t2.push_back(nums[i]);
+        }
+        int ans1 = recur(t1,t1.size()-1);
+        memset(dp,-1,sizeof(dp));
+        int ans2 = recur(t2,t2.size()-1);
+        return max(ans1,ans2);
+        
+    }
+};
