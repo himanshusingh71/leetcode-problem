@@ -1,0 +1,33 @@
+746. Min Cost Climbing Stairs
+
+/*
+Runtime: 17 ms, faster than 14.03% of C++ online submissions for Min Cost Climbing Stairs.
+Memory Usage: 13.6 MB, less than 79.74% of C++ online submissions for Min Cost Climbing Stairs.
+*/
+
+class Solution {
+public:
+    
+    
+    int dp[1001];
+    
+    int recur( vector<int > & cost , int index )
+    {
+         
+        if( index >= cost.size() ) return 0; 
+        if(dp[index]!=-1) return dp[index];
+        int one_step = cost[index] + recur(cost , index + 1);
+        int two_step = cost[index] + recur(  cost , index + 2 );
+        
+        return dp[index] = min(one_step,two_step);
+         
+        
+    }
+    
+    int minCostClimbingStairs(vector<int>& cost) {
+        memset(dp,-1,sizeof(dp));
+        int start = recur(cost,0);
+        int start1 = recur(cost , 1);
+        return min(start,start1);
+    }
+};
