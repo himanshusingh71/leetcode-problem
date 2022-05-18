@@ -1,0 +1,23 @@
+1732. Find the Highest Altitude
+
+/*
+Runtime: 3 ms, faster than 64.05% of C++ online submissions for Find the Highest Altitude.
+Memory Usage: 8 MB, less than 77.67% of C++ online submissions for Find the Highest Altitude.
+*/
+
+class Solution {
+public:
+    int largestAltitude(vector<int>& gain) {
+       int maximum = 0,alt = 0;
+        
+        for(int &x: gain)
+        {
+          int   curr = x + alt;
+            maximum = max(curr,maximum);
+            alt  = curr;
+            
+        }
+        
+        return maximum;
+    }
+};
