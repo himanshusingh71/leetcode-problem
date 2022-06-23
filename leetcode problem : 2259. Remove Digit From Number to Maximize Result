@@ -1,0 +1,51 @@
+2259. Remove Digit From Number to Maximize Result
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Remove Digit From Number to Maximize Result.
+Memory Usage: 6.1 MB, less than 77.51% of C++ online submissions for Remove Digit From Number to Maximize Result.
+*/
+
+class Solution {
+public:
+    string converted(string s)
+    {
+        string ans= "";
+        
+        for(char &x: s)
+        {
+            if(x!='*') ans+=x;
+        }
+        
+        return ans;
+    }
+    string removeDigit(string number, char digit) {
+        
+        bool found = false;
+        for( int i = 0 ; i < number.length() -1 ; i++ )
+        {
+            if(number[i] == digit)
+            {
+                if(number[i] < number[i+1])
+                {
+                    found = true;
+                    number[i] = '*';
+                    break;
+                }
+            }
+        }
+        
+        if(found) return converted(number);
+        
+        for(int i=number.length()-1;i>=0;i--)
+        {
+            if(number[i]==digit)
+            {
+                number[i] = '*';
+                break;
+            }
+        }
+        
+        return converted(number);
+    }
+};
+
