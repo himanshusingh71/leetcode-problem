@@ -1,0 +1,33 @@
+455. Assign Cookies
+
+/*
+Runtime: 29 ms, faster than 92.50% of C++ online submissions for Assign Cookies.
+Memory Usage: 17.6 MB, less than 31.55% of C++ online submissions for Assign Cookies.
+*/
+
+class Solution {
+public:
+    int findContentChildren(vector<int>& g, vector<int>& s) {
+        
+        sort(g.begin(),g.end());
+        sort(s.begin(),s.end());
+        
+        int i = 0 , j = 0 , total = 0;
+        
+        if(g.size()==0 or s.size()==0) return 0;
+        
+        while(i<g.size() and j<s.size())
+        {
+            if( g[i] <= s[j])
+            {
+                i++;
+                j++;
+                total++;
+            }
+            else
+                j++;
+          
+        }
+        return total;
+    }
+};
