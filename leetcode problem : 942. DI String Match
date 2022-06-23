@@ -1,0 +1,26 @@
+942. DI String Match
+
+/*
+Runtime: 13 ms, faster than 18.03% of C++ online submissions for DI String Match.
+Memory Usage: 9.1 MB, less than 6.21% of C++ online submissions for DI String Match.
+*/
+
+class Solution {
+public:
+    vector<int> diStringMatch(string s) {
+      int minimum = 0 , maximum = s.length();
+        vector<int> output;
+        for(char &c: s)
+        {
+            if( c == 'I') output.push_back(minimum++);
+            else output.push_back(maximum--);
+        }
+        
+        if(s[s.length()-1]=='I')
+            output.push_back(minimum);
+        else
+            output.push_back(maximum);
+        
+        return output;
+    }
+};
