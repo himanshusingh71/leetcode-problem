@@ -1,0 +1,74 @@
+401. Binary Watch
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Binary Watch.
+Memory Usage: 6.3 MB, less than 90.14% of C++ online submissions for Binary Watch.
+*/
+
+class Solution {
+public:
+    string get_time(string s)
+{
+	int h = 0;
+	int m = 0;
+	for(int i=3,j=0;i>=0;i--,j++)
+	{
+
+		if( s[i] == '1')
+		{
+			h = h + pow(2,j);
+		}
+	}
+
+ if(h>11) return "";
+
+	for(int i = 9 , j= 0; i>=4; i--,j++)
+	{
+		if(s[i] == '1')
+		{
+			m = m + pow(2,j);
+		}
+	}
+
+	 if( m > 59 ) return "";
+	 string time = "";
+
+	 time = time + to_string(h) + ":";
+	 if(m<10)
+	 	time = time + "0" + to_string(m);
+	 else
+	 	time  = time + to_string(m);
+	 return time;
+}
+    vector<string> readBinaryWatch(int turnedOn) {
+        vector<string> ans;
+	int n = turnedOn;
+	string s = "";
+	while(n>0)
+	{
+		s = s + "1";
+		n-=1;
+	}
+	while(s.length()<10)
+	{
+		s = "0" + s;
+	}
+
+	if(get_time(s)!="")
+	{
+		ans.push_back(get_time(s));
+	 
+	}
+
+	while(next_permutation(s.begin(),s.end()))
+	{
+		if(get_time(s)!="")
+	{
+		ans.push_back(get_time(s));
+	 
+	}
+	}
+	return ans;
+    }
+};
+
