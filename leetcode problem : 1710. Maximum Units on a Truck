@@ -1,0 +1,44 @@
+1710. Maximum Units on a Truck
+
+/*
+Runtime: 60 ms, faster than 65.81% of C++ online submissions for Maximum Units on a Truck.
+Memory Usage: 16.7 MB, less than 45.29% of C++ online submissions for Maximum Units on a Truck.
+*/
+
+class Solution {
+public:
+    int maximumUnits(vector<vector<int>>& boxTypes, int truckSize) {
+        
+       vector<pair<int,int>> vec;
+        for(int i = 0;i<boxTypes.size();i++)
+        {  
+            vec.push_back({boxTypes[i][1],boxTypes[i][0]}); 
+        }
+            
+        int total = 0, ans = 0;
+                                                             
+            sort(vec.begin(),vec.end());
+                                                             
+              for(int i = vec.size()-1;i>=0;i--)
+              {
+                  
+      if( total + vec[i].second < truckSize) 
+        {
+ ans = ans + (vec[i].first * vec[i].second);
+          total = total + vec[i].second;  
+           if( total >= truckSize)
+                    break;
+        }
+                           else{
+ans = ans + abs( truckSize - total )* vec[i].first;
+        total = total + vec[i].second ;
+            if( total >= truckSize)
+                    break;
+    }
+                  
+         }
+  return ans;
+                                                    }
+                                                             };
+        
+    
