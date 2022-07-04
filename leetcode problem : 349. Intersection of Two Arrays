@@ -1,0 +1,31 @@
+349. Intersection of Two Arrays
+
+/*
+Runtime: 20 ms, faster than 13.31% of C++ online submissions for Intersection of Two Arrays.
+Memory Usage: 10.7 MB, less than 23.25% of C++ online submissions for Intersection of Two Arrays.
+*/
+
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+      vector<int> elements;
+        map<int,bool> first,second;
+        
+        for(int &x: nums1) first[x] = true;
+        
+        for(int &x: nums2)
+        {
+            if( first[x] )
+            {
+                elements.push_back(x);
+                first[x] = false;
+            }
+        }
+        
+        return elements;
+        
+        
+        
+        
+    }
+};
