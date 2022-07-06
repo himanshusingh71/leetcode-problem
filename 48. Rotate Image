@@ -1,0 +1,62 @@
+48. Rotate Image
+
+/*
+Runtime: 3 ms, faster than 63.19% of C++ online submissions for Rotate Image.
+Memory Usage: 7 MB, less than 73.18% of C++ online submissions for Rotate Image.
+*/
+
+class Solution {
+public:
+    void rot(pair<int,int> p1,pair<int,int> p2,pair<int,int> p3,pair<int,int> p4,vector<vector<int>> & mat, int n ){
+
+    for(int i = 0;i<n-1;i++)
+    {
+        int a = mat[p1.first][p1.second];
+        int b = mat[p2.first][p2.second];
+        int c = mat[p3.first][p3.second];
+        int d = mat[p4.first][p4.second];
+
+        swap(mat[p1.first][p1.second], d);
+        swap(mat[p2.first][p2.second], a);
+        swap(mat[p3.first][p3.second], b);
+        swap(mat[p4.first][p4.second], c);
+
+            p1.second++;
+            p2.first++;
+            p3.second--;
+            p4.first--;
+
+    }
+
+}
+    void rotate(vector<vector<int>>& matrix) {
+        
+    pair<int,int> p1,p2,p3,p4;
+
+    p1 = {0,0};
+    p2 = {0,matrix.size()-1};
+    p3 = {matrix.size()-1,matrix.size()-1};
+    p4 = {matrix.size()-1,0};
+    
+    int run  = matrix.size();
+
+    while(run>0)
+    {
+        rot(p1,p2,p3,p4,matrix,run);
+        
+          p1.first++;
+        p1.second++;
+
+        p2.first++;
+        p2.second--;
+
+        p3.first--;
+        p3.second--;
+
+        p4.first--;
+        p4.second++;
+        
+        run = run - 2;
+    }
+    }
+};
