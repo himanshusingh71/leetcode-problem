@@ -1,0 +1,65 @@
+1971. Find if Path Exists in Graph
+
+/*
+Runtime: 1299 ms, faster than 21.78% of C++ online submissions for Find if Path Exists in Graph.
+Memory Usage: 148.8 MB, less than 87.30% of C++ online submissions for Find if Path Exists in Graph.
+*/
+
+class Solution {
+public:
+    
+     
+    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+      vector<int> vec[n+1];
+        
+        for(int i=0;i<edges.size();i++)
+        {
+            vec[edges[i][0]].push_back(edges[i][1]);
+            vec[edges[i][1]].push_back(edges[i][0]);
+        }
+        
+        vector<int> visited(n+1);
+        
+    for(int i=0;i<visited.size();i++)
+        visited[i] = 0;
+        
+        for(int i=0;i<n;i++)
+        {
+            int count = 0;
+           if(!visited[i])
+           {
+             queue<int> q;
+               
+               q.push(i);
+            visited[i] = 1;
+               while(!q.empty()){
+                   
+                   int node = q.front();
+                   if( node == source )
+                   {
+                       count+=1;
+                   }
+                   if(node == destination)
+                   {
+                       count=count+2;
+                   }
+                   q.pop();
+                   
+                   for(auto it : vec[node])
+                   {
+                       if(!visited[it])
+                       {
+                           q.push(it);
+                           visited[it]=1;
+                       }
+                   }
+                   
+               }
+               if(count==3) return true;
+               count = 0;
+           }
+        }
+        return false;
+        
+    }
+};
