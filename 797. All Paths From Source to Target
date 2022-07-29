@@ -1,0 +1,44 @@
+797. All Paths From Source to Target
+
+/*
+Runtime: 23 ms, faster than 56.97% of C++ online submissions for All Paths From Source to Target.
+Memory Usage: 16.8 MB, less than 19.01% of C++ online submissions for All Paths From Source to Target.
+*/
+
+class Solution {
+public:
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+        vector<vector<int>> ans;
+        vector<int> adj[graph.size()];
+        
+        for(int i=0;i<graph.size();i++)
+        {
+            adj[i] = graph[i];
+        }
+        queue<vector<int>> q;
+        
+        q.push({0});
+        int n = graph.size();
+        
+        while(!q.empty())
+        {
+            vector<int> temp = q.front();
+            q.pop();
+            int last = temp[temp.size()-1];
+            if(last == n-1)
+            {
+                ans.push_back(temp);
+                continue;
+            }
+           for(int i=0;i<adj[last].size();i++)
+           {
+               temp.push_back(adj[last][i]);
+               q.push(temp);
+               temp.pop_back();
+           }
+        }
+        
+        return ans;
+        
+    }
+};
