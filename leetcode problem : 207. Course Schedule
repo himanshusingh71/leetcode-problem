@@ -1,0 +1,57 @@
+207. Course Schedule
+
+/*
+Runtime: 33 ms, faster than 57.94% of C++ online submissions for Course Schedule.
+Memory Usage: 14.5 MB, less than 31.00% of C++ online submissions for Course Schedule.
+*/
+
+class Solution {
+public:
+    bool checkCycle(int node , vector<int> adj[],vector<int>&visited,vector<int>&dfsVisited)
+    {
+        visited[node] = 1;
+        dfsVisited[node] = 1;
+        
+        for(int i=0;i<adj[node].size();i++)
+        {
+            if(!visited[adj[node][i]]){
+                
+            if(checkCycle(adj[node][i] , adj,visited,dfsVisited)) return true;
+                
+            }
+            else{
+                if(dfsVisited[adj[node][i]] == 1 and visited[adj[node][i]]) return true;
+            }
+            
+        }
+        dfsVisited[node] = 0;
+        return false;
+    }
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        
+        vector<int> adj[numCourses];
+        vector<int> visited , dfsVisited;
+        
+        for(int i=0;i<numCourses;i++)
+        {
+            visited.push_back(0);
+            dfsVisited.push_back(0);
+        }
+        for(auto vec : prerequisites)
+        {
+                for( int i=0;i<vec.size();i++)
+                {
+                    adj[vec[0]].push_back(vec[1]);
+                }
+        }
+            
+        for(int i=0;i<numCourses ; i++)
+        {
+            if(!visited[i])
+            {
+               if( checkCycle(i,adj,visited,dfsVisited)) return false;
+            }
+        }
+        return true;
+    }
+};
