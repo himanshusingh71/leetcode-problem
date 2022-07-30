@@ -1,0 +1,60 @@
+210. Course Schedule II
+
+/*
+Runtime: 49 ms, faster than 20.39% of C++ online submissions for Course Schedule II.
+Memory Usage: 72.5 MB, less than 5.23% of C++ online submissions for Course Schedule II.
+*/
+
+class Solution {
+public:
+    bool cycle = false;
+    vector<int> checkCycle(int node , vector<int> adj[],vector<int>&visited,vector<int> &  dfsVisited,vector<int>&ans)
+    {
+        
+        if(cycle) return {};
+        visited[node] = 1;
+        dfsVisited[node] = 1;
+        
+        for(int i=0;i<adj[node].size();i++)
+        {
+            if(!visited[adj[node][i]])
+            {
+               ans =  checkCycle(adj[node][i] , adj,visited,dfsVisited,ans);
+            }
+            else{
+                if(visited[adj[node][i]] == 1 and dfsVisited[adj[node][i]] == 1)
+                {
+                    cycle = true;
+                    return {};
+                }
+            }
+        }
+        dfsVisited[node] = 0;
+        ans.push_back(node);
+        return ans;
+    }
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+      if(numCourses == 1) return {0};
+        vector<int> visited(numCourses,0),dfsVisited(numCourses,0),ans,temp;
+        
+        vector<int> adj[numCourses];
+        
+        
+        for(auto it : prerequisites)
+        {
+           adj[it[0]].push_back(it[1]);
+        }
+        
+        for(int i=0;i<numCourses;i++)
+        {
+            if(!visited[i])
+            {
+                temp = checkCycle(i,adj,visited,dfsVisited,ans) ;
+            }
+        }
+        if(cycle) return {};
+    if(temp.size()==1) return {};
+        return temp;
+        
+    }
+};
