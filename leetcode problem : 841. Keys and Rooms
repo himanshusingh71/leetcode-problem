@@ -1,0 +1,48 @@
+841. Keys and Rooms
+
+/*
+Runtime: 15 ms, faster than 56.41% of C++ online submissions for Keys and Rooms.
+Memory Usage: 11 MB, less than 14.53% of C++ online submissions for Keys and Rooms.
+*/
+
+class Solution {
+public:
+    void dfs(int node,vector<int> adj[],int arr[])
+    {
+        arr[node] = 1;
+        for(int i=0;i<adj[node].size();i++)
+        {
+            if(!arr[adj[node][i]])
+            {
+                dfs(adj[node][i],adj,arr);
+            }            
+        }
+    }
+    bool canVisitAllRooms(vector<vector<int>>& rooms) {
+        
+       int arr[rooms.size()];
+        
+        vector<int> adj[rooms.size()];
+        
+        memset(arr,0,sizeof(arr));
+        
+        arr[0]=1;
+        
+            for(int i=0;i<rooms.size();i++)
+            {
+                for(int j=0;j<rooms[i].size();j++){
+                    
+                    adj[i].push_back(rooms[i][j]);
+                }
+            }
+               
+            dfs(0,adj,arr);
+        
+        for(int i=0;i<rooms.size();i++)
+        {
+            if(arr[i] == 0) return false;
+        }
+               return true;
+               
+    }
+};
