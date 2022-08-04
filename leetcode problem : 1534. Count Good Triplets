@@ -1,0 +1,26 @@
+1534. Count Good Triplets
+
+/*
+Runtime: 85 ms, faster than 27.09% of C++ online submissions for Count Good Triplets.
+Memory Usage: 8 MB, less than 93.85% of C++ online submissions for Count Good Triplets.
+*/
+
+class Solution {
+public:
+    int countGoodTriplets(vector<int>& arr, int a, int b, int c) {
+        int ans = 0;
+        for(int i=0;i<arr.size();i++)
+        {
+            for(int j=i+1;j<arr.size();j++)
+            {
+                for(int z=j+1;z<arr.size();z++)
+                {
+    if(( abs(arr[i] - arr[j])<=a) and (abs(arr[j]-arr[z])<=b) and(abs(arr[i] - arr[z])<=c) )
+        ans++;
+                }
+            }
+        }
+        
+        return ans;
+    }
+};
