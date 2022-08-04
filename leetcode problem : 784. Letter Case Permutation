@@ -1,0 +1,46 @@
+784. Letter Case Permutation
+
+/*
+Runtime: 9 ms, faster than 68.15% of C++ online submissions for Letter Case Permutation.
+Memory Usage: 12 MB, less than 26.05% of C++ online submissions for Letter Case Permutation.
+*/
+
+class Solution {
+public:
+    
+    vector<string> answer;
+    
+    void recur(string s,string t,int len,int index)
+    {
+        if( t.length() == len )
+        {
+            answer.push_back(t);
+            return;
+        }
+        
+        if(s[index] >= 'A' and s[index] <= 'Z')
+        {
+            t.push_back(s[index]+32);
+            recur(s,t,len,index+1);
+            t.pop_back();
+        }
+        t.push_back(s[index]);
+        recur(s,t,len,index+1);
+       
+    }
+    
+    vector<string> letterCasePermutation(string s) {
+        
+        for(int i=0;i<s.length();i++)
+        {
+            if( s[i] >= 'a' and s[i] <= 'z' )
+            {
+                s[i]-=32;
+            }
+        }
+        string t;
+ 
+        recur(s,t,s.length(),0);
+        return answer;
+    }
+};
