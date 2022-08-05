@@ -1,0 +1,34 @@
+1387. Sort Integers by The Power Value
+
+/*
+Runtime: 535 ms, faster than 8.79% of C++ online submissions for Sort Integers by The Power Value.
+Memory Usage: 50.3 MB, less than 12.66% of C++ online submissions for Sort Integers by The Power Value.
+*/
+class Solution {
+public:
+    map<int,int> mp;
+    
+    int powerValue(int element)
+    {
+        if(mp.find(element)!=mp.end()) return mp[element];
+        if( element == 1 ) return 0;
+        if( element & 1)
+        {
+            return mp[element] =  1 + powerValue(element*3+1);
+        }
+        else{
+            return mp[element] =  1 + powerValue(element/2);
+        }
+    }
+    int getKth(int lo, int hi, int k) {
+        vector<pair<int,int>> answers;
+        
+        for(int i=lo;i<=hi;i++)
+        {
+            answers.push_back({powerValue(i),i});
+        }
+        sort(answers.begin(),answers.end());
+         return answers[k-1].second;
+        
+    }
+};
