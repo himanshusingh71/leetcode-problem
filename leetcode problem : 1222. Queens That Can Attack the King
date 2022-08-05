@@ -1,0 +1,110 @@
+1222. Queens That Can Attack the King
+
+/*
+Runtime: 3 ms, faster than 93.40% of C++ online submissions for Queens That Can Attack the King.
+Memory Usage: 11.3 MB, less than 20.21% of C++ online submissions for Queens That Can Attack the King.
+*/
+
+class Solution {
+public:
+    vector<vector<int>> queensAttacktheKing(vector<vector<int>>& queens, vector<int>& king) {
+        int r = king[0];
+        int c = king[1];
+        vector<vector<int>> answer;
+        // up , down , diagonally
+        
+        map<pair<int,int>,bool> mp;
+        for(int i=0;i<queens.size();i++)
+        {
+            mp[{queens[i][0] , queens[i][1]}] = true;
+        }
+        
+        // up 
+        for(int i=r-1;i>=0;i--)
+        {
+           if(mp[{i,c}]){
+               answer.push_back({i,c});
+               break;
+           }
+        }
+        // down
+        for(int i=r+1;i<=7;i++)
+        {
+            if(mp[{i,c}])
+            {
+                 answer.push_back({i,c});
+               break;
+            }
+        }
+        // left
+        for(int i=c-1;i>=0;i--)
+        {
+            if(mp[{r,i}])
+            {
+                answer.push_back({r,i});
+                break;
+            }
+        }
+        // right
+        for(int i=c+1;i<=7;i++)
+        { 
+            if(mp[{r,i}])
+            {
+                answer.push_back({r,i});
+                break;
+            }
+            
+        }
+        // diagonal left up
+        int temp_c  = c;
+        for(int i=r-1;i>=0 and temp_c>=0 ;i--)
+        {
+            temp_c--;
+            if(mp[{i,temp_c}])
+            {
+                answer.push_back({i,temp_c});
+                break;
+            }
+            
+        }
+        
+        // diagonal left down
+            temp_c  = c;
+        for(int i=r+1;i<=7 and temp_c >=0 ;i++)
+        {
+            temp_c--;
+            if(mp[{i,temp_c}])
+            {
+                answer.push_back({i,temp_c});
+                break;
+            }
+            
+        }
+        
+        // diagonal right up
+         temp_c = c;
+        for(int i=r-1;i>=0 and temp_c <=7;i--)
+        {
+            temp_c++;
+             if(mp[{i,temp_c}])
+            {
+                answer.push_back({i,temp_c});
+                break;
+            }
+        }
+        // diagonal right down
+         temp_c = c;
+        for(int i=r+1;i<= 7 and temp_c <=7 ; i++)
+        {
+            temp_c++;
+             if(mp[{i,temp_c}])
+            {
+                answer.push_back({i,temp_c});
+                break;
+            }
+            
+        }
+        
+        return answer;
+    }
+};
