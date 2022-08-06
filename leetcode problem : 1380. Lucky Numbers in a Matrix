@@ -1,0 +1,38 @@
+1380. Lucky Numbers in a Matrix
+
+/*
+Runtime: 27 ms, faster than 80.24% of C++ online submissions for Lucky Numbers in a Matrix.
+Memory Usage: 12.4 MB, less than 5.45% of C++ online submissions for Lucky Numbers in a Matrix.
+*/
+
+class Solution {
+public:
+    vector<int> luckyNumbers (vector<vector<int>>& matrix) {
+   
+       map<int,bool> row , col;
+        
+        for(auto it: matrix )
+        {
+            int minimum = INT_MAX;
+            for(auto i : it)
+            {
+                minimum = min(minimum,i);
+            }
+            row[minimum]= true;
+        }
+        vector<int> ans;
+        
+        for(int i=0;i<matrix[0].size();i++)
+        {
+            int maximum= INT_MIN;
+            for(int j=0;j<matrix.size();j++)
+            {
+                maximum = max(maximum,matrix[j][i]);
+            }
+            if(row[maximum])
+                ans.push_back(maximum);
+        }
+        
+        return ans;
+    }
+};
