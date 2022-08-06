@@ -1,0 +1,35 @@
+877. Stone Game
+
+/*
+Runtime: 250 ms, faster than 5.45% of C++ online submissions for Stone Game.
+Memory Usage: 396.2 MB, less than 5.04% of C++ online submissions for Stone Game.
+*/
+
+class Solution {
+public:
+    
+    int arr[1000][1000];
+    bool recur(vector<int> piles,int start,int end ,int alice,int bob,bool turn)
+    {
+        if( start >= end ) {
+            return alice > bob;
+        }
+        bool ans = false;
+        if(arr[start][end]!=-1) return arr[start][end];
+     if(turn)
+     arr[start][end] =    ans = ans or recur(piles,start+1,end,alice+piles[start],bob,!turn) or recur(piles,start,end-1,alice+piles[end],bob,!turn);
+        
+      if(!turn)
+      arr[start][end]  =   ans = ans or recur(piles,start+1,end,alice,bob+piles[start],!turn) or recur(piles,start,end-1,alice,bob+piles[end],!turn);
+        
+        return  arr[start][end] = ans;
+        
+    }
+        
+    bool stoneGame(vector<int>& piles) {
+    memset(arr,-1,sizeof(arr));
+        return recur(piles,0,piles.size()-1,0,0,1);
+        
+    
+    }
+};
