@@ -1,0 +1,58 @@
+260. Single Number III
+
+/*
+Runtime: 12 ms, faster than 69.02% of C++ online submissions for Single Number III.
+Memory Usage: 9.8 MB, less than 99.58% of C++ online submissions for Single Number III.
+*/
+
+class Solution {
+public:
+   
+    vector<int> singleNumber(vector<int>& nums) {
+        
+     long xorred = 0;
+        
+        for(int &x: nums)
+        {
+            long temp = x;
+            if(temp<0) temp = -temp;
+            xorred  = xorred xor temp;
+        }
+        long temp= xorred;
+        long bit = 0;
+        while(temp > 0 )
+        {
+            if( temp & 1 )
+                break;
+            bit++;
+            temp = temp >> 1;
+        }
+        
+        long ans = 0;
+        for(int &x: nums)
+        {
+            long temp = x;
+            if(temp<0) temp = -temp;
+            
+            if( (temp >> bit ) & 1 )
+            {
+             ans = ans xor temp;   
+            }
+        }
+        long num1= xorred xor ans;
+        
+        for(int &x: nums)
+        {
+            if( x == -ans)
+            {
+                ans = -ans;
+            }
+            if( x == -num1)
+            {
+                num1 = -num1;
+            }
+        }
+        return {(int)ans , (int)num1};
+        
+    }
+};
