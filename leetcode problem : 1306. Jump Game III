@@ -1,0 +1,31 @@
+1306. Jump Game III
+
+/*
+Runtime: 172 ms, faster than 5.05% of C++ online submissions for Jump Game III.
+Memory Usage: 48.2 MB, less than 10.19% of C++ online submissions for Jump Game III.
+*/
+
+class Solution {
+public:
+   
+   
+    map<int,bool> mp;
+    bool recur(vector<int> & arr, int start    )
+    {
+        if(mp[start]) return false;
+        if(start<0 or start>=arr.size()) return false;
+        if( arr[start] ==  0 )
+        {
+            return true;
+        }
+        mp[start] = true;
+        
+        
+     return   recur(arr,start+arr[start]  ) or recur(arr,start - arr[start]);
+        
+    }
+    
+    bool canReach(vector<int>& arr, int start) {
+        return recur(arr,start);
+    }
+};
