@@ -1,0 +1,23 @@
+2169. Count Operations to Obtain Zero
+
+/*
+Runtime: 3 ms, faster than 57.85% of C++ online submissions for Count Operations to Obtain Zero.
+Memory Usage: 5.9 MB, less than 76.86% of C++ online submissions for Count Operations to Obtain Zero.
+*/
+
+class Solution {
+public:
+    int countOperations(int num1, int num2) {
+       int count = 0;
+        while( (num1 > 0 ) and ( num2 > 0 ))
+        {
+            if( num1>=num2)
+                num1-=num2;
+            else
+                num2-=num1;
+        count++;    
+        }
+        return count;
+        
+    }
+};
