@@ -1,0 +1,26 @@
+2367. Number of Arithmetic Triplets
+
+/*
+Runtime: 167 ms, faster than 25.00% of C++ online submissions for Number of Arithmetic Triplets.
+Memory Usage: 8.6 MB, less than 25.00% of C++ online submissions for Number of Arithmetic Triplets.
+*/
+
+class Solution {
+public:
+    int arithmeticTriplets(vector<int>& nums, int diff) {
+        int count = 0;
+        
+        for(int i=0;i<nums.size();i++)
+        {
+            for(int j=i+1;j<nums.size();j++)
+            {
+                for(int z=j+1;z<nums.size();z++)
+                {
+                    if((nums[j] - nums[i] == diff) and (nums[z]-nums[j] == diff))
+                        count++;
+                }
+            }
+        }
+        return count;
+    }
+};
