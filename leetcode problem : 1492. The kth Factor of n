@@ -1,0 +1,28 @@
+1492. The kth Factor of n
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for The kth Factor of n.
+Memory Usage: 6.1 MB, less than 35.25% of C++ online submissions for The kth Factor of n.
+*/
+
+class Solution {
+public:
+    int kthFactor(int n, int k) {
+        set<int> myset;
+        for(int i=1;i*i<=n;i++)
+        {
+          if(n%i==0){
+              myset.insert(i);
+              myset.insert(n/i);
+          }
+            
+        }
+        for(auto it=myset.begin();it!=myset.end();it++)
+        {
+            k--;
+            if(k==0) return (*it);
+        }
+        return -1;
+        
+    }
+};
