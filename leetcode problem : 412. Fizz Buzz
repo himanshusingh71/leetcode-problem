@@ -1,0 +1,29 @@
+412. Fizz Buzz
+
+/*
+Runtime: 4 ms, faster than 69.62% of C++ online submissions for Fizz Buzz.
+Memory Usage: 7.9 MB, less than 63.51% of C++ online submissions for Fizz Buzz.
+*/
+
+class Solution {
+public:
+    string func(int n)
+    {
+        if( n % 15 == 0 )
+            return "FizzBuzz";
+        else if(n%3==0)
+            return "Fizz";
+        else if(n%5==0)
+            return "Buzz";
+        else
+            return to_string(n);
+    }
+    vector<string> fizzBuzz(int n) {
+        vector<string> ans;
+        for(int i=1;i<=n;i++)
+        {
+            ans.push_back(func(i));
+        }
+        return ans;
+    }
+};
