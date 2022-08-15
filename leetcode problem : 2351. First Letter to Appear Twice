@@ -1,0 +1,19 @@
+2351. First Letter to Appear Twice
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for First Letter to Appear Twice.
+Memory Usage: 6.2 MB, less than 18.77% of C++ online submissions for First Letter to Appear Twice.
+*/
+
+class Solution {
+public:
+    char repeatedCharacter(string s) {
+        map<char,int> mp;
+        for(char &c: s)
+        {
+            if(mp[c]>0) return c;
+            mp[c]++;
+        }
+        return '0';
+    }
+};
