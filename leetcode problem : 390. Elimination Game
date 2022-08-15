@@ -1,0 +1,52 @@
+390. Elimination Game
+
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Elimination Game.
+Memory Usage: 6 MB, less than 25.78% of C++ online submissions for Elimination Game.
+*/
+
+class Solution {
+public:
+    int lastRemaining(int n) {
+     
+        int left = 1;
+        int right = n;
+        int remaining = n;
+        int it = 0;
+        bool l = true;
+        while(remaining!=1)
+        {
+            if( remaining & 1 )
+            {
+               // odd 
+              left = left + pow(2,it);
+                right = right  - pow(2,it);
+            }
+            else{
+               // even
+                  if( l )
+                {
+                    left = left + pow(2,it);
+                }
+                else{
+                    right = right - pow(2,it);
+                }
+                
+            }
+          
+            if( remaining & 1)
+            {
+                remaining = ( remaining - 1)/2;
+                
+            }
+            else{
+                remaining = remaining/2;
+            }
+            l = !l;
+              it++;
+        }
+      return left;
+        
+        
+    }
+};
