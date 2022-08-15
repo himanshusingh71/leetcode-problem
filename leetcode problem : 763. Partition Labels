@@ -1,0 +1,63 @@
+763. Partition Labels
+
+/*
+Runtime: 63 ms, faster than 5.08% of C++ online submissions for Partition Labels.
+Memory Usage: 6.8 MB, less than 24.17% of C++ online submissions for Partition Labels.
+*/
+
+class Solution {
+public:
+    vector<int> partitionLabels(string s) {
+        
+        vector<int> ans;
+     map<char,pair<int,int>> mp;
+        
+        for(int i=0;i<s.length();i++)
+        {
+            mp[s[i]].first = i;
+            char temp = s[i];
+            int maximum = i;
+            for(int j=i+1;j<s.length();j++)
+            {
+                if(s[j] == temp )
+                {
+                    maximum = max(maximum,j);
+                }
+            }
+            mp[temp].second = maximum;
+        }
+        int initial=0;
+        for( int i=0;i<s.length();)
+        {
+          
+            bool enter = false;
+            
+            int border = mp[s[i]].second;
+            
+            for(int j=0;j<border;j++)
+            {
+                if(mp[s[j]].second > border )
+                {
+                     enter = true;
+                  
+                    break;
+                   
+                }
+            }
+            if(enter)
+            {
+                i++;
+            }
+            else{
+                ans.push_back(border+1 - initial);
+                i = border+1;
+                initial = i;
+                
+            }
+        }
+        return ans;
+        
+        
+        
+    }
+};
