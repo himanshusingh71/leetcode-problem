@@ -1,0 +1,18 @@
+2357. Make Array Zero by Subtracting Equal Amounts
+
+/*
+
+*/
+
+class Solution {
+public:
+    int minimumOperations(vector<int>& nums) {
+       set<int> myset;
+        for(int &x: nums)
+        {
+            if(x!=0)
+                myset.insert(x);
+        }
+        return myset.size();
+    }
+};
