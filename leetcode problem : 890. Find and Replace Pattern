@@ -1,0 +1,41 @@
+890. Find and Replace Pattern
+
+/*
+Runtime: 3 ms, faster than 89.55% of C++ online submissions for Find and Replace Pattern.
+Memory Usage: 8.6 MB, less than 30.76% of C++ online submissions for Find and Replace Pattern.
+*/
+class Solution {
+public:
+    vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
+     
+        vector<string>ans;
+        for(string &word : words)
+        {
+            bool enter = false;
+            map<char,char> mp,mirror;
+            if(word.length()!=pattern.length()) continue;
+            
+            for(int i=0;i<word.length();i++)
+            {
+                if(mp.find(pattern[i])!=mp.end() or mirror.find(word[i])!=mirror.end())
+                {
+                    if((mp[pattern[i]]!= word[i] ) or ( mirror[word[i]]!= pattern[i]))
+                    {
+                        enter = true;
+                        break;
+                    }
+                  
+                }
+                  else{
+                        mp[pattern[i]]  = word[i];
+                      mirror[word[i]] = pattern[i];
+                  }
+              
+            } 
+            if(enter) continue;
+            else
+              ans.push_back(word);
+        }
+return ans;
+    }
+};
