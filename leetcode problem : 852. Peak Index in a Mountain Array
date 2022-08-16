@@ -1,0 +1,26 @@
+852. Peak Index in a Mountain Array
+
+/*
+Runtime: 173 ms, faster than 26.53% of C++ online submissions for Peak Index in a Mountain Array.
+Memory Usage: 59.6 MB, less than 43.89% of C++ online submissions for Peak Index in a Mountain Array.
+*/
+
+class Solution {
+public:
+    int peakIndexInMountainArray(vector<int>& arr) {
+        int left = 0;
+        int right = arr.size()-1;
+        while(left < right)
+        {
+            int check = left + ( right - left )/2;
+            if(arr[check] < arr[check+1])
+            {
+                left = check+1;
+            }
+            else{
+                right = check;
+            }
+        }
+        return left;
+    }
+};
