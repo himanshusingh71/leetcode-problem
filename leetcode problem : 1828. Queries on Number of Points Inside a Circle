@@ -1,0 +1,30 @@
+1828. Queries on Number of Points Inside a Circle
+
+/*
+Runtime: 100 ms, faster than 92.60% of C++ online submissions for Queries on Number of Points Inside a Circle.
+Memory Usage: 16.3 MB, less than 75.62% of C++ online submissions for Queries on Number of Points Inside a Circle.
+*/
+
+class Solution {
+public:
+    vector<int> countPoints(vector<vector<int>>& points, vector<vector<int>>& queries) {
+       
+        vector<int> all;
+      
+        for(auto &query : queries)
+        {
+            int ans = 0;
+            int x= query[0];
+            int y = query[1];
+            for(auto &point: points)
+            {
+                   float delta_x = ( x - point[0]);
+                float delta_y = ( y - point[1]);
+                
+                if( sqrt(delta_x * delta_x + delta_y*delta_y) <= query[2]) ans++;
+            }
+            all.push_back(ans);
+        }
+        return all;
+    }
+};
