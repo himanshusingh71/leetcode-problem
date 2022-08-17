@@ -1,0 +1,34 @@
+238. Product of Array Except Self
+
+/*
+Runtime: 55 ms, faster than 14.96% of C++ online submissions for Product of Array Except Self.
+Memory Usage: 25 MB, less than 28.21% of C++ online submissions for Product of Array Except Self.
+*/
+
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int product = 1;
+        int otherProduct = 1;
+        int countZeros=0;
+        for(int &x: nums){
+            product = product *x;
+            if(x!=0)
+                otherProduct = otherProduct * x;
+            if(x==0) countZeros++;
+        }
+        
+        vector<int> ans;
+        for(int &x: nums){
+            if(x==0){
+                if(countZeros == 1)
+                    ans.push_back(otherProduct);
+                else 
+                    ans.push_back(0);
+            }
+            else
+            ans.push_back(product/x);
+        }
+        return ans;
+    }
+};
