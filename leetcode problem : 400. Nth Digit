@@ -1,0 +1,78 @@
+400. Nth Digit
+
+/*
+Runtime: 267 ms, faster than 8.85% of C++ online submissions for Nth Digit.
+Memory Usage: 5.8 MB, less than 86.07% of C++ online submissions for Nth Digit.
+*/
+
+class Solution {
+public:
+ int digits(int n)
+ {
+ 	int count = 0;
+ 	while(n>0)
+ 	{
+ 		n/=10;
+ 		count++;
+ 	}
+ 	return count;
+ }
+
+ pair<long long,long long> get_starting(long long sum,long long  number_of_digits,long long starting,long long n)
+ {
+ 	long long i = 1;
+ 	while( sum + number_of_digits * i < n ){
+ 		i++;
+ 	}
+ 	i--;
+ 	sum = sum + number_of_digits*(i);
+ 	return {starting+i,sum};
+ }
+    int findNthDigit(int n) {
+          long long sum = 0;
+        long long nine = 9;
+        long long number_of_digits = 1;
+        long long tens = 1;
+     while(true  )
+        {
+          if( n <   sum + nine*tens*number_of_digits)
+              break;
+            else{
+                sum = sum + nine*tens*number_of_digits;
+                tens *=10;
+                number_of_digits++;
+                
+            }
+        }
+     
+
+         
+        int starting = 1;
+        while(digits(starting)!=number_of_digits)
+        {
+        	starting *=10;
+        } 
+
+        pair<int,int> paired_answer = get_starting(sum,number_of_digits,starting,n);
+        starting = paired_answer.first;
+        sum = paired_answer.second;
+    
+   
+   
+       int length = digits(starting);
+       	while(starting>0)
+       	{
+       		if(length  + sum == n )
+       		{
+       			return starting%10 ;
+       			break;
+       		}
+            length--;
+       		starting/=10;
+       	}
+        
+    return sum;
+    }
+};
+
+ 
