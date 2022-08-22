@@ -1,0 +1,44 @@
+299. Bulls and Cows
+
+/*
+Runtime: 8 ms, faster than 44.94% of C++ online submissions for Bulls and Cows.
+Memory Usage: 6.6 MB, less than 74.98% of C++ online submissions for Bulls and Cows.
+*/
+
+
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        
+        int count_right = 0;
+        int count_wrong=0;
+        map<char,int> secret_map;
+        for(char&x: secret)
+            secret_map[x]++;
+        for(int i=0;i<secret.size();i++)
+        {
+            if(secret[i] == guess[i])
+            {
+                count_right++;
+                secret_map[guess[i]]--;
+            }
+          
+        }
+           
+        
+        
+           for(int i=0;i<secret.size();i++)
+        {
+              if(secret_map[guess[i]] > 0 and secret[i]!=guess[i])
+            {
+                count_wrong++;
+                secret_map[guess[i]]--;
+            }
+          
+        }
+        
+        
+        
+      return  to_string(count_right) + "A" + to_string(count_wrong) + "B";
+    }
+};
