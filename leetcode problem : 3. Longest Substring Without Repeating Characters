@@ -1,0 +1,44 @@
+3. Longest Substring Without Repeating Characters
+
+/*
+Runtime: 2207 ms, faster than 5.00% of C++ online submissions for Longest Substring Without Repeating Characters.
+Memory Usage: 262.1 MB, less than 5.32% of C++ online submissions for Longest Substring Without Repeating Characters.
+*/
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+     
+        if(s.length()==0) return 0;
+        
+        int ans = INT_MIN,count = 0;
+        
+          set<char> myset;
+        int start = 0;
+        int i = 0;
+        
+       while(i<s.length())
+        {
+          if(myset.find(s[i])!=myset.end())
+          {
+             
+              i = start + 1;
+              start = i;
+             count=0;
+              myset.clear();
+          }
+           else{
+               count++;
+                ans = max(ans,count);
+                 myset.insert(s[i]);
+               i++;
+           }
+            
+           
+        }
+        
+ 
+        return ans;
+     
+    }
+};
