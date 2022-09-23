@@ -1,0 +1,68 @@
+106. Construct Binary Tree from Inorder and Postorder Traversal
+
+/*
+Runtime: 217 ms, faster than 5.01% of C++ online submissions for Construct Binary Tree from Inorder and Postorder Traversal.
+Memory Usage: 211.4 MB, less than 5.75% of C++ online submissions for Construct Binary Tree from Inorder and Postorder Traversal.
+*/
+
+ 
+class Solution {
+public:
+    
+ TreeNode* recur(TreeNode*root,vector<int> inorder,vector<int> postorder,int l,int r,int PostOrderSize,map<int,int>& mymap)
+ {
+
+     if(l<0 or r>=inorder.size() or l>= inorder.size()  or r<0) return NULL;
+ 		if(l>r)
+ 		{
+ 			return NULL;
+ 		}
+
+ 		if(l==r)
+ 		{
+ 			if(!root)
+ 				root = new TreeNode();
+
+ 			root->val = inorder[l];
+ 			root->right = NULL;
+ 			root->left = NULL;
+ 			return root;
+ 		}
+
+ 		int RootIndex = 0;
+
+ 		int rootElement ;
+   
+  
+ 		for(int i=PostOrderSize-1;i>=0;i--)
+ 		{
+ 			 if(mymap.find(postorder[i])!=mymap.end() and (mymap[postorder[i]]>=l and mymap[postorder[i]] <= r))
+             {
+                 RootIndex = mymap[postorder[i]];
+        
+                 rootElement = postorder[i];
+                 break;
+             }
+ 		}
+
+ 		if(!root)
+ 		root = new TreeNode();
+
+ 		root->val = rootElement;
+
+ 		root->left = recur(root->left,inorder,postorder,l,RootIndex-1,PostOrderSize-1,mymap);
+ 		root->right = recur(root->right,inorder,postorder,RootIndex+1,r,PostOrderSize-1,mymap);
+
+ 		return root;
+ }
+
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        TreeNode * root = NULL;
+      map<int,int> mymap;
+     for(int i=0;i<=inorder.size()-1;i++)
+     {
+         mymap[inorder[i]] = i;
+     }
+        return recur(root,inorder,postorder,0,postorder.size()-1,postorder.size(),mymap);
+    }
+};
