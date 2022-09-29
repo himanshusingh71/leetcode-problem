@@ -1,0 +1,44 @@
+1338. Reduce Array Size to The Half
+
+/*
+Runtime: 345 ms, faster than 46.06% of C++ online submissions for Reduce Array Size to The Half.
+Memory Usage: 80.1 MB, less than 36.86% of C++ online submissions for Reduce Array Size to The Half.
+*/
+
+class Solution {
+public:
+    int minSetSize(vector<int>& arr) {
+        /*
+        - get initial size
+        - create a frequency map of elements
+        - go from highest frequency element to lowest and keep removing 
+        until the size <= (initial size)/2           
+        */
+        int initial = arr.size();
+        int initial_copy = initial;
+        map<int,int> mp;
+        for(int &x: arr)
+            mp[x]++;
+        
+        priority_queue<int> ordered;
+        
+        for(auto it: mp)
+        {
+       
+            ordered.push(it.second);
+        }
+   
+        int count = 0;
+        while(initial>initial_copy/2)
+        {
+   
+            initial -= ordered.top();
+            count++;
+            ordered.pop();
+             
+        }
+        
+        return count;
+        
+    }
+};
