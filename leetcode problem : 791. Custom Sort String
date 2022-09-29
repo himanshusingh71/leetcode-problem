@@ -1,0 +1,47 @@
+791. Custom Sort String
+
+/*
+Runtime: 3 ms, faster than 61.75% of C++ online submissions for Custom Sort String.
+Memory Usage: 8.4 MB, less than 5.17% of C++ online submissions for Custom Sort String.
+*/
+
+class Solution {
+public:
+    string customSortString(string order, string s) {
+        /*
+        - create a map for count of characters in s
+        - get common characters of both string
+        - create the new string in sequence of order
+        - decrease the map count of each character
+        - iterate on the map in s and create the final string
+        */
+        
+        int arr[26];
+        
+        memset(arr,0,sizeof(arr));
+        
+        string new_string = "";
+        
+        for(char &x: s)
+            arr[x-'a']++;
+        
+        for( char &x: order)
+        {
+            while(arr[x-'a']>0){
+                new_string = new_string + x ;
+                arr[x-'a']--;
+            }
+        }
+      
+       for(int i=0;i<26;i++)
+       {
+           while(arr[i]>0){
+               new_string = new_string +  (char)('a'+i);
+               arr[i]--;
+           }
+       }
+        
+        return new_string;
+        
+    }
+};
