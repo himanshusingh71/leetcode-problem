@@ -1,0 +1,102 @@
+1079. Letter Tile Possibilities
+
+/*
+Runtime: 15 ms, faster than 66.86% of C++ online submissions for Letter Tile Possibilities.
+Memory Usage: 12.2 MB, less than 59.15% of C++ online submissions for Letter Tile Possibilities.
+*/
+
+class Solution {
+     vector<vector<int>> ans,output;
+ 
+    map<int,long> fact;
+    
+  void recur(vector<int> seq,int index,vector<int> curr)
+  {
+  	  if(index>=seq.size()) {
+  	  	ans.push_back(curr);
+  	  	return;
+  	  }
+
+  	  curr.push_back(seq[index]);
+  	  recur(seq,index+1,curr);
+
+  	  curr.pop_back();
+
+  	  recur(seq,index+1,curr);
+  }
+
+
+  void recur2(vector<int> seq,int index)
+  {
+  	if(seq.size()==1) {
+  		output.push_back(seq);
+  		return;
+  	}
+  	if(index>=seq.size())
+  	{
+   output.push_back(seq);
+  		return;
+  	}
+
+    while(seq[index]>1)
+    {
+    	recur2(seq,index+1);
+    	seq[index]--;
+    }   
+    	recur2(seq,index+1);
+  }
+
+  long long calculate(vector<int> values)
+  {
+  	if(values.size()==0) return 0;
+  	if(values.size()==1) return values[0];
+  	long long sum = 0;
+  	long long mul = 1;
+  	for(auto it:values)
+  	{
+  		sum+=it;
+  		if(it>1  )
+  			mul = mul * fact[it];
+  	}
+
+  	return fact[sum]/mul;
+
+  }
+public:
+    int numTilePossibilities(string tiles) {
+     fact[0] = 1;
+	fact[1] = 1;
+	for(int i=1;i<=12;i++)
+	{
+		fact[i] = fact[i-1] * i;
+
+	}
+	 
+	vector<int> sequence;
+ 	string input = tiles;
+
+ 	map<char,int> mp;
+
+ 	for(char &x: input)
+ 		mp[x]++;
+
+
+ 	for(auto it:mp)
+ 		sequence.push_back(it.second);
+
+ 	recur(sequence,0,vector<int>());
+
+ 	for(auto it:ans)	 
+ 		recur2(it,0);
+
+ 	long long total = 0;
+
+ 	for(auto it:output)
+ 		total = total + calculate(it);
+ 	
+ 	
+
+    return total;
+
+    }
+};
