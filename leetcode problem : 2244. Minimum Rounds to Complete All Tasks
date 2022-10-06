@@ -1,0 +1,52 @@
+2244. Minimum Rounds to Complete All Tasks
+
+/*
+Runtime: 557 ms, faster than 15.46% of C++ online submissions for Minimum Rounds to Complete All Tasks.
+Memory Usage: 104.6 MB, less than 32.11% of C++ online submissions for Minimum Rounds to Complete All Tasks.
+*/
+
+class Solution {
+public:
+    int minimumRounds(vector<int>& tasks) {
+     
+        map<int,int> mp;
+        
+        for(int &x: tasks)
+        {
+            mp[x]++;
+            
+        }
+        
+        int total = 0;
+        
+        for(auto it:mp)
+        {
+            
+            
+            if(it.second %3==0)
+            {
+                total += it.second /3;
+            }
+            else{
+                
+                int x = it.second/3;
+                bool found = false;
+                while(x>=0)
+                {
+                    if((it.second - 3*x)%2==0){
+                        found = true;
+                        break;
+                    }
+                    x--;
+                }
+                
+                if(found)
+                total = total + x + (it.second - 3*x)/2;
+                else
+                    return -1;
+            }
+        }
+        
+        return total;
+    }
+};
