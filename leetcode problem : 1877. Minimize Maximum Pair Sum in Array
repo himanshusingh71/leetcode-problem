@@ -1,0 +1,21 @@
+1877. Minimize Maximum Pair Sum in Array
+
+/*
+Runtime: 652 ms, faster than 5.08% of C++ online submissions for Minimize Maximum Pair Sum in Array.
+Memory Usage: 96.3 MB, less than 64.84% of C++ online submissions for Minimize Maximum Pair Sum in Array.
+*/
+
+
+class Solution {
+public:
+    int minPairSum(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        int maximum = INT_MIN;
+        for(int i=0;i<nums.size()/2;i++)
+        {
+            maximum = max(maximum,nums[i]+nums[nums.size()-i-1]);
+        }
+        return maximum;
+    }
+};
+
