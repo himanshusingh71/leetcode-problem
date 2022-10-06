@@ -1,0 +1,43 @@
+1481. Least Number of Unique Integers after K Removals
+
+/*
+Runtime: 249 ms, faster than 76.79% of C++ online submissions for Least Number of Unique Integers after K Removals.
+Memory Usage: 66.6 MB, less than 9.87% of C++ online submissions for Least Number of Unique Integers after K Removals.
+*/
+
+
+class Solution {
+public:
+    int findLeastNumOfUniqueInts(vector<int>& arr, int k) {
+        map<int,int> mp;
+        for(int &x: arr)
+        {
+            mp[x]++;
+        }
+        
+        vector<pair<int,int>> vec;
+        int unique = mp.size();
+        for(auto it: mp)
+        {
+            vec.push_back({it.second,it.first});
+        }
+        
+        sort(vec.begin(),vec.end());
+        
+        for(auto it:vec)
+        {
+            if(k>=it.first)
+            {
+                k = k - it.first;
+                unique--;
+            }
+            else{
+                break;
+            }
+        }
+        
+        return unique;
+        
+        
+    }
+};
