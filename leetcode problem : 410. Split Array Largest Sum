@@ -1,0 +1,55 @@
+410. Split Array Largest Sum
+
+/*
+Runtime: 190 ms, faster than 16.69% of C++ online submissions for Split Array Largest Sum.
+Memory Usage: 7.4 MB, less than 23.28% of C++ online submissions for Split Array Largest Sum.
+*/
+
+class Solution {
+public:
+        bool check(vector<int> & weights,int weight,int max_days)
+    {
+        int groups = 0;
+        
+        int l = 0, r = weights.size();
+        
+        int curr = 0;
+       
+        while(l<r)
+        {
+            if(curr + weights[l] <= weight )
+            {
+                curr = curr + weights[l];
+              
+                l++;
+            }
+            else{
+
+                groups++;
+                curr = 0;
+                
+            }
+            
+            if(groups==max_days and l<r) return false;
+           
+         }
+       
+     
+        return true;
+    }
+    int splitArray(vector<int>& weights, int days) {
+           int min_weight = 0;
+        
+        for(int &x: weights)
+            min_weight += x;
+       
+        min_weight = ceil(min_weight/days);
+         
+        while(!check(weights,min_weight,days))
+        {
+            min_weight++;
+           
+        }
+        return min_weight;
+    }
+};
