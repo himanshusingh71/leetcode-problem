@@ -1,0 +1,57 @@
+1011. Capacity To Ship Packages Within D Days
+
+/*
+Runtime: 504 ms, faster than 5.00% of C++ online submissions for Capacity To Ship Packages Within D Days.
+Memory Usage: 26.2 MB, less than 25.13% of C++ online submissions for Capacity To Ship Packages Within D Days.
+*/
+
+class Solution {
+public:
+    
+    bool check(vector<int> & weights,int weight,int max_days)
+    {
+        int groups = 0;
+        
+        int l = 0, r = weights.size();
+        
+        int curr = 0;
+       
+        while(l<r)
+        {
+            if(curr + weights[l] <= weight )
+            {
+                curr = curr + weights[l];
+              
+                l++;
+            }
+            else{
+
+                groups++;
+                curr = 0;
+                
+            }
+            
+            if(groups==max_days and l<r) return false;
+           
+         }
+       
+     
+        return true;
+    }
+    int shipWithinDays(vector<int>& weights, int days) {
+        
+        int min_weight = 0;
+        
+        for(int &x: weights)
+            min_weight += x;
+       
+        min_weight = ceil(min_weight/days);
+         
+        while(!check(weights,min_weight,days))
+        {
+            min_weight++;
+           
+        }
+        return min_weight;
+    }
+};
