@@ -1,0 +1,35 @@
+209. Minimum Size Subarray Sum
+
+/*
+Runtime: 114 ms, faster than 14.74% of C++ online submissions for Minimum Size Subarray Sum.
+Memory Usage: 28.1 MB, less than 88.31% of C++ online submissions for Minimum Size Subarray Sum.
+*/
+
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        
+        int l = 0 , r = nums.size();
+        int sum = 0;
+        int shrink = 0;
+        int minimum = INT_MAX;
+        
+        while(l<r)
+        {
+           
+                sum = sum + nums[l++];
+            
+            while(shrink < r and sum>=target)
+            {
+                 minimum = min(minimum,l-shrink);
+                sum-=nums[shrink];
+                shrink++;
+             
+            }
+        }
+        
+        if(minimum==INT_MAX) return 0;
+        return minimum;
+         
+    }
+};
