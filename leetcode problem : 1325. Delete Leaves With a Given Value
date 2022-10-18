@@ -1,0 +1,49 @@
+1325. Delete Leaves With a Given Value
+
+/*
+Runtime: 17 ms, faster than 91.70% of C++ online submissions for Delete Leaves With a Given Value.
+Memory Usage: 21.9 MB, less than 21.70% of C++ online submissions for Delete Leaves With a Given Value.
+*/
+
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    map<TreeNode*,bool> mp;
+    
+    bool dfs(TreeNode*r,int target)
+    {
+        if(!r) return true;
+        if(dfs(r->left,target))
+        {
+            r->left = NULL;
+        }
+        if(dfs(r->right,target))
+        {
+            r->right = NULL;
+        }
+      
+        if(r->val == target and r->right==NULL and r->left == NULL)
+        {
+            return true;
+        }
+        return false;
+        
+    }
+  
+    TreeNode* removeLeafNodes(TreeNode* root, int target) {
+        if(dfs(root,target)) return NULL;
+        return root;
+    }
+};
