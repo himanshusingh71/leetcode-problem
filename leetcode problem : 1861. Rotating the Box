@@ -1,0 +1,64 @@
+1861. Rotating the Box
+
+/*
+Runtime: 580 ms, faster than 49.61% of C++ online submissions for Rotating the Box.
+Memory Usage: 57 MB, less than 16.40% of C++ online submissions for Rotating the Box.
+*/
+
+class Solution {
+public:
+    void convert(vector<char>& box)
+    {
+        int index = box.size()-1;
+        
+        while(index>=0)
+        {
+            int empty_cell = INT_MIN;
+            
+            while(index>=0 and (box[index]=='.' or box[index]=='#'))
+            {
+                 if(box[index]=='.')
+                 {
+                     if(empty_cell==INT_MIN)
+                         empty_cell = index;
+                 }
+                else if(empty_cell!=INT_MIN){
+                   
+                    box[empty_cell] = '#';
+                    box[index] = '.';
+                    while(box[empty_cell]!='.')
+                        empty_cell--;
+                }
+                
+                
+                index--;
+                
+             }
+            
+            while(index>=0 and box[index]!='.' ) index--;
+        }
+        return;
+    }
+    vector<vector<char>> rotateTheBox(vector<vector<char>>& box) {
+        
+        for(int i=0;i<box.size();i++)
+        {
+            convert(box[i]);
+        }
+        
+        vector<vector<char>> copy;
+        
+        for(int i=0;i<box[0].size();i++)
+        {
+            vector<char> temp;
+            for(int j=box.size()-1;j>=0;j--)
+            {
+                temp.push_back(box[j][i]);
+            }
+            copy.push_back(temp);
+            temp.clear();
+        }
+        return copy;
+         
+    }
+};
