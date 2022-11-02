@@ -1,0 +1,76 @@
+1743. Restore the Array From Adjacent Pairs
+
+/*
+Runtime: 1588 ms, faster than 7.83% of C++ online submissions for Restore the Array From Adjacent Pairs.
+Memory Usage: 133.3 MB, less than 46.91% of C++ online submissions for Restore the Array From Adjacent Pairs.
+*/
+
+class Solution {
+public:
+    vector<int> restoreArray(vector<vector<int>>& adjacentPairs) {
+        if(adjacentPairs.size()==0) return {};
+        map<int,vector<int>> freq;
+        
+        for(auto it: adjacentPairs)
+        {
+            freq[it[0]].push_back(it[1]);
+            freq[it[1]].push_back(it[0]);
+        }
+        // find the starting number;
+        int start;
+        for(auto it:freq)
+        {
+            if(it.second.size()==1)
+            {
+                start = it.first;
+                break;
+            }
+        }
+        
+        int total = adjacentPairs.size()+1;
+        
+        vector<int> ans;
+        map<int,bool> taken;
+        ans.push_back(start);
+        taken[start] = true;
+        while(total>0)
+        {
+            if(freq[start].size()==2)
+            {
+                // if size is 2
+                int first = freq[start][0];
+                int second = freq[start][1];
+                if(!taken[first])
+                {
+                    ans.push_back(first);
+                    total--;
+                    taken[first] = true;
+                    start = first;
+                }
+                if(!taken[second])
+                {
+                    ans.push_back(second);
+                    total--;
+                    taken[second] = true;
+                    start = second;
+                }
+            }
+            else{
+                // if size is 1
+                int element = freq[start][0];
+                start = element;
+                if(taken[element])
+                {
+                    break;
+                }
+                else{
+                    ans.push_back(element);
+                    taken[element] = true;
+                    total--;
+                }
+            }
+        }
+        return ans;
+         
+    }
+};
