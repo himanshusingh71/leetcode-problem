@@ -1,0 +1,66 @@
+1219. Path with Maximum Gold
+
+/*
+Runtime: 1520 ms, faster than 5.11% of C++ online submissions for Path with Maximum Gold.
+Memory Usage: 9.3 MB, less than 6.08% of C++ online submissions for Path with Maximum Gold.
+*/
+
+class Solution {
+public:
+    
+    int maximum = INT_MIN;
+      map<pair<int,int>,bool> visited;
+    void recur(vector<vector<int>>&grid,int r,int c,int curr_sum)
+    {
+        if(r<0 or r>=grid.size() or c<0 or c>= grid[0].size()) return;
+        
+        if(visited[{r,c}]) return ;
+        
+        if(grid[r][c]==0) return;
+        
+        curr_sum += grid[r][c];
+        visited[{r,c}] = true;
+        
+        maximum = max(maximum,curr_sum);
+        
+        
+        recur(grid,r-1,c,curr_sum);
+        recur(grid,r+1,c,curr_sum);
+        recur(grid,r,c-1,curr_sum);
+        recur(grid,r,c+1,curr_sum);
+        visited[{r,c}] = false;
+        
+    }
+    int getMaximumGold(vector<vector<int>>& grid) {
+        /*
+        -> get all positions from where i can start
+        -> iterate through each position by moving { left,right,up,down}
+                            -> check that next cell is not invalid
+                            -> check that next cell doesnt contain 0 
+                            -> check that next cell is unvisited
+        -> store the gold sum in max variable
+        
+        */
+        vector<pair<int,int>> pairs;
+        
+        // getting all positions from where i can start collecting the gold
+        for(int i=0;i<grid.size();i++)
+        {
+            for(int j=0;j<grid[0].size();j++)
+            {
+                if(grid[i][j]!=0)
+                {
+                  
+                   
+                      recur(grid,i,j,0);
+                }
+            }
+        }
+        
+        
+     
+        if(maximum == INT_MIN) return 0;
+        return maximum;
+        
+    }
+};
