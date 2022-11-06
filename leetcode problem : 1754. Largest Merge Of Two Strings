@@ -1,0 +1,83 @@
+1754. Largest Merge Of Two Strings
+
+/*
+Runtime: 264 ms, faster than 40.00% of C++ online submissions for Largest Merge Of Two Strings.
+Memory Usage: 356.2 MB, less than 28.98% of C++ online submissions for Largest Merge Of Two Strings.
+*/
+
+
+class Solution {
+public:
+    bool check(string a,string b,int l,int r)
+    {
+         while(l<a.size() and r < b.size())
+         {
+             if(a[l]==b[r])
+             {
+                 l++;
+                 r++;
+             }
+             else{
+                 return a[l]>b[r];
+             }
+         }
+        if(l>=a.size()) return false;
+        return true;
+    }
+    string largestMerge(string word1, string word2) {
+        string merge = "";
+        int l = 0, r = 0;
+        
+        bool entered_equal = false;
+        bool one_is_big = false;
+        while(l<word1.size() and r<word2.size())
+        {
+            
+            if(word1[l]>word2[r])
+            {
+                entered_equal = false;
+                merge += word1[l];
+                l++;
+            }
+            else if(word2[r]>word1[l])
+            {
+                entered_equal = false;
+                merge += word2[r];
+                r++;
+            }
+            else{
+                if(entered_equal)
+                {
+                      if(one_is_big)
+                    {
+                        merge = merge + word1[l];
+                        l++;
+                    }
+                    else{
+                        merge = merge + word2[r];
+                        r++;
+                    }
+                }
+                else{
+                    entered_equal = true;
+                    // make the equal condition
+                     one_is_big = check(word1,word2,l,r);
+                    if(one_is_big)
+                    {
+                        merge = merge + word1[l];
+                        l++;
+                    }
+                    else{
+                        merge = merge + word2[r];
+                        r++;
+                    }
+                }
+            }
+        }
+        while(l<word1.size())
+            merge+=word1[l++];
+        while(r<word2.size())
+            merge+=word2[r++];
+        return merge;
+    }
+};
